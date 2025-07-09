@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjhq56m8c17gq"]
+
+[ext_resource type="PackedScene" uid="uid://pimtw3pui4hb" path="res://scenes/paralax.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://md70633ka32j" path="res://scripts/main.gd" id="1_tefeu"]
+[ext_resource type="PackedScene" uid="uid://b6acd6hc8cldk" path="res://scenes/my_ship.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://dssdp5w0x2x2c" path="res://scenes/simple_bullet.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://blcdngbp3iol" path="res://scenes/simple_enemy_bullet.tscn" id="4_tbgi4"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_tefeu")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Paralax" parent="." instance=ExtResource("1_o5qli")]
+
+[node name="MyShip" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(43, 347)
+bullet_scene = ExtResource("4_jyhfs")
+
+[node name="SimpleBullet" parent="." instance=ExtResource("4_jyhfs")]
+visible = false
+
+[node name="SimpleEnemyBullet" parent="." instance=ExtResource("4_tbgi4")]
+visible = false
+speed = 450
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

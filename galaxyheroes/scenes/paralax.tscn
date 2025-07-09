@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://pimtw3pui4hb"]
+
+[ext_resource type="Texture2D" uid="uid://clyfoalhv8krb" path="res://images/galaxy.jpg" id="1_heuar"]
+
+[node name="Paralax" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.05, 0.05)
+repeat_size = Vector2(2048, 0)
+autoscroll = Vector2(-500, 0)
+
+[node name="Sprite01" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(558, 330)
+scale = Vector2(1.48, 1)
+texture = ExtResource("1_heuar")
