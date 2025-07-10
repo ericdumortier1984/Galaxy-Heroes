@@ -1,7 +1,7 @@
 class_name EnemyBullet
 extends Area2D
 
-@export var speed = 250
+@export var speed = 0
 var direction = Vector2.LEFT
 
 func _physics_process(delta):

@@ -16,17 +16,16 @@ func _on_shoot_timer_timeout():
 	shoot()
 
 func shoot():
-	if pre_load_enemy_bullet:
-		var bullet = pre_load_enemy_bullet.instantiate()
-		bullet.position = $Sprite2D/EnemyShootPoint.global_position
+	var enemy_bullet = pre_load_enemy_bullet.instantiate()
+	enemy_bullet.position = $Sprite2D/EnemyShootPoint.global_position
 
-		var player = get_tree().get_first_node_in_group("my_ship")
-		if player:
-			#var dir = (player.global_position - global_position).normalized()
-			#bullet.set_direction(dir)
-			bullet.set_direction(Vector2.LEFT)
+	var my_ship = get_tree().get_first_node_in_group("my_ship")
+	if my_ship:
+		var my_ship_direction = (my_ship.global_position - global_position).normalized()
+		enemy_bullet.set_direction(my_ship_direction)
+		enemy_bullet.set_direction(Vector2.LEFT)
 
-		get_parent().add_child(bullet)
+	get_parent().add_child(enemy_bullet)
 
 func set_direction(new_direction: Vector2):
 	direction = new_direction.normalized()

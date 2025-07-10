@@ -13,7 +13,10 @@ config_version=5
 config/name="GalaxyHeroes"
 run/main_scene="uid://cjhq56m8c17gq"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout=""
 
 [display]
 

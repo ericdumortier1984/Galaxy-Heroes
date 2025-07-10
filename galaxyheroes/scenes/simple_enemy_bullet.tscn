@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://blcdngbp3iol"]
 
 [ext_resource type="Script" uid="uid://dhqyccdnajsec" path="res://scripts/simple_enemy_bullet.gd" id="1_1nj0i"]
-[ext_resource type="Texture2D" uid="uid://78rb1awae5v2" path="res://images/bullet.png" id="1_1r3a4"]
+[ext_resource type="Texture2D" uid="uid://78rb1awae5v2" path="res://images/enemy_bullet.png" id="1_1r3a4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1nj0i"]
 radius = 11.0454
@@ -12,6 +12,7 @@ script = ExtResource("1_1nj0i")
 speed = 350
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.0745098, 0.0313726, 1)
 texture = ExtResource("1_1r3a4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

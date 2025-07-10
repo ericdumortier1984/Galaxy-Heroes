@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dssdp5w0x2x2c"]
 
 [ext_resource type="Script" uid="uid://n0v6nwd76a5m" path="res://scripts/simple_bullet.gd" id="1_6lavy"]
-[ext_resource type="Texture2D" uid="uid://78rb1awae5v2" path="res://images/bullet.png" id="2_5xwvn"]
+[ext_resource type="Texture2D" uid="uid://c2cgutrqfgdb7" path="res://images/simple_bullet.png" id="2_6lavy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6lavy"]
 
@@ -11,7 +11,7 @@ script = ExtResource("1_6lavy")
 speed = 500
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_5xwvn")
+texture = ExtResource("2_6lavy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
