@@ -25,4 +25,11 @@ visible = false
 visible = false
 speed = 450
 
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_right = 1150.0
+offset_bottom = 83.0
+text = "FIRST PROTOTIPE:
+MOVE -> A S D W
+SHOOT -> LEFT CLIC MOUSE"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
