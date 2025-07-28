@@ -10,6 +10,7 @@ func _physics_process(delta):
 	
 	if not get_viewport_rect().has_point(global_position):
 		queue_free()
+		#print("my bullet deleted")
 
 func set_direction(new_direction):
 	direction = new_direction.normalized() 

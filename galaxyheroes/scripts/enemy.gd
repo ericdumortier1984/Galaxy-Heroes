@@ -32,4 +32,11 @@ func set_direction(new_direction: Vector2):
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("simple_bullet"):
+		drop_power_up()
 		queue_free()
+
+func drop_power_up() -> void:
+	var power_up := PowerUpSingleton.create(PowerUpFactory.PowerUpType.TRIPLESHOT)
+	if power_up:
+		power_up.global_position = global_position
+		get_tree().current_scene.call_deferred("add_child", power_up)

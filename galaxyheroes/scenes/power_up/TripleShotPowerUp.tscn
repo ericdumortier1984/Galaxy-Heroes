@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://drnty71x222l1"]
+
+[ext_resource type="Texture2D" uid="uid://d4g8tjehkvnpe" path="res://images/power_up_shoot.png" id="1_kpd3x"]
+[ext_resource type="Script" uid="uid://cycptih53gacn" path="res://scripts/triple_shot_power_up.gd" id="1_umhie"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umhie"]
+size = Vector2(63, 64)
+
+[node name="TripleShot" type="Area2D"]
+script = ExtResource("1_umhie")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kpd3x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_umhie")

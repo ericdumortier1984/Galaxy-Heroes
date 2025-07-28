@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6acd6hc8cldk"]
+[gd_scene load_steps=6 format=3 uid="uid://b6acd6hc8cldk"]
 
 [ext_resource type="Texture2D" uid="uid://dymvfrydia4ip" path="res://images/starship.png" id="1_ffte4"]
 [ext_resource type="Script" uid="uid://c22lwn3x614dv" path="res://scripts/my_ship.gd" id="1_tu07k"]
+[ext_resource type="PackedScene" uid="uid://dssdp5w0x2x2c" path="res://scenes/simple_bullet.tscn" id="2_bgatt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tu07k"]
 size = Vector2(21.8585, 22.1844)
@@ -10,6 +11,7 @@ size = Vector2(21.8585, 22.1844)
 
 [node name="MyShip" type="CharacterBody2D" groups=["my_ship"]]
 script = ExtResource("1_tu07k")
+bullet_scene = ExtResource("2_bgatt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5qckqvpm1nn"]
+
+[ext_resource type="Script" uid="uid://bln7snl3misuy" path="res://scripts/health_power_up.gd" id="1_08kmo"]
+[ext_resource type="Texture2D" uid="uid://w4ygqs5d2b3d" path="res://images/health.png" id="2_lwwdd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onsuo"]
+size = Vector2(63, 63)
+
+[node name="Health" type="Area2D"]
+script = ExtResource("1_08kmo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lwwdd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_onsuo")

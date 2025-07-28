@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 buses/default_bus_layout=""
 
+[autoload]
+
+PowerUpSingleton="*res://scripts/power_up_factory.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"
