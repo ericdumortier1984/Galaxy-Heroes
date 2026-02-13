@@ -1,17 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://drnty71x222l1"]
+[gd_scene format=3 uid="uid://drnty71x222l1"]
 
-[ext_resource type="Texture2D" uid="uid://d4g8tjehkvnpe" path="res://images/power_up_shoot.png" id="1_kpd3x"]
-[ext_resource type="Script" uid="uid://cycptih53gacn" path="res://scripts/triple_shot_power_up.gd" id="1_umhie"]
+[ext_resource type="Script" uid="uid://bfrnc4ljxwfo5" path="res://scripts/power_up.gd" id="1_umhie"]
+[ext_resource type="PackedScene" uid="uid://df0ayymloi0lg" path="res://scenes/Effect/pick_up_effect.tscn" id="2_sajfs"]
+[ext_resource type="Texture2D" uid="uid://dehbw30u635ws" path="res://images/power up/triple_shot.png" id="2_umhie"]
+[ext_resource type="Texture2D" uid="uid://c2cgutrqfgdb7" path="res://images/ship/army/simple_bullet.png" id="3_l8xad"]
+[ext_resource type="Material" uid="uid://cwx0vmugqqs5k" path="res://resources/shader/bubble_shader_material.tres" id="3_o26gx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_umhie"]
-size = Vector2(63, 64)
+size = Vector2(21.06965, 22.222233)
 
-[node name="TripleShot" type="Area2D"]
+[node name="TripleShot" type="Area2D" unique_id=700291860]
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_umhie")
+speed = 20.0
+bubble_color = Color(1, 1, 0, 1)
+pick_up_particle_scene = ExtResource("2_sajfs")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_kpd3x")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1634911212]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_umhie")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
+[node name="Bubble" type="Sprite2D" parent="." unique_id=773355899]
+material = ExtResource("3_o26gx")
+scale = Vector2(4.4999957, 4.4999957)
+texture = ExtResource("3_l8xad")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=360517884]
+position = Vector2(-1.5666695, 7.947286e-07)
+scale = Vector2(2.6800003, 2.399999)
 shape = SubResource("RectangleShape2D_umhie")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

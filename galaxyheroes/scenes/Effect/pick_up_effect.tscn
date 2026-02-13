@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://df0ayymloi0lg"]
+
+[ext_resource type="Material" uid="uid://cwx0vmugqqs5k" path="res://resources/shader/bubble_shader_material.tres" id="1_i0ney"]
+[ext_resource type="Script" uid="uid://c7p54y2mdtqvo" path="res://scripts/particle/pick_up_effect.gd" id="1_k8xya"]
+[ext_resource type="Texture2D" uid="uid://c2cgutrqfgdb7" path="res://images/ship/army/simple_bullet.png" id="2_k8xya"]
+[ext_resource type="AudioStream" uid="uid://cvqhxnrxpfmlt" path="res://audio/Sound/power_up.wav" id="4_qtt38"]
+
+[node name="Pick Up Node" type="Node2D" unique_id=2122065104]
+script = ExtResource("1_k8xya")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1622434493]
+material = ExtResource("1_i0ney")
+texture = ExtResource("2_k8xya")
+
+[node name="CPU Particle" type="CPUParticles2D" parent="." unique_id=1621404796]
+color = Color(1, 1, 1, 0)
+
+[node name="Pick Up Sound" type="AudioStreamPlayer2D" parent="." unique_id=1570187545]
+stream = ExtResource("4_qtt38")

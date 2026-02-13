@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dyhmqvbgie5da"]
+
+[ext_resource type="Texture2D" uid="uid://cqx2nvwij7dw4" path="res://images/ship/ryo/Ryo_2.png" id="1_3lgvk"]
+[ext_resource type="Texture2D" uid="uid://bicyw5o7uq1kv" path="res://images/ship/ryo/Ryo.png" id="2_iagj3"]
+[ext_resource type="Texture2D" uid="uid://p36h5dijqv2d" path="res://images/ship/ryo/Ryo_3.png" id="2_ng4vg"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3lgvk")
+}],
+"loop": false,
+"name": &"fly_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ng4vg")
+}],
+"loop": false,
+"name": &"fly_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_iagj3")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]

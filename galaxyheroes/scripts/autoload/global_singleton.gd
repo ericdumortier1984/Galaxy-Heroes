@@ -1,0 +1,49 @@
+extends Node
+
+enum GameState {
+	DIALOGUING,
+	PLAYING,
+	WIN,
+	GAME_OVER,
+	PAUSED
+}
+
+enum PowerUp {
+	LIFE,
+	SHIELD,
+	DOUBLE_SHOT,
+	TRIPLE_SHOT,
+	MISSILE,
+	SPEED
+}
+
+signal state_changed(new_state)
+
+var score : int = 0
+var hi_score : int = 0
+var lifes : int = 0
+var missiles : int = 0
+var selecter_character_id : int = 0
+var game_state : GameState = GameState.PLAYING
+
+func set_state(new_state : GameState) -> void:
+	if game_state == new_state:
+		return
+	
+	game_state = new_state
+	state_changed.emit(game_state)
+	
+	match game_state:
+		GameState.GAME_OVER:
+			game_over()
+
+func lose_life(amount: int = 1) -> void:
+	lifes -= amount
+	
+	if lifes <= 0:
+		lifes = 0
+		set_state(GameState.GAME_OVER)
+
+func game_over():
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+	SaveSystem.update_hi_score(score)

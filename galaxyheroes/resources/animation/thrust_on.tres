@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://c0qe74b4y6bal"]
+
+[ext_resource type="Texture2D" uid="uid://p6oulomjlbdc" path="res://images/ship/effect/thrust1.png" id="1_fvwe8"]
+[ext_resource type="Texture2D" uid="uid://bw46dqapme3i1" path="res://images/ship/effect/thrust2.png" id="2_fwb3d"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fvwe8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fwb3d")
+}],
+"loop": false,
+"name": &"Thrust on",
+"speed": 5.0
+}]

@@ -1,17 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5qckqvpm1nn"]
+[gd_scene format=3 uid="uid://b5qckqvpm1nn"]
 
-[ext_resource type="Script" uid="uid://bln7snl3misuy" path="res://scripts/health_power_up.gd" id="1_08kmo"]
-[ext_resource type="Texture2D" uid="uid://w4ygqs5d2b3d" path="res://images/health.png" id="2_lwwdd"]
+[ext_resource type="Script" uid="uid://bfrnc4ljxwfo5" path="res://scripts/power_up.gd" id="1_08kmo"]
+[ext_resource type="Texture2D" uid="uid://i0jwjftg5m8k" path="res://images/power up/life.png" id="2_08kmo"]
+[ext_resource type="PackedScene" uid="uid://df0ayymloi0lg" path="res://scenes/Effect/pick_up_effect.tscn" id="2_31pla"]
+[ext_resource type="Texture2D" uid="uid://c2cgutrqfgdb7" path="res://images/ship/army/simple_bullet.png" id="3_lwwdd"]
+[ext_resource type="Material" uid="uid://cwx0vmugqqs5k" path="res://resources/shader/bubble_shader_material.tres" id="3_vwm1w"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_onsuo"]
-size = Vector2(63, 63)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwwdd"]
+size = Vector2(66.66667, 66.666664)
 
-[node name="Health" type="Area2D"]
+[node name="Health" type="Area2D" unique_id=1781958275]
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_08kmo")
+power_up_type = 0
+speed = 20.0
+bubble_color = Color(1, 0, 0, 1)
+pick_up_particle_scene = ExtResource("2_31pla")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_lwwdd")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1556371945]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_08kmo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -0.5)
-shape = SubResource("RectangleShape2D_onsuo")
+[node name="Bubble" type="Sprite2D" parent="." unique_id=1518791254]
+material = ExtResource("3_vwm1w")
+position = Vector2(-1.4210853e-13, 0)
+scale = Vector2(4.5999966, 4.9999948)
+texture = ExtResource("3_lwwdd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1064386048]
+position = Vector2(-1.5894572e-06, 0)
+shape = SubResource("RectangleShape2D_lwwdd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

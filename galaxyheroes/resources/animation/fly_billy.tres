@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cynncf4jpdet2"]
+
+[ext_resource type="Texture2D" uid="uid://p1klgy28b7wn" path="res://images/ship/billy/Billy_2.png" id="1_bkkvd"]
+[ext_resource type="Texture2D" uid="uid://cw6w1cuqpj5b" path="res://images/ship/billy/Billy.png" id="1_s5thq"]
+[ext_resource type="Texture2D" uid="uid://dy2p0l3o2w7e8" path="res://images/ship/billy/Billy_3.png" id="2_rx775"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bkkvd")
+}],
+"loop": false,
+"name": &"fly_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rx775")
+}],
+"loop": false,
+"name": &"fly_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5thq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]

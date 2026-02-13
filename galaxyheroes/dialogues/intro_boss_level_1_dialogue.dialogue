@@ -1,0 +1,23 @@
+~ ryo_intro_boss_level_1
+Boss_1: So, another pilot dares to approach.
+Ryo: Heh. I'm not here to talk.
+Boss_1: Brave, or just reckless.
+Ryo: You'll find soon enough.
+Ryo: The green cabin is his only week point
+=> END
+
+~ billy_intro_boss_level_1
+Boss_1: You should have turned back.
+Billy: Nah, I was getting bored with your friends.
+Boss_1: This sector will be your grave.
+Billy: Come on, entertain me for a while.
+Billy: The green cabin is his only week point, buddy
+=> END
+
+~ kimi_intro_boss_level_1
+Boss_1: Here you are.
+Kimi: You known me?.
+Boss_1: I knew your father. He begged for mercy. 
+Kimi: I will avenge him.
+Kimi: The green cabin is his only week point, sweety
+=> END

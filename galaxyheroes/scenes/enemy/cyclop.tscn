@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dvfc6m85ei8h8"]
+
+[ext_resource type="Texture2D" uid="uid://c4s5y86ak6n7r" path="res://images/enemy/enemy_2.png" id="1_5p8u7"]
+[ext_resource type="Script" uid="uid://drdrxlh7pplts" path="res://scripts/enemy.gd" id="1_pwmhr"]
+[ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="3_tcwob"]
+[ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="8_3srvu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pwmhr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5p8u7")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_en0w4"]
+size = Vector2(46, 17)
+
+[node name="Cyclop" type="Node2D" unique_id=1251580003]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_pwmhr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1329580943 groups=["ENEMIES"]]
+
+[node name="Fly" type="AnimatedSprite2D" parent="Area2D" unique_id=554816610]
+sprite_frames = SubResource("SpriteFrames_pwmhr")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=227633213]
+position = Vector2(-2, -0.5)
+shape = SubResource("RectangleShape2D_en0w4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Area2D" unique_id=1544005749]
+
+[node name="Shoot Point" type="Marker2D" parent="." unique_id=1445684841]
+position = Vector2(-23, 0)
+
+[node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=368152352]
+sprite_frames = ExtResource("3_tcwob")
+animation = &"explosion"
+
+[node name="Explosion Sound" type="AudioStreamPlayer2D" parent="Explosion" unique_id=384879750]
+stream = ExtResource("8_3srvu")
+volume_db = -5.0
+bus = &"SFX"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="Area2D/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="animation_finished" from="Explosion" to="." method="_on_explosion_animation_finished"]

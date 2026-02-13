@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cykv2rufwxek7"]
+
+[ext_resource type="Texture2D" uid="uid://cyghipr21ijp6" path="res://images/ship/kimi/Kimi.png" id="1_1ri4n"]
+[ext_resource type="Texture2D" uid="uid://jhmcqhy8rkpq" path="res://images/ship/kimi/Kimi_2.png" id="1_y4j4i"]
+[ext_resource type="Texture2D" uid="uid://c7oyuj1lyl7f7" path="res://images/ship/kimi/Kimi_3.png" id="2_7ikd1"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y4j4i")
+}],
+"loop": false,
+"name": &"fly_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7ikd1")
+}],
+"loop": false,
+"name": &"fly_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1ri4n")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]

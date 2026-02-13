@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://bs2l4uj36yoo5"]
+
+[ext_resource type="Script" uid="uid://c22lwn3x614dv" path="res://scripts/my_ship.gd" id="1_puh0p"]
+[ext_resource type="SpriteFrames" uid="uid://c0qe74b4y6bal" path="res://resources/animation/thrust_on.tres" id="2_6nt86"]
+[ext_resource type="PackedScene" uid="uid://dssdp5w0x2x2c" path="res://scenes/simple_bullet.tscn" id="2_vardg"]
+[ext_resource type="PackedScene" uid="uid://dyqg5r2ompagx" path="res://scenes/missile_player.tscn" id="3_o6gei"]
+[ext_resource type="SpriteFrames" uid="uid://cynncf4jpdet2" path="res://resources/animation/fly_billy.tres" id="4_0l4f7"]
+[ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="4_uhhrj"]
+[ext_resource type="SpriteFrames" uid="uid://cwkhdq3r3i44s" path="res://resources/animation/flash.tres" id="5_3e45p"]
+[ext_resource type="Texture2D" uid="uid://c2cgutrqfgdb7" path="res://images/ship/army/simple_bullet.png" id="5_3mtup"]
+[ext_resource type="Material" uid="uid://bndtnurpvsuyw" path="res://resources/shader/shield_shader_material.tres" id="5_buh1u"]
+[ext_resource type="AudioStream" uid="uid://bd1x542v64cfd" path="res://audio/Sound/shot 1.wav" id="6_vipu5"]
+[ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="7_vardg"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o6gei"]
+load_path = "res://.godot/imported/Billy.png-dff99c49209b8baf6f23c8e50ee6efe2.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nt86"]
+size = Vector2(100.00002, 30.000015)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vipu5"]
+size = Vector2(58.27076, 16.48153)
+
+[node name="Billy Ship" type="CharacterBody2D" unique_id=1079694773 node_paths=PackedStringArray("my_area2d", "shot_sound", "explosion_sound", "bullet_position", "flash_animation", "explosion_animation", "thrust_animation", "my_animated_ship") groups=["PLAYER_SHIP"]]
+scale = Vector2(0.1, 0.1)
+motion_mode = 1
+script = ExtResource("1_puh0p")
+bullet_scene = ExtResource("2_vardg")
+missile_scene = ExtResource("3_o6gei")
+my_area2d = NodePath("Area2D")
+shield_color = Color(1, 0.5568628, 0.03137255, 0.7058824)
+shot_sound = NodePath("Simple Shot Sound")
+explosion_sound = NodePath("Explosion Sound")
+bullet_position = NodePath("Spawn Bullet Position")
+flash_animation = NodePath("Flash")
+explosion_animation = NodePath("Explosion")
+thrust_animation = NodePath("Thrust")
+ship_frames = ExtResource("4_0l4f7")
+my_animated_ship = NodePath("Fly")
+
+[node name="Fly" type="AnimatedSprite2D" parent="." unique_id=1870131510]
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("4_0l4f7")
+animation = &"fly_up"
+
+[node name="Thrust" type="AnimatedSprite2D" parent="." unique_id=2040300334]
+position = Vector2(-50, 29.999998)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("2_6nt86")
+animation = &"Thrust on"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1902182782]
+visible = false
+scale = Vector2(4, 4)
+texture = SubResource("CompressedTexture2D_o6gei")
+
+[node name="Shield" type="Sprite2D" parent="." unique_id=2080747130]
+visible = false
+material = ExtResource("5_buh1u")
+scale = Vector2(5, 5)
+texture = ExtResource("5_3mtup")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=615422132]
+position = Vector2(-4.321334e-06, 5)
+scale = Vector2(0.9999994, 0.9999994)
+shape = SubResource("RectangleShape2D_6nt86")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=472761462]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=139997767]
+position = Vector2(-2.3841854e-07, 4.999998)
+scale = Vector2(1.630319, 1.8202192)
+shape = SubResource("RectangleShape2D_vipu5")
+
+[node name="Spawn Bullet Position" type="Marker2D" parent="." unique_id=2114688420]
+position = Vector2(90, 20)
+
+[node name="Flash" type="AnimatedSprite2D" parent="." unique_id=1546980923]
+position = Vector2(90, 20)
+sprite_frames = ExtResource("5_3e45p")
+animation = &"Flash"
+
+[node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=173464148]
+position = Vector2(30, 5)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("4_uhhrj")
+animation = &"explosion"
+
+[node name="Explosion Sound" type="AudioStreamPlayer2D" parent="." unique_id=2121396646]
+stream = ExtResource("7_vardg")
+bus = &"SFX"
+
+[node name="Simple Shot Sound" type="AudioStreamPlayer2D" parent="." unique_id=859593660]
+stream = ExtResource("6_vipu5")
+volume_db = -15.0
+bus = &"SFX"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="Explosion" to="." method="_on_explosion_animation_finished"]

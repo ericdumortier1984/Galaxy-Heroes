@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://diw5w1ky7hoxm"]
+
+[ext_resource type="Script" uid="uid://vvknmocqd43l" path="res://scripts/select_character.gd" id="1_cd1mt"]
+[ext_resource type="Texture2D" uid="uid://b5tgjv83ju5jc" path="res://images/parallax/Space_background_1.png" id="2_r3wrp"]
+
+[node name="SelectCharacter" type="Control" unique_id=1732266047]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cd1mt")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1812458178]
+layout_mode = 0
+offset_right = 273.0
+offset_bottom = 169.0
+texture = ExtResource("2_r3wrp")
+
+[node name="Margin Title" type="MarginContainer" parent="." unique_id=1995435576]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.5
+offset_right = 75.5
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Label" type="Label" parent="Margin Title" unique_id=923364233]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.137255, 0.227451, 0.34902, 1)
+theme_override_colors/font_shadow_color = Color(0.94902, 0.94902, 0.94902, 1)
+theme_override_colors/font_outline_color = Color(0.137255, 0.227451, 0.34902, 1)
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/font_size = 16
+text = "SELECT CHARACTER"
+
+[node name="Select Character Button Container" type="VBoxContainer" parent="." unique_id=1230948534]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -41.0
+offset_right = 41.5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Character Ryo" type="Button" parent="Select Character Button Container" unique_id=2012034528]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "RYO
+"
+
+[node name="Character Billy" type="Button" parent="Select Character Button Container" unique_id=333921463]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "BILLY"
+
+[node name="Character Kimi" type="Button" parent="Select Character Button Container" unique_id=53499361]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "KIMI"
+
+[node name="Button Back Container" type="HBoxContainer" parent="." unique_id=66351220]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -52.0
+offset_right = 78.0
+grow_vertical = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="Button Back Container" unique_id=84078874]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Button" type="Button" parent="Button Back Container/MarginContainer2" unique_id=754681184]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "BACK"
+
+[connection signal="pressed" from="Select Character Button Container/Character Ryo" to="." method="_on_character_ryo_pressed"]
+[connection signal="pressed" from="Select Character Button Container/Character Billy" to="." method="_on_character_billy_pressed"]
+[connection signal="pressed" from="Select Character Button Container/Character Kimi" to="." method="_on_character_kimi_pressed"]
+[connection signal="pressed" from="Button Back Container/MarginContainer2/Button" to="." method="_on_button_pressed"]
