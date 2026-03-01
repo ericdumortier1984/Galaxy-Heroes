@@ -4,9 +4,13 @@
 
 [resource]
 shader = ExtResource("1_60xmr")
-shader_parameter/shield_color = Color(0, 0, 1, 0)
-shader_parameter/radius = 0.6
-shader_parameter/edge_softness = 0.6
-shader_parameter/base_alpha = 0.0
-shader_parameter/glow_strength = 0.6
-shader_parameter/stretch = 0.7
+shader_parameter/shield_color = Color(1, 1, 1, 0.078431375)
+shader_parameter/shine_angle = 180.0
+shader_parameter/shine_speed = 0.3
+shader_parameter/shine_delay = 0.0
+shader_parameter/shine_reverse = false
+shader_parameter/Line_Width = 0.02
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Brightness = 3.0
+shader_parameter/Distortion = 2.0
+shader_parameter/LensStrength = 0.05

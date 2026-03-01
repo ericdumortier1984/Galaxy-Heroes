@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://c0d1tsf2fxoao"]
+
+[ext_resource type="Script" uid="uid://bail3ktvpbsud" path="res://scripts/level/level_1.gd" id="1_m5nsq"]
+[ext_resource type="PackedScene" uid="uid://c783um63s6pbh" path="res://scenes/enemy/enemy.tscn" id="2_8e0j7"]
+[ext_resource type="PackedScene" uid="uid://dvfc6m85ei8h8" path="res://scenes/enemy/cyclop.tscn" id="3_13hc6"]
+[ext_resource type="PackedScene" uid="uid://c630ty64aewe0" path="res://scenes/enemy/biter.tscn" id="4_ga837"]
+[ext_resource type="PackedScene" uid="uid://bak7va5urn52c" path="res://scenes/enemy/gunner.tscn" id="5_swapm"]
+[ext_resource type="PackedScene" uid="uid://ddsw27tjfs7rn" path="res://scenes/asteroid/small_asteroid.tscn" id="6_8e0j7"]
+[ext_resource type="PackedScene" uid="uid://b5qckqvpm1nn" path="res://scenes/power_up/health_power_up.tscn" id="6_hkufj"]
+[ext_resource type="PackedScene" uid="uid://bbain0vynoewf" path="res://scenes/asteroid/big_asteroid.tscn" id="7_13hc6"]
+[ext_resource type="PackedScene" uid="uid://cft80hhc4bqth" path="res://scenes/power_up/shield_power_up.tscn" id="7_rfyx5"]
+[ext_resource type="PackedScene" uid="uid://ckfkywx4hatop" path="res://scenes/power_up/double_shot_power_up.tscn" id="8_1kt21"]
+[ext_resource type="PackedScene" uid="uid://drnty71x222l1" path="res://scenes/power_up/TripleShotPowerUp.tscn" id="9_mferh"]
+[ext_resource type="PackedScene" uid="uid://blyfvkp82ehbc" path="res://scenes/power_up/missile_power_up.tscn" id="10_j1614"]
+[ext_resource type="PackedScene" uid="uid://loi2c4jmpdgt" path="res://scenes/power_up/speed_power_up.tscn" id="11_nwfd4"]
+[ext_resource type="PackedScene" uid="uid://yvvk6g8dexxj" path="res://scenes/boss/level_1_boss.tscn" id="12_odw4r"]
+[ext_resource type="PackedScene" uid="uid://b6acd6hc8cldk" path="res://scenes/player/my_ship.tscn" id="13_0wlyu"]
+[ext_resource type="PackedScene" uid="uid://bs2l4uj36yoo5" path="res://scenes/player/billy_ship.tscn" id="14_1f0so"]
+[ext_resource type="PackedScene" uid="uid://odolpm16myxu" path="res://scenes/player/kimi_ship.tscn" id="15_1n0t4"]
+[ext_resource type="PackedScene" uid="uid://ciq4adxjkts06" path="res://scenes/menu/pause_menu.tscn" id="16_gfp5l"]
+[ext_resource type="PackedScene" uid="uid://8fvtairywq4w" path="res://scenes/UI/GUI.tscn" id="17_rtwb2"]
+[ext_resource type="AudioStream" uid="uid://np15djkx1m6n" path="res://audio/Music/Mr. Crowley (Instrumental).mp3" id="18_l0s6l"]
+[ext_resource type="Texture2D" uid="uid://mnkfkrwawcf4" path="res://images/parallax/blue-back.png" id="19_7mv57"]
+[ext_resource type="Texture2D" uid="uid://cu1vfywio2doh" path="res://images/parallax/parallax-space-stars.png" id="20_mw0mw"]
+[ext_resource type="Texture2D" uid="uid://bvb8g3e7tiiqu" path="res://images/parallax/planet.png" id="21_pbljq"]
+[ext_resource type="Texture2D" uid="uid://bc8wck6n1eshb" path="res://images/parallax/prop-planet-big.png" id="22_6yqvs"]
+
+[sub_resource type="Curve2D" id="Curve2D_7gny6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 272, 0, 0, 0, 0, 0, 272, 23, 0, 0, 0, 0, 271, 50, 0, 0, 0, 0, 271, 77, 0, 0, 0, 0, 270, 102, 0, 0, 0, 0, 271, 123, 0, 0, 0, 0, 271, 149, 0, 0, 0, 0, 271, 168, 0, 0, 0, 0, 270, 192, 0, 0, 0, 0, 270, 213, 0, 0, 0, 0, 270, 227, 0, 0, 0, 0, 281, 229, 0, 0, 0, 0, 280, 202, 0, 0, 0, 0, 281, 179, 0, 0, 0, 0, 279, 156, 0, 0, 0, 0, 280, 134, 0, 0, 0, 0, 281, 109, 0, 0, 0, 0, 280, 91, 0, 0, 0, 0, 280, 60, 0, 0, 0, 0, 280, 38, 0, 0, 0, 0, 280, 14, 0, 0, 0, 0, 280, -1, 0, 0, 0, 0, 280, 0)
+}
+point_count = 23
+
+[sub_resource type="Curve2D" id="Curve2D_13hc6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 271, -3, 0, 0, 0, 0, 227, -3, 0, 0, 0, 0, 178, -3, 0, 0, 0, 0, 143, -4, 0, 0, 0, 0, 109, -4)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_8e0j7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 271, 170, 0, 0, 0, 0, 233, 171, 0, 0, 0, 0, 164, 169, 0, 0, 0, 0, 117, 171)
+}
+point_count = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5nsq"]
+size = Vector2(282, 20.5)
+
+[node name="Level 1" type="Node2D" unique_id=1266885546]
+script = ExtResource("1_m5nsq")
+enemy = Array[PackedScene]([ExtResource("2_8e0j7"), ExtResource("3_13hc6"), ExtResource("4_ga837"), ExtResource("5_swapm")])
+upper_asteroid = Array[PackedScene]([ExtResource("6_8e0j7"), ExtResource("7_13hc6")])
+lower_asteroid = Array[PackedScene]([ExtResource("6_8e0j7"), ExtResource("7_13hc6")])
+power_up_scene = Array[PackedScene]([ExtResource("6_hkufj"), ExtResource("7_rfyx5"), ExtResource("8_1kt21"), ExtResource("9_mferh"), ExtResource("10_j1614"), ExtResource("11_nwfd4")])
+boss_scene = ExtResource("12_odw4r")
+my_ships = Array[PackedScene]([ExtResource("13_0wlyu"), ExtResource("14_1f0so"), ExtResource("15_1n0t4")])
+boss_score_spawner = 1500
+boss_spawn_point = Vector2(300, 100)
+
+[node name="Pause Menu" parent="." unique_id=146995166 instance=ExtResource("16_gfp5l")]
+z_index = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 144.0
+offset_top = 65.0
+offset_right = 144.0
+offset_bottom = 65.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="GUI" parent="." unique_id=650150990 instance=ExtResource("17_rtwb2")]
+
+[node name="Setttings" type="Node" parent="." unique_id=1189875241]
+
+[node name="Timer" type="Timer" parent="Setttings" unique_id=1882403917]
+wait_time = 3.0
+autostart = true
+
+[node name="Power Up Timer" type="Timer" parent="Setttings" unique_id=419174691]
+wait_time = 10.0
+autostart = true
+
+[node name="Music Background" type="AudioStreamPlayer" parent="Setttings" unique_id=354565913]
+stream = ExtResource("18_l0s6l")
+autoplay = true
+parameters/looping = false
+
+[node name="Background" type="Node" parent="." unique_id=796757467]
+
+[node name="Background Parallax" type="ParallaxBackground" parent="Background" unique_id=993715172]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background/Background Parallax" unique_id=1343327966]
+motion_mirroring = Vector2(272, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Background Parallax/ParallaxLayer" unique_id=1368952497]
+scale = Vector2(1, 1.443)
+texture = ExtResource("19_7mv57")
+centered = false
+
+[node name="Stars Parallax" type="ParallaxBackground" parent="Background" unique_id=321531945]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background/Stars Parallax" unique_id=847650881]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Stars Parallax/ParallaxLayer2" unique_id=1837131367]
+texture = ExtResource("20_mw0mw")
+centered = false
+
+[node name="Planet 1 Parallax" type="ParallaxBackground" parent="Background" unique_id=316932226]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Background/Planet 1 Parallax" unique_id=1179408771]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Planet 1 Parallax/ParallaxLayer3" unique_id=860366933]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("21_pbljq")
+centered = false
+offset = Vector2(0, 272)
+
+[node name="Planet 2 Parallax" type="ParallaxBackground" parent="Background" unique_id=1960870134]
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Background/Planet 2 Parallax" unique_id=1347545443]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Planet 2 Parallax/ParallaxLayer4" unique_id=2115591541]
+texture = ExtResource("22_6yqvs")
+centered = false
+offset = Vector2(272, 0)
+
+[node name="Enemy Spawner" type="Path2D" parent="." unique_id=740562042]
+position = Vector2(0, 15.582609)
+scale = Vector2(1, 0.58260876)
+curve = SubResource("Curve2D_7gny6")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemy Spawner" unique_id=184795114]
+position = Vector2(272, 0)
+rotation = 1.5707964
+
+[node name="Upper Asteroid Spawner" type="Path2D" parent="." unique_id=1866382027]
+curve = SubResource("Curve2D_13hc6")
+
+[node name="Upper Asteroid Path Follow" type="PathFollow2D" parent="Upper Asteroid Spawner" unique_id=1404105557]
+position = Vector2(271, -3)
+rotation = 3.1415927
+
+[node name="Lower Asteroid Spawner" type="Path2D" parent="." unique_id=278578364]
+curve = SubResource("Curve2D_8e0j7")
+
+[node name="Lower Asteroid Path Follow" type="PathFollow2D" parent="Lower Asteroid Spawner" unique_id=2029150760]
+position = Vector2(271, 170)
+rotation = 3.115283
+
+[node name="Limits" type="StaticBody2D" parent="." unique_id=1642630165]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limits" unique_id=1657098561]
+position = Vector2(131, 2.5)
+shape = SubResource("RectangleShape2D_m5nsq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Limits" unique_id=1218072319]
+position = Vector2(132, 166)
+shape = SubResource("RectangleShape2D_m5nsq")
+
+[connection signal="timeout" from="Setttings/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Setttings/Power Up Timer" to="." method="_on_power_up_timer_timeout"]

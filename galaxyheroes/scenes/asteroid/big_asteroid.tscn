@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bbain0vynoewf"]
+
+[ext_resource type="Texture2D" uid="uid://dwpixcxr6ippr" path="res://images/asteroid/big_asteroid.png" id="1_u3ckf"]
+[ext_resource type="Script" uid="uid://c4sdf63i8fxlm" path="res://scripts/asteroid/big_asteroid.gd" id="1_ugcsv"]
+[ext_resource type="PackedScene" uid="uid://ddsw27tjfs7rn" path="res://scenes/asteroid/small_asteroid.tscn" id="2_w7tlp"]
+[ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="3_nluye"]
+[ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="4_w7tlp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ugcsv"]
+
+[node name="Big Asteroid" type="Area2D" unique_id=777336068 groups=["ENEMIES"]]
+script = ExtResource("1_ugcsv")
+small_asteroid_scene = ExtResource("2_w7tlp")
+speed = 60
+life = 1
+damage = 1
+asteroid_rotation = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=969871841]
+texture = ExtResource("1_u3ckf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=660420935]
+scale = Vector2(1.5798986, 1.5999992)
+shape = SubResource("CircleShape2D_ugcsv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=453574744]
+
+[node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=1149286097]
+sprite_frames = ExtResource("3_nluye")
+animation = &"explosion"
+speed_scale = 2.0
+
+[node name="Explosion Sound" type="AudioStreamPlayer2D" parent="Explosion" unique_id=2068761888]
+stream = ExtResource("4_w7tlp")
+volume_db = -5.0
+bus = &"SFX"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="animation_finished" from="Explosion" to="." method="_on_explosion_animation_finished"]

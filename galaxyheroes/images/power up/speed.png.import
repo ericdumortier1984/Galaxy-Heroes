@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs8u7incbews3"
-path="res://.godot/imported/speed.png-df9b6debc2b32222e044b3bcab4c1cd4.ctex"
+uid="uid://cpsx20eig0bnk"
+path="res://.godot/imported/Speed.png-f20a934d67287226d88a8fadda91e29c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/power up/speed.png"
-dest_files=["res://.godot/imported/speed.png-df9b6debc2b32222e044b3bcab4c1cd4.ctex"]
+source_file="res://images/power up/Speed.png"
+dest_files=["res://.godot/imported/Speed.png-f20a934d67287226d88a8fadda91e29c.ctex"]
 
 [params]
 

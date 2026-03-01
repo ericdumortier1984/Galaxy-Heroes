@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dsgfuhu50oqge"
+path="res://.godot/imported/intro_dialogue_final_boss_level_2.dialogue-b94db2a723346a08eb349210afb3d460.tres"
+
+[deps]
+
+source_file="res://dialogues/intro_dialogue_final_boss_level_2.dialogue"
+dest_files=["res://.godot/imported/intro_dialogue_final_boss_level_2.dialogue-b94db2a723346a08eb349210afb3d460.tres"]
+
+[params]
+
+defaults=true

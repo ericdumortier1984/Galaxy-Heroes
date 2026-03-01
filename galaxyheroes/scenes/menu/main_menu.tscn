@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://51yxcx6ptxc1"]
+
+[ext_resource type="Script" uid="uid://c1p7sg664cq68" path="res://scripts/menu/main_menu.gd" id="1_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://b5tgjv83ju5jc" path="res://images/parallax/Space_background_1.png" id="2_ekxnf"]
+
+[node name="Main Menu" type="Control" unique_id=2019070869]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bqqt6")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1611876467]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ekxnf")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=451507673]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = 1.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Main" type="VBoxContainer" parent="MarginContainer" unique_id=1254267407]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Title" type="VBoxContainer" parent="MarginContainer/Main" unique_id=46630149]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Title_1" type="Label" parent="MarginContainer/Main/Title" unique_id=1028854245]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.137255, 0.227451, 0.34902, 1)
+theme_override_colors/font_shadow_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
+theme_override_colors/font_outline_color = Color(0.137255, 0.227451, 0.34902, 1)
+theme_override_constants/line_spacing = -18
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/font_size = 24
+text = "
+GALAXY HEROES"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1581471848]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 3
+
+[node name="Start" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1170172051]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+focus_neighbor_bottom = NodePath("../Continue")
+text = "START"
+
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer" unique_id=24137033]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Start")
+focus_neighbor_bottom = NodePath("../Options")
+text = "CONTINUE"
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1506360346]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_bottom = NodePath("../Credits")
+text = "OPTIONS"
+
+[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1651268134]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+focus_neighbor_top = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../Exit")
+text = "CREDITS"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1908058004]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "EXIT"
+
+[node name="Credits" type="Label" parent="." unique_id=1462791832]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -29.5
+offset_right = 29.5
+offset_bottom = 9.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.137255, 0.227451, 0.34902, 1)
+theme_override_colors/font_shadow_color = Color(0.94902, 0.94902, 0.94902, 1)
+theme_override_colors/font_outline_color = Color(0.137255, 0.227451, 0.34902, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 8
+text = "
+EDD STUDIO"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

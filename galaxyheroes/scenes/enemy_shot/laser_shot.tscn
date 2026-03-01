@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dbpth638jxj01"]
+
+[ext_resource type="Script" uid="uid://dscbqna61gs1v" path="res://scripts/enemy_shot/laser_shot.gd" id="1_icnxp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1uicg"]
+size = Vector2(96, 2)
+
+[sub_resource type="Gradient" id="Gradient_icnxp"]
+offsets = PackedFloat32Array(0, 0.08689024, 1)
+colors = PackedColorArray(1, 1, 1, 1, 7.6939497, 10.511109, 4.7359314, 1, 0.25609544, 0.44648463, 0.060820796, 1)
+
+[sub_resource type="Curve" id="Curve_dup42"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r3koy"]
+curve = SubResource("Curve_dup42")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_icnxp"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 60.0
+initial_velocity_min = 120.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_r3koy")
+
+[node name="Laser Shot" type="Area2D" unique_id=86648190 groups=["ENEMY_BULLET"]]
+script = ExtResource("1_icnxp")
+speed = 60
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1898793946]
+position = Vector2(38, 0)
+shape = SubResource("RectangleShape2D_1uicg")
+
+[node name="Laser Raycast" type="RayCast2D" parent="." unique_id=1499902347]
+target_position = Vector2(100, 0)
+collide_with_areas = true
+
+[node name="Laser" type="Line2D" parent="Laser Raycast" unique_id=330497312]
+modulate = Color(0, 12.905694, 0.5933253, 1)
+points = PackedVector2Array(86, 0, 0, 0)
+width = 2.5
+default_color = Color(0, 12.906, 0.593, 1)
+gradient = SubResource("Gradient_icnxp")
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Laser  Beam Particle" type="GPUParticles2D" parent="Laser Raycast" unique_id=1714357497]
+modulate = Color(0.30748433, 0.73250747, 8.282761e-07, 1)
+scale = Vector2(0.02, 0.02)
+amount = 100
+lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_icnxp")
+
+[node name="Laser  Beam Particle2" type="GPUParticles2D" parent="Laser Raycast" unique_id=364863767]
+modulate = Color(0.7685427, 1.0309138, 0.67570364, 1)
+position = Vector2(86, 0)
+scale = Vector2(0.04, 0.04)
+amount = 10
+lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_icnxp")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1154819276]
+rotation = 1.5707964
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

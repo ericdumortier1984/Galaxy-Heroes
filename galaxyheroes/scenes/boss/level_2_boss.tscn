@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dfk4x0jtmembw"]
+
+[ext_resource type="Script" uid="uid://dkkhdmbcggxij" path="res://scripts/boss/level_2_boss.gd" id="1_euph8"]
+[ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="2_ikxfw"]
+[ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="2_pvjee"]
+[ext_resource type="SpriteFrames" uid="uid://bp4fw47ytrcef" path="res://resources/animation/big_drone.tres" id="2_y7ven"]
+[ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="3_y7ven"]
+[ext_resource type="Script" uid="uid://bmuybs2nyds0a" path="res://scenes/boss/shoot_marker_boss_level_2.gd" id="6_ypv5m"]
+[ext_resource type="PackedScene" uid="uid://cm2akvbbk30fs" path="res://scenes/enemy/drone_1.tscn" id="7_pcaxs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypv5m"]
+bg_color = Color(0.91764706, 0, 0, 0.23529412)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcaxs"]
+bg_color = Color(0, 0.654902, 0.30980393, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikxfw"]
+size = Vector2(6, 7)
+
+[node name="Level 2 Boss" type="Node2D" unique_id=1196738463 node_paths=PackedStringArray("explosion_animation") groups=["BOSSES"]]
+script = ExtResource("1_euph8")
+max_life = 10
+explosion_animation = NodePath("Area2D/Explosion")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1309396639]
+
+[node name="ProgressBar" type="ProgressBar" parent="Area2D" unique_id=1627216761]
+offset_left = -19.0
+offset_top = -38.0
+offset_right = -14.0
+offset_bottom = 2.0
+rotation = -1.5707964
+theme = ExtResource("2_pvjee")
+theme_override_font_sizes/font_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_ypv5m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pcaxs")
+max_value = 1.0
+value = 1.0
+fill_mode = 2
+show_percentage = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2102305079]
+position = Vector2(-28, -0.5)
+shape = SubResource("RectangleShape2D_ikxfw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=1115671950]
+sprite_frames = ExtResource("2_y7ven")
+animation = &"idle"
+
+[node name="Explosion" type="AnimatedSprite2D" parent="Area2D" unique_id=570602499]
+position = Vector2(-28, 0)
+sprite_frames = ExtResource("2_ikxfw")
+animation = &"explosion"
+
+[node name="Explosion Sound" type="AudioStreamPlayer2D" parent="Area2D/Explosion" unique_id=1273702187]
+stream = ExtResource("3_y7ven")
+bus = &"SFX"
+
+[node name="Shoot Marker" type="Marker2D" parent="Area2D" unique_id=610039359]
+position = Vector2(-27, -16)
+script = ExtResource("6_ypv5m")
+drone_scene = ExtResource("7_pcaxs")
+
+[node name="Fire Rate Timer" type="Timer" parent="Area2D/Shoot Marker" unique_id=2083062771]
+
+[node name="Shoot Patter Timer" type="Timer" parent="." unique_id=801820759]
+
+[node name="State Timer" type="Timer" parent="." unique_id=309447475]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Area2D/Shoot Marker/Fire Rate Timer" to="Area2D/Shoot Marker" method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="Shoot Patter Timer" to="." method="_on_shoot_patter_timer_timeout"]
+[connection signal="timeout" from="State Timer" to="." method="_on_state_timer_timeout"]

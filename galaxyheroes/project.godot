@@ -126,7 +126,7 @@ shoot_missile={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/intro_dialogue.dialogue", "res://dialogues/intro_boss_level_1_dialogue.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/intro_dialogue.dialogue", "res://dialogues/intro_boss_level_1_dialogue.dialogue", "res://dialogues/level_2_intro_dialogue.dialogue", "res://dialogues/intro_dialogue_boss_level_2.dialogue", "res://dialogues/intro_dialogue_final_boss_level_2.dialogue")
 
 [rendering]
 

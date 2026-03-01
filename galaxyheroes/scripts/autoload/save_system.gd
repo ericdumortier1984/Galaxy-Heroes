@@ -11,8 +11,10 @@ func apply_settings():
 	#_apply_video()
 
 func _apply_audio():
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),linear_to_db(data.music_volume))
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"),linear_to_db(data.sfx_volume))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),
+	linear_to_db(data.music_volume / 100.0))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"),
+	linear_to_db(data.sfx_volume / 100.0))
 
 #func _apply_video():
 	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN 
@@ -29,7 +31,7 @@ func save_game():
 
 func load_game():
 	if ResourceLoader.exists("user://save.tres"):
-		data = load("user://save.tres")
+		data = ResourceLoader.load("user://save.tres") as SaveData
 	else:
 		data = SaveData.new()
 		save_game()

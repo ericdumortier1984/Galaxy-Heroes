@@ -44,6 +44,6 @@ func lose_life(amount: int = 1) -> void:
 		lifes = 0
 		set_state(GameState.GAME_OVER)
 
-func game_over():
-	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+func game_over() -> void:
+	get_tree().change_scene_to_file("res://scenes/menu/game_over.tscn")
 	SaveSystem.update_hi_score(score)

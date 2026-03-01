@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cyi8axn3trils"]
+
+[ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="1_g4cbk"]
+[ext_resource type="Script" uid="uid://blk0wayx2dfkl" path="res://scripts/boss/level_2_final_boss.gd" id="1_ty8f7"]
+[ext_resource type="Texture2D" uid="uid://c4s5y86ak6n7r" path="res://images/enemy/enemy_2.png" id="2_emcoa"]
+[ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="2_ty8f7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emcoa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ynjd1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_emcoa")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Level 2 Final Boss" type="Node2D" unique_id=613086524 node_paths=PackedStringArray("explosion_animation") groups=["BOSSES"]]
+script = ExtResource("1_ty8f7")
+max_life = 10
+explosion_animation = NodePath("Area2D/Explosion")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1148541853]
+
+[node name="ProgressBar" type="ProgressBar" parent="Area2D" unique_id=1176425001]
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2033199859]
+shape = SubResource("RectangleShape2D_emcoa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=237794014]
+sprite_frames = SubResource("SpriteFrames_ynjd1")
+animation = &"idle"
+
+[node name="Explosion" type="AnimatedSprite2D" parent="Area2D" unique_id=1736044386]
+sprite_frames = ExtResource("1_g4cbk")
+animation = &"explosion"
+
+[node name="Explosion Sound" type="AudioStreamPlayer2D" parent="Area2D/Explosion" unique_id=1078460782]
+stream = ExtResource("2_ty8f7")
+
+[node name="Shoot Patter Timer" type="Timer" parent="." unique_id=1036605793]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

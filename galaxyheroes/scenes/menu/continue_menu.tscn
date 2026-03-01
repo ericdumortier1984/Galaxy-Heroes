@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://yo7gfx4jha40"]
+
+[ext_resource type="Script" uid="uid://bn1c28pf1no43" path="res://scripts/menu/continue_menu.gd" id="1_45yx4"]
+
+[node name="ContinueMenu" type="Control" unique_id=1703460085]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_45yx4")
+
+[node name="Background" type="TextureRect" parent="." unique_id=187716627]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1773733307]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_right = 63.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Title" type="HBoxContainer" parent="MarginContainer" unique_id=1187954612]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="MarginContainer/Title" unique_id=1956610900]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "SELECT YOUR LEVEL"
+
+[node name="Selector" type="HBoxContainer" parent="MarginContainer" unique_id=953590767]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Level 1" type="Button" parent="MarginContainer/Selector" unique_id=1832144081]
+layout_mode = 2
+focus_neighbor_right = NodePath("../Level 2")
+text = "LEVEL 1:
+WELCOME TO THE WAR"
+
+[node name="Level 2" type="Button" parent="MarginContainer/Selector" unique_id=1700751630]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Level 1")
+focus_neighbor_bottom = NodePath("../../HBoxContainer/Back")
+text = "LEVEL 2:
+BACK TO THE EARTH"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1061881814]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Back" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1495220577]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Selector/Level 2")
+text = "BACK"
+
+[connection signal="pressed" from="MarginContainer/Selector/Level 1" to="." method="_on_level_1_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Selector/Level 2" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]

@@ -1,0 +1,17 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://w1qqu3htvqmo"]
+
+[ext_resource type="Texture2D" uid="uid://cpngouefr2uhh" path="res://images/boss/effect/flash_2.png" id="1_0p1dv"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0p1dv")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"boss_flash",
+"speed": 2.0
+}]

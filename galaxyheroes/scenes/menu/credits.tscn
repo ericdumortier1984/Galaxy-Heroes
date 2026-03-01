@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dqcvxuhr37ntw"]
+
+[ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="1_0bpdh"]
+[ext_resource type="Script" uid="uid://52tyhmysdfpb" path="res://scripts/menu/credits.gd" id="1_2ckv8"]
+[ext_resource type="Texture2D" uid="uid://b5tgjv83ju5jc" path="res://images/parallax/Space_background_1.png" id="2_0ctdu"]
+
+[node name="Credits" type="Control" unique_id=929662948]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ckv8")
+
+[node name="Panel" type="Panel" parent="." unique_id=1838198886]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=1578215216]
+layout_mode = 0
+offset_right = 272.0
+offset_bottom = 169.0
+texture = ExtResource("2_0ctdu")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=48689529]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer" unique_id=1555109396]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/ScrollContainer" unique_id=1135448310]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("1_0bpdh")
+text = "ART
+SOUND
+
+
+
+
+ERIC
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="Panel/MarginContainer" unique_id=1801590576]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+focus_next = NodePath("../ScrollContainer")
+text = "BACK"
+
+[connection signal="pressed" from="Panel/MarginContainer/Back" to="." method="_on_back_pressed"]

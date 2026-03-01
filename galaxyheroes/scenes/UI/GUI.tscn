@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://8fvtairywq4w"]
+
+[ext_resource type="Script" uid="uid://c0sms6llwbt7a" path="res://scripts/hud/gui.gd" id="1_5j4t3"]
+
+[node name="GUI" type="CanvasLayer" unique_id=2111763531]
+script = ExtResource("1_5j4t3")
+
+[node name="HUD" type="Control" parent="." unique_id=1627793663]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 15.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="HUD" unique_id=1800181326]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.5176471, 0.5176471, 0.105882354)
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=1887527589]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 35.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Score" type="Label" parent="HUD/MarginContainer" unique_id=1587776768]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "SCORE"
+
+[node name="Hi Score" type="Label" parent="HUD/MarginContainer" unique_id=913677461]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "HI SCORE"
+
+[node name="Lifes" type="Label" parent="HUD/MarginContainer" unique_id=1790436423]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "LIFES"
+
+[node name="ColorRect2" type="ColorRect" parent="HUD" unique_id=2031583474]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 154.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.5176471, 0.5176471, 0.105882354)
+
+[node name="MarginContainer2" type="MarginContainer" parent="HUD" unique_id=33134274]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 134.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Missiles" type="Label" parent="HUD/MarginContainer2" unique_id=574260032]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "MISSILES"

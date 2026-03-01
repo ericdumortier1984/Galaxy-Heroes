@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://b5qckqvpm1nn"]
 
-[ext_resource type="Script" uid="uid://bfrnc4ljxwfo5" path="res://scripts/power_up.gd" id="1_08kmo"]
-[ext_resource type="Texture2D" uid="uid://i0jwjftg5m8k" path="res://images/power up/life.png" id="2_08kmo"]
+[ext_resource type="Script" uid="uid://bfrnc4ljxwfo5" path="res://scripts/power_up/power_up.gd" id="1_08kmo"]
 [ext_resource type="PackedScene" uid="uid://df0ayymloi0lg" path="res://scenes/Effect/pick_up_effect.tscn" id="2_31pla"]
+[ext_resource type="Texture2D" uid="uid://cab4sdprcy2oy" path="res://images/power up/Life.png" id="3_31pla"]
 [ext_resource type="Texture2D" uid="uid://c2cgutrqfgdb7" path="res://images/ship/army/simple_bullet.png" id="3_lwwdd"]
 [ext_resource type="Material" uid="uid://cwx0vmugqqs5k" path="res://resources/shader/bubble_shader_material.tres" id="3_vwm1w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwwdd"]
-size = Vector2(66.66667, 66.666664)
+size = Vector2(53.333332, 46.666668)
 
 [node name="Health" type="Area2D" unique_id=1781958275]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.15, 0.15)
 script = ExtResource("1_08kmo")
 power_up_type = 0
 speed = 20.0
@@ -18,17 +18,16 @@ bubble_color = Color(1, 0, 0, 1)
 pick_up_particle_scene = ExtResource("2_31pla")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1556371945]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_08kmo")
+texture = ExtResource("3_31pla")
 
 [node name="Bubble" type="Sprite2D" parent="." unique_id=1518791254]
 material = ExtResource("3_vwm1w")
-position = Vector2(-1.4210853e-13, 0)
-scale = Vector2(4.5999966, 4.9999948)
+position = Vector2(0, -9.536743e-07)
+scale = Vector2(3.030303, 3.0303028)
 texture = ExtResource("3_lwwdd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1064386048]
-position = Vector2(-1.5894572e-06, 0)
+position = Vector2(3.973643e-07, -3.333333)
 shape = SubResource("RectangleShape2D_lwwdd")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

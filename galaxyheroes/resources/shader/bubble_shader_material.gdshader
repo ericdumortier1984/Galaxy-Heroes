@@ -2,11 +2,11 @@ shader_type canvas_item;
 
 uniform vec4 bubble_color : source_color = vec4(1.0);
 
-uniform float pulse_speed = 2.0;
-uniform float base_alpha = 0.1;
-uniform float pulse_alpha = 0.15;
-uniform float edge_softness = 0.08;
-uniform float glow_strength = 0.12;
+uniform float pulse_speed : hint_range (0.0, 3.0, 0.1) = 2.0;
+uniform float base_alpha : hint_range (0.0, 1.0, 0.1) = 0.1;
+uniform float pulse_alpha : hint_range (0.0, 1.0, 0.1) = 0.15;
+uniform float edge_softness : hint_range (0.0, 1.0, 0.1) = 0.08;
+uniform float glow_strength : hint_range (0.0, 1.0, 0.1) = 0.12;
 
 void fragment() {
 	vec2 uv = UV;

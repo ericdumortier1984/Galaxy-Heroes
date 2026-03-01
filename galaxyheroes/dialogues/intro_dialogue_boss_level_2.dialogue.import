@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bbbayq674biod"
+path="res://.godot/imported/intro_dialogue_boss_level_2.dialogue-fc62ba9023704927c6b1ab3bdc4f4487.tres"
+
+[deps]
+
+source_file="res://dialogues/intro_dialogue_boss_level_2.dialogue"
+dest_files=["res://.godot/imported/intro_dialogue_boss_level_2.dialogue-fc62ba9023704927c6b1ab3bdc4f4487.tres"]
+
+[params]
+
+defaults=true

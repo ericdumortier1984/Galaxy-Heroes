@@ -1,32 +1,32 @@
 [gd_scene format=3 uid="uid://drnty71x222l1"]
 
-[ext_resource type="Script" uid="uid://bfrnc4ljxwfo5" path="res://scripts/power_up.gd" id="1_umhie"]
+[ext_resource type="Script" uid="uid://bfrnc4ljxwfo5" path="res://scripts/power_up/power_up.gd" id="1_umhie"]
 [ext_resource type="PackedScene" uid="uid://df0ayymloi0lg" path="res://scenes/Effect/pick_up_effect.tscn" id="2_sajfs"]
-[ext_resource type="Texture2D" uid="uid://dehbw30u635ws" path="res://images/power up/triple_shot.png" id="2_umhie"]
 [ext_resource type="Texture2D" uid="uid://c2cgutrqfgdb7" path="res://images/ship/army/simple_bullet.png" id="3_l8xad"]
 [ext_resource type="Material" uid="uid://cwx0vmugqqs5k" path="res://resources/shader/bubble_shader_material.tres" id="3_o26gx"]
+[ext_resource type="Texture2D" uid="uid://bl7nbo663wbba" path="res://images/power up/Triple_shot.png" id="3_sajfs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_umhie"]
-size = Vector2(21.06965, 22.222233)
+size = Vector2(21.06965, 16.666676)
 
 [node name="TripleShot" type="Area2D" unique_id=700291860]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.15, 0.15)
 script = ExtResource("1_umhie")
 speed = 20.0
 bubble_color = Color(1, 1, 0, 1)
 pick_up_particle_scene = ExtResource("2_sajfs")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1634911212]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_umhie")
+texture = ExtResource("3_sajfs")
 
 [node name="Bubble" type="Sprite2D" parent="." unique_id=773355899]
 material = ExtResource("3_o26gx")
-scale = Vector2(4.4999957, 4.4999957)
+position = Vector2(-9.536743e-07, 9.536743e-07)
+scale = Vector2(3.0303028, 3.0303032)
 texture = ExtResource("3_l8xad")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=360517884]
-position = Vector2(-1.5666695, 7.947286e-07)
+position = Vector2(-1.5666695, 3.973643e-07)
 scale = Vector2(2.6800003, 2.399999)
 shape = SubResource("RectangleShape2D_umhie")
 

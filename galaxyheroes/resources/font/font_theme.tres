@@ -1,6 +1,10 @@
 [gd_resource type="Theme" format=3 uid="uid://cdrkdmjlbxwui"]
 
 [ext_resource type="FontFile" uid="uid://uwduxpu7qq6u" path="res://fonts/Kenney Future Narrow.ttf" id="1_alyva"]
+[ext_resource type="Texture2D" uid="uid://duunv0n36w6wg" path="res://images/UI/texture/black_rect_texture.png" id="2_1fib0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l6aji"]
+texture = ExtResource("2_1fib0")
 
 [resource]
 Button/colors/font_color = Color(0.94902, 0.94902, 0.94902, 1)
@@ -16,10 +20,11 @@ Button/colors/icon_hover_color = Color(0.137255, 0.227451, 0.34902, 1)
 Button/colors/icon_hover_pressed_color = Color(0.137255, 0.227451, 0.34902, 1)
 Button/colors/icon_normal_color = Color(0.137255, 0.227451, 0.34902, 1)
 Button/colors/icon_pressed_color = Color(0.137255, 0.227451, 0.34902, 1)
-Button/font_sizes/font_size = 12
+Button/font_sizes/font_size = 9
 Button/fonts/font = ExtResource("1_alyva")
 Label/font_sizes/font_size = 8
 Label/fonts/font = ExtResource("1_alyva")
 OptionButton/font_sizes/font_size = 12
 OptionButton/fonts/font = ExtResource("1_alyva")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_l6aji")
 ProgressBar/colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)

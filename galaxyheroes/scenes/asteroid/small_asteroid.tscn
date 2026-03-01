@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://ddsw27tjfs7rn"]
+
+[ext_resource type="Texture2D" uid="uid://ddrct64lwyan4" path="res://images/asteroid/small_steroid.png" id="1_25hcj"]
+[ext_resource type="Script" uid="uid://c4uq6h6ghjclx" path="res://scripts/asteroid/small_asteroid.gd" id="1_t13ve"]
+[ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="3_kolfs"]
+[ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="4_4ynh7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t13ve"]
+
+[node name="Small Asteroid" type="Area2D" unique_id=443168537 groups=["ENEMIES"]]
+script = ExtResource("1_t13ve")
+speed = 60
+life = 1
+damage = 1
+asteroid_rotation = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=149433350]
+texture = ExtResource("1_25hcj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=598553494]
+scale = Vector2(0.6, 0.6399999)
+shape = SubResource("CircleShape2D_t13ve")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=865578452]
+
+[node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=2041234863]
+scale = Vector2(0.25, 0.25)
+sprite_frames = ExtResource("3_kolfs")
+animation = &"explosion"
+speed_scale = 2.0
+
+[node name="Explosion Sound" type="AudioStreamPlayer2D" parent="Explosion" unique_id=695635800]
+stream = ExtResource("4_4ynh7")
+volume_db = -5.0
+bus = &"SFX"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="animation_finished" from="Explosion" to="." method="_on_explosion_animation_finished"]

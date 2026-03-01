@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://blyfvkp82ehbc"]
 
-[ext_resource type="Script" uid="uid://bfrnc4ljxwfo5" path="res://scripts/power_up.gd" id="1_m6vqg"]
-[ext_resource type="Texture2D" uid="uid://b4iqtcjjn0y6n" path="res://images/power up/missile.png" id="1_mtcxb"]
+[ext_resource type="Script" uid="uid://bfrnc4ljxwfo5" path="res://scripts/power_up/power_up.gd" id="1_m6vqg"]
 [ext_resource type="PackedScene" uid="uid://df0ayymloi0lg" path="res://scenes/Effect/pick_up_effect.tscn" id="2_iyeh7"]
 [ext_resource type="Texture2D" uid="uid://c2cgutrqfgdb7" path="res://images/ship/army/simple_bullet.png" id="3_85umg"]
+[ext_resource type="Texture2D" uid="uid://c7qc2hy3epqo7" path="res://images/power up/Missile.png" id="3_iyeh7"]
 [ext_resource type="Material" uid="uid://cwx0vmugqqs5k" path="res://resources/shader/bubble_shader_material.tres" id="3_llq72"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6vqg"]
 size = Vector2(66.666664, 59.999996)
 
 [node name="Missile" type="Area2D" unique_id=663978777]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.15, 0.15)
 script = ExtResource("1_m6vqg")
 power_up_type = 4
 speed = 20.0
@@ -18,12 +18,12 @@ bubble_color = Color(0.31135654, 0.31135657, 0.31135654, 1)
 pick_up_particle_scene = ExtResource("2_iyeh7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=228783757]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_mtcxb")
+texture = ExtResource("3_iyeh7")
 
 [node name="Bubble" type="Sprite2D" parent="." unique_id=932443040]
 material = ExtResource("3_llq72")
-scale = Vector2(4.8999896, 5.299992)
+position = Vector2(1.9073486e-06, 4.000001)
+scale = Vector2(2.9090908, 2.909091)
 texture = ExtResource("3_85umg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=726475338]

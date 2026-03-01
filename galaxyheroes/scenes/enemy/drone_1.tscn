@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cm2akvbbk30fs"]
+
+[ext_resource type="Script" uid="uid://4jf06q758lx8" path="res://scripts/enemy/drone_1.gd" id="1_pxlvm"]
+[ext_resource type="Texture2D" uid="uid://xujwysxdsrva" path="res://images/enemy/drone_1/drone_1.png" id="2_8j863"]
+[ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="3_w8141"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w8141"]
+radius = 32.24903
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l6tj1"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[node name="Drone 1" type="Node2D" unique_id=1253246406]
+scale = Vector2(0.15, 0.15)
+script = ExtResource("1_pxlvm")
+rotation_speed = 2.0
+speed_enemy = 80
+
+[node name="Area2D" type="Area2D" parent="." unique_id=461921431 groups=["ENEMIES"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=12952499]
+texture = ExtResource("2_8j863")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=547826349]
+shape = SubResource("CircleShape2D_w8141")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Area2D" unique_id=1265296412]
+
+[node name="Fly" type="AnimatedSprite2D" parent="Area2D" unique_id=2036562535]
+visible = false
+sprite_frames = SubResource("SpriteFrames_l6tj1")
+animation = &"fly"
+
+[node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=1583740724]
+sprite_frames = ExtResource("3_w8141")
+animation = &"explosion"
+
+[node name="Explosion Sound" type="AudioStreamPlayer2D" parent="Explosion" unique_id=87953727]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="Area2D/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="animation_finished" from="Explosion" to="." method="_on_explosion_animation_finished"]

@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://cr52a64mhqr8x"]
+
+[ext_resource type="Texture2D" uid="uid://b5tgjv83ju5jc" path="res://images/parallax/Space_background_1.png" id="2_tbwuq"]
+[ext_resource type="Script" uid="uid://b7ivfapsxr18a" path="res://scripts/menu/game_over.gd" id="2_wqhvx"]
+
+[node name="Game Over" type="Control" unique_id=1015502648]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_right = NodePath("MarginContainer/Vertical Box/Buttons/Exit")
+script = ExtResource("2_wqhvx")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1448721505]
+layout_mode = 0
+offset_right = 272.0
+offset_bottom = 171.0
+texture = ExtResource("2_tbwuq")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=539334023]
+layout_mode = 0
+offset_right = 272.0
+offset_bottom = 170.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Vertical Box" type="VBoxContainer" parent="MarginContainer" unique_id=248575818]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Title" type="VBoxContainer" parent="MarginContainer/Vertical Box" unique_id=1051948555]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Title 1" type="Label" parent="MarginContainer/Vertical Box/Title" unique_id=1654579597]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.13725491, 0.22745098, 0.34901962, 1)
+theme_override_colors/font_shadow_color = Color(0.94902, 0.94902, 0.94902, 1)
+theme_override_colors/font_outline_color = Color(0.13725491, 0.22745098, 0.34901962, 1)
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/font_size = 20
+text = "DEFEATED"
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/Vertical Box" unique_id=1238315642]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Restart" type="Button" parent="MarginContainer/Vertical Box/Buttons" unique_id=719550249]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "RESTART"
+
+[node name="Exit" type="Button" parent="MarginContainer/Vertical Box/Buttons" unique_id=1856555303]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+focus_neighbor_left = NodePath("../Restart")
+text = "EXIT"
+
+[connection signal="pressed" from="MarginContainer/Vertical Box/Buttons/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/Vertical Box/Buttons/Exit" to="." method="_on_exit_pressed"]
