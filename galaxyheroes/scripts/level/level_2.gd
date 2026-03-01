@@ -15,13 +15,16 @@ extends Node2D
 @export var boss_scene : PackedScene
 @export var final_boss_scene :  PackedScene
 @export var score_boss_spawner : int = 0
-@export var score_final_boss_spawner : int = 0
 @export var boss_position_spawner : Vector2
 @export var final_boss_position_spawner : Vector2
 
 # --- bool --- #
 var boss_spawned : bool = false
 var final_boss_spawned : bool = false
+var boss_defeated : bool = false
+
+# --- int --- # 
+var score_after_boss : int = 0
 
 func _ready() -> void:
 	SaveSystem.load_game()
@@ -135,18 +138,25 @@ func set_boss_entered():
 func set_final_boss_entered():
 	start_level_2_final_boss_intro_dialogue()
 
+func set_boss_defeated():
+	boss_defeated = true
+	score_after_boss = GlobalSingleton.score
+
 func spawn_boss():
 	boss_spawned = true
 	var boss_scene_instance = boss_scene.instantiate()
 	boss_scene_instance.global_position = boss_position_spawner
 	add_child(boss_scene_instance)
 	boss_scene_instance.boss_entered.connect(set_boss_entered)
+	boss_scene_instance.boss_defeated.connect(set_boss_defeated)
 
 func check_final_boss_spawn():
 	if final_boss_spawned:
 		return
+	if not boss_defeated:
+		return
 	
-	if GlobalSingleton.score >= score_final_boss_spawner:
+	if GlobalSingleton.score >= score_after_boss + 1000:
 		spawn_final_boss()
 
 func spawn_final_boss():

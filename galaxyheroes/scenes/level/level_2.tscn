@@ -52,8 +52,7 @@ power_up = Array[PackedScene]([ExtResource("6_mkem1"), ExtResource("11_olix3"), 
 drone_1_scene = ExtResource("6_a0lbm")
 boss_scene = ExtResource("16_vni3u")
 final_boss_scene = ExtResource("17_olix3")
-score_boss_spawner = 100
-score_final_boss_spawner = 500
+score_boss_spawner = 1500
 boss_position_spawner = Vector2(300, 100)
 final_boss_position_spawner = Vector2(300, 100)
 

@@ -20,6 +20,7 @@ var direction = Vector2.ZERO
 var is_shooting : bool = false
 var is_spawning : bool = false
 var explosion : bool = false
+var spawned_by_boss : bool = false
 
 func _ready():
 	if GlobalSingleton.game_state != GlobalSingleton.GameState.PLAYING:
@@ -82,6 +83,9 @@ func set_animations():
 		thrust_animation.play("Thrust on")
 
 func check_boss():
+	if spawned_by_boss:
+		return
+	
 	var boss = get_tree().get_first_node_in_group("BOSSES")
 	
 	if boss:

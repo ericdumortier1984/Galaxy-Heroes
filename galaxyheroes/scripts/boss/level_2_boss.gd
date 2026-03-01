@@ -15,8 +15,6 @@ signal boss_defeated
 @onready var boss_animated_sprite : AnimatedSprite2D = $Area2D/AnimatedSprite2D
 @onready var boss_health_bar : ProgressBar = $Area2D/ProgressBar
 @onready var boss_hit_box : Area2D = $Area2D
-@onready var shoot_marker : ShootMarkerLevel2 = $"Area2D/Shoot Marker"
-@onready var pattern_change_time : Timer = $"Shoot Patter Timer"
 @onready var state_timer : Timer = $"State Timer"
 @onready var damage_sound : AudioStreamPlayer2D = $"Area2D/Explosion/Explosion Sound"
 
@@ -36,12 +34,12 @@ func _ready() -> void:
 	set_boss_bar_health()
 	set_boss_entry()
 
-func set_boss_bar_health():
+func set_boss_bar_health() -> void:
 	current_life = max_life
 	boss_health_bar.max_value = max_life
 	boss_health_bar.value = current_life
 
-func set_boss_entry():
+func set_boss_entry() -> void:
 	is_boss_entering = true
 	
 	var screen_size = get_viewport_rect().size
@@ -53,19 +51,14 @@ func set_boss_entry():
 	
 	tween.finished.connect(set_boss_entry_finish)
 
-func set_boss_entry_finish():
+func set_boss_entry_finish() -> void:
 	is_boss_entering = false
 	boss_hit_box.monitoring = true
 	
 	boss_entered.emit()
 	set_boss_state()
-	
-	#shoot_marker.start()
-	pattern_index = 0
-	#shoot_marker.set_shoot_pattern_id(pattern_index)
-	pattern_change_time.start()
 
-func set_boss_state():
+func set_boss_state() -> void:
 	change_boss_state(BossState.IDLE)
 	state_timer.start()
 
@@ -104,7 +97,7 @@ func take_damage(amount : int):
 	if current_life <= 0:
 		boss_destroyed()
 
-func boss_destroyed():
+func boss_destroyed() -> void:
 	if is_boss_dying:
 		return
 	
@@ -112,15 +105,13 @@ func boss_destroyed():
 	is_boss_defeated = true
 	
 	boss_hit_box.set_deferred("monitoring", false)
-	#shoot_marker.stop()
-	pattern_change_time.stop()
 	
 	await play_boss_destroying_animation()
 	
 	boss_defeated.emit()
 	queue_free()
 
-func play_boss_destroying_animation():
+func play_boss_destroying_animation() -> void:
 	Engine.time_scale = 0.5
 	await get_tree().create_timer(0.4, true).timeout
 	Engine.time_scale = 1.0
@@ -137,19 +128,20 @@ func play_boss_destroying_animation():
 	
 	await tween.finished
 
+func start_shoot_marker() -> void:
+	for boss_marker in get_tree().get_nodes_in_group("BOSS_MARKER"):
+		boss_marker.start_shooting_drone()
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PLAYER_BULLET") && !is_boss_entering:
 		take_damage(area.damage)
 		area.queue_free()
 
-func _on_shoot_patter_timer_timeout() -> void:
-	pass # Replace with function body.
-
 func _on_state_timer_timeout() -> void:
 	match current_state:
 		BossState.IDLE:
 			change_boss_state(BossState.CLOSE)
-			shoot_marker.start_shooting()
+			start_shoot_marker()
 		
 		BossState.CLOSE:
 			change_boss_state(BossState.OPEN)

@@ -5,7 +5,8 @@
 [ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="2_pvjee"]
 [ext_resource type="SpriteFrames" uid="uid://bp4fw47ytrcef" path="res://resources/animation/big_drone.tres" id="2_y7ven"]
 [ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="3_y7ven"]
-[ext_resource type="Script" uid="uid://bmuybs2nyds0a" path="res://scenes/boss/shoot_marker_boss_level_2.gd" id="6_ypv5m"]
+[ext_resource type="Script" uid="uid://bmuybs2nyds0a" path="res://scripts/boss/shoot_marker_boss_level_2.gd" id="6_ypv5m"]
+[ext_resource type="PackedScene" uid="uid://c8wc87tk8yq41" path="res://scenes/bullet_boss/bullet_boss_level_1.tscn" id="7_dss4s"]
 [ext_resource type="PackedScene" uid="uid://cm2akvbbk30fs" path="res://scenes/enemy/drone_1.tscn" id="7_pcaxs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypv5m"]
@@ -19,10 +20,25 @@ size = Vector2(6, 7)
 
 [node name="Level 2 Boss" type="Node2D" unique_id=1196738463 node_paths=PackedStringArray("explosion_animation") groups=["BOSSES"]]
 script = ExtResource("1_euph8")
-max_life = 10
 explosion_animation = NodePath("Area2D/Explosion")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1309396639]
+
+[node name="Drone Shoot Marker" type="Marker2D" parent="Area2D" unique_id=610039359 groups=["BOSS_MARKER"]]
+position = Vector2(-23, -16)
+script = ExtResource("6_ypv5m")
+bullet_boss_scene = ExtResource("7_dss4s")
+drone_scene = ExtResource("7_pcaxs")
+
+[node name="Fire Rate Timer" type="Timer" parent="Area2D/Drone Shoot Marker" unique_id=2083062771]
+
+[node name="Drone Shoot Marker 2" type="Marker2D" parent="Area2D" unique_id=1735121431 groups=["BOSS_MARKER"]]
+position = Vector2(-23, 17)
+script = ExtResource("6_ypv5m")
+bullet_boss_scene = ExtResource("7_dss4s")
+drone_scene = ExtResource("7_pcaxs")
+
+[node name="Fire Rate Timer" type="Timer" parent="Area2D/Drone Shoot Marker 2" unique_id=754945935]
 
 [node name="ProgressBar" type="ProgressBar" parent="Area2D" unique_id=1627216761]
 offset_left = -19.0
@@ -56,18 +72,9 @@ animation = &"explosion"
 stream = ExtResource("3_y7ven")
 bus = &"SFX"
 
-[node name="Shoot Marker" type="Marker2D" parent="Area2D" unique_id=610039359]
-position = Vector2(-27, -16)
-script = ExtResource("6_ypv5m")
-drone_scene = ExtResource("7_pcaxs")
-
-[node name="Fire Rate Timer" type="Timer" parent="Area2D/Shoot Marker" unique_id=2083062771]
-
-[node name="Shoot Patter Timer" type="Timer" parent="." unique_id=801820759]
-
 [node name="State Timer" type="Timer" parent="." unique_id=309447475]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="timeout" from="Area2D/Shoot Marker/Fire Rate Timer" to="Area2D/Shoot Marker" method="_on_fire_rate_timer_timeout"]
-[connection signal="timeout" from="Shoot Patter Timer" to="." method="_on_shoot_patter_timer_timeout"]
+[connection signal="timeout" from="Area2D/Drone Shoot Marker/Fire Rate Timer" to="Area2D/Drone Shoot Marker" method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="Area2D/Drone Shoot Marker 2/Fire Rate Timer" to="Area2D/Drone Shoot Marker 2" method="_on_fire_rate_timer_timeout"]
 [connection signal="timeout" from="State Timer" to="." method="_on_state_timer_timeout"]

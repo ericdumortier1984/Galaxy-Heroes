@@ -53,6 +53,7 @@ BALLOON="Group de ballon dialogue"
 PLAYER_BULLET="Group of player bullets"
 ENEMY_BULLET="Group of bullet's enemy"
 ENEMIES="Group of enemies"
+BOSS_MARKER="Group of boss shoot markers"
 
 [gui]
 
