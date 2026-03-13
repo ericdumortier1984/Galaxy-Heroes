@@ -1,6 +1,6 @@
 extends Control
 
-@onready var select_button : Button = $Panel/MarginContainer/Back
+@onready var select_button : Button = $Panel/Back
 
 func _ready():
 	await get_tree().process_frame

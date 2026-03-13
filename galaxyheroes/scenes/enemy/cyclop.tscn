@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dvfc6m85ei8h8"]
 
-[ext_resource type="Texture2D" uid="uid://c4s5y86ak6n7r" path="res://images/enemy/enemy_2.png" id="1_5p8u7"]
-[ext_resource type="Script" uid="uid://drdrxlh7pplts" path="res://scripts/enemy/enemy.gd" id="1_pwmhr"]
+[ext_resource type="Texture2D" uid="uid://c4s5y86ak6n7r" path="res://images/enemy/cyclop/enemy_2.png" id="1_5p8u7"]
+[ext_resource type="Script" uid="uid://dcecubyom1teo" path="res://scripts/enemy/cyclop.gd" id="1_pj65i"]
 [ext_resource type="PackedScene" uid="uid://dbpth638jxj01" path="res://scenes/enemy_shot/laser_shot.tscn" id="2_rjn0j"]
 [ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="3_tcwob"]
+[ext_resource type="Script" uid="uid://cmvoq4k42ghr0" path="res://scripts/enemy_marker/cyclop_marker.gd" id="4_ffhwm"]
 [ext_resource type="SpriteFrames" uid="uid://c0qe74b4y6bal" path="res://resources/animation/thrust_on.tres" id="4_pj65i"]
-[ext_resource type="SpriteFrames" uid="uid://cwkhdq3r3i44s" path="res://resources/animation/flash.tres" id="7_ffhwm"]
 [ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="8_3srvu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pwmhr"]
@@ -24,9 +24,8 @@ size = Vector2(49, 32)
 
 [node name="Cyclop" type="Node2D" unique_id=1251580003]
 scale = Vector2(0.25, 0.25)
-script = ExtResource("1_pwmhr")
-enemy_shot = ExtResource("2_rjn0j")
-shot_burst_timer = 1.0
+script = ExtResource("1_pj65i")
+max_life = 4
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1329580943 groups=["ENEMIES"]]
 
@@ -56,10 +55,10 @@ shape = SubResource("RectangleShape2D_en0w4")
 
 [node name="Shoot Point" type="Marker2D" parent="." unique_id=1445684841]
 position = Vector2(-23, 0)
+script = ExtResource("4_ffhwm")
+laser_scene = ExtResource("2_rjn0j")
 
-[node name="Shoot Point2" type="Marker2D" parent="." unique_id=801913607]
-visible = false
-position = Vector2(-23, 0)
+[node name="Fire Rate Timer" type="Timer" parent="Shoot Point" unique_id=673140433]
 
 [node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=368152352]
 sprite_frames = ExtResource("3_tcwob")
@@ -70,11 +69,7 @@ stream = ExtResource("8_3srvu")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Flash 1" type="AnimatedSprite2D" parent="." unique_id=1219471630]
-visible = false
-sprite_frames = ExtResource("7_ffhwm")
-animation = &"Flash"
-
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="screen_exited" from="Area2D/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Shoot Point/Fire Rate Timer" to="Shoot Point" method="_on_fire_rate_timer_timeout"]
 [connection signal="animation_finished" from="Explosion" to="." method="_on_explosion_animation_finished"]

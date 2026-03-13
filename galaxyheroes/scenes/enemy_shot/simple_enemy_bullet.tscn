@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://blcdngbp3iol"]
 
 [ext_resource type="Script" uid="uid://dhqyccdnajsec" path="res://scripts/enemy_shot/simple_enemy_bullet.gd" id="1_1nj0i"]
-[ext_resource type="Texture2D" uid="uid://78rb1awae5v2" path="res://images/enemy/enemy_bullet.png" id="1_1r3a4"]
+[ext_resource type="Texture2D" uid="uid://78rb1awae5v2" path="res://images/enemy/army/enemy_bullet.png" id="1_1r3a4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1nj0i"]
 radius = 8.571428
 
 [node name="Area2D" type="Area2D" unique_id=1143965631 groups=["ENEMY_BULLET"]]
 modulate = Color(0, 1, 0.09803922, 1)
-scale = Vector2(0.35, 0.546)
+scale = Vector2(0.15, 0.234)
 script = ExtResource("1_1nj0i")
 speed = 80
 
@@ -21,7 +21,7 @@ texture = ExtResource("1_1r3a4")
 scale = Vector2(1, 0.7069594)
 shape = SubResource("CircleShape2D_1nj0i")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1780214383]
+[node name="Simple Enemy Bullet Exit Notification" type="VisibleOnScreenNotifier2D" parent="." unique_id=1780214383]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_exited" from="Simple Enemy Bullet Exit Notification" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

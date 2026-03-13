@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cf3xt21qhso3k"]
+
+[ext_resource type="Script" uid="uid://bivr2bjvx2cqq" path="res://scripts/enemy_shot/turret_shot_1.gd" id="1_0c84m"]
+[ext_resource type="Texture2D" uid="uid://78rb1awae5v2" path="res://images/enemy/army/enemy_bullet.png" id="2_cu7sk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0c84m"]
+
+[node name="Turret Shot 1" type="Area2D" unique_id=1730772162 groups=["ENEMY_BULLET"]]
+scale = Vector2(0.15, 0.15)
+script = ExtResource("1_0c84m")
+speed = 80
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1202884302]
+modulate = Color(0, 1, 0.09803922, 1)
+texture = ExtResource("2_cu7sk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1468154167]
+shape = SubResource("CircleShape2D_0c84m")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1700843753]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

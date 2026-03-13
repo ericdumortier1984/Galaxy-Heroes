@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://c783um63s6pbh"]
 
-[ext_resource type="Script" uid="uid://drdrxlh7pplts" path="res://scripts/enemy/enemy.gd" id="1_md0e3"]
+[ext_resource type="Script" uid="uid://wnrqekmqy2xf" path="res://scripts/enemy/simple_enemy.gd" id="1_2f3il"]
 [ext_resource type="PackedScene" uid="uid://blcdngbp3iol" path="res://scenes/enemy_shot/simple_enemy_bullet.tscn" id="2_ipns3"]
 [ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="2_md0e3"]
-[ext_resource type="Texture2D" uid="uid://bm5x6nicixq4e" path="res://images/enemy/enemy_1/Enemy_01.png" id="2_md484"]
-[ext_resource type="Texture2D" uid="uid://cbr0l3et2j4xn" path="res://images/enemy/enemy_1/Enemy_01_2.png" id="3_md484"]
-[ext_resource type="Texture2D" uid="uid://bdiktgui484ht" path="res://images/enemy/enemy_1/Enemy_01_3.png" id="4_md484"]
-[ext_resource type="Texture2D" uid="uid://c3ctbi6i2jvvw" path="res://images/enemy/enemy_1/Enemy_01_4.png" id="5_md484"]
-[ext_resource type="Texture2D" uid="uid://dcvosq52pdbx2" path="res://images/enemy/enemy_1/Enemy_01_5.png" id="6_md484"]
+[ext_resource type="Texture2D" uid="uid://bm5x6nicixq4e" path="res://images/enemy/simple_enemy/Enemy_01.png" id="2_md484"]
+[ext_resource type="Texture2D" uid="uid://cbr0l3et2j4xn" path="res://images/enemy/simple_enemy/Enemy_01_2.png" id="3_md484"]
+[ext_resource type="Texture2D" uid="uid://bdiktgui484ht" path="res://images/enemy/simple_enemy/Enemy_01_3.png" id="4_md484"]
+[ext_resource type="Texture2D" uid="uid://c3ctbi6i2jvvw" path="res://images/enemy/simple_enemy/Enemy_01_4.png" id="5_md484"]
+[ext_resource type="Texture2D" uid="uid://dcvosq52pdbx2" path="res://images/enemy/simple_enemy/Enemy_01_5.png" id="6_md484"]
 [ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="7_md484"]
 [ext_resource type="SpriteFrames" uid="uid://c0qe74b4y6bal" path="res://resources/animation/thrust_on.tres" id="8_8qclf"]
-[ext_resource type="SpriteFrames" uid="uid://cwkhdq3r3i44s" path="res://resources/animation/flash.tres" id="11_w8i8w"]
+[ext_resource type="Script" uid="uid://ckbd56l1o7b3b" path="res://scripts/enemy_marker/simple_enemy_marker.gd" id="8_dtxhd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5uy6h"]
 animations = [{
@@ -40,9 +40,8 @@ size = Vector2(35.548, 17.6452)
 
 [node name="Enemy" type="Node2D" unique_id=1906951015]
 scale = Vector2(0.25, 0.25)
-script = ExtResource("1_md0e3")
-enemy_shot = ExtResource("2_ipns3")
-shot_burst_timer = 1.0
+script = ExtResource("1_2f3il")
+max_life = 2
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1635148752 groups=["ENEMIES"]]
 
@@ -75,10 +74,10 @@ shape = SubResource("RectangleShape2D_4ra3w")
 
 [node name="Shoot Point" type="Marker2D" parent="." unique_id=1097682853]
 position = Vector2(-29.999998, 0)
+script = ExtResource("8_dtxhd")
+bullet_scene = ExtResource("2_ipns3")
 
-[node name="Shoot Point2" type="Marker2D" parent="." unique_id=1663146149]
-visible = false
-position = Vector2(-29.999998, 0)
+[node name="Fire Rate Timer" type="Timer" parent="Shoot Point" unique_id=834129338]
 
 [node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=1263011719]
 sprite_frames = ExtResource("7_md484")
@@ -90,11 +89,7 @@ stream = ExtResource("2_md0e3")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Flash 1" type="AnimatedSprite2D" parent="." unique_id=170958164]
-visible = false
-sprite_frames = ExtResource("11_w8i8w")
-animation = &"Flash"
-
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="screen_exited" from="Area2D/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Shoot Point/Fire Rate Timer" to="Shoot Point" method="_on_fire_rate_timer_timeout"]
 [connection signal="animation_finished" from="Explosion" to="." method="_on_explosion_animation_finished"]

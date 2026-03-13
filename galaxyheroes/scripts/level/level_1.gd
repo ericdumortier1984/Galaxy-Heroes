@@ -11,7 +11,7 @@ extends Node2D
 @export var boss_spawn_point : Vector2
 
 # --- onready --- #
-@onready var my_ship_spawn_position : Vector2 = Vector2(40, get_viewport_rect().size.y / 2)
+@onready var my_ship_spawn_position : Vector2 = Vector2(20, get_viewport_rect().size.y / 2)
 @onready var enemy_path_follow = $"Enemy Spawner/PathFollow2D"
 @onready var uppper_asteroid_path_follow = $"Upper Asteroid Spawner/Upper Asteroid Path Follow"
 @onready var lower_asteroid_path_follow = $"Lower Asteroid Spawner/Lower Asteroid Path Follow"

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://rulkvfhixd3e"]
+
+[ext_resource type="Script" uid="uid://nkr7xn76o3t1" path="res://scripts/boss_shot/fire_ball_shot.gd" id="1_weoeo"]
+[ext_resource type="Texture2D" uid="uid://cbxg0lyafmg65" path="res://images/enemy/army/Fire_ball.png" id="2_weoeo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ux5e"]
+radius = 32.06244
+
+[node name="Fire Ball" type="Area2D" unique_id=1257826600 groups=["ENEMY_BULLET"]]
+scale = Vector2(0.15, 0.15)
+script = ExtResource("1_weoeo")
+speed = 120
+rotation_speed = 60.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1926325451]
+texture = ExtResource("2_weoeo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1344107471]
+shape = SubResource("CircleShape2D_4ux5e")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=846615834]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

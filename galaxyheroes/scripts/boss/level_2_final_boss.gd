@@ -7,14 +7,14 @@ signal final_boss_defeated
 # --- export --- #
 @export var max_life : int = 100
 @export var boss_offset : float = 1.0
-#@export var thrust_animation : AnimatedSprite2D
+@export var thrust_animation : AnimatedSprite2D
 @export var explosion_animation : AnimatedSprite2D
 
 # --- onready ---# 
 @onready var boss_animated_sprite : AnimatedSprite2D = $Area2D/AnimatedSprite2D
 @onready var boss_health_bar : ProgressBar = $Area2D/ProgressBar
 @onready var boss_hit_box : Area2D = $Area2D
-#@onready var shoot_marker : ShootMarkerBoss = $"Area2D/Shoot Marker"
+@onready var shoot_marker : Marker2D = $"Area2D/Shoot Marker"
 @onready var pattern_change_time : Timer = $"Shoot Patter Timer"
 @onready var damage_sound : AudioStreamPlayer2D = $"Area2D/Explosion/Explosion Sound"
 
@@ -54,9 +54,9 @@ func set_boss_entry_finish():
 	
 	final_boss_entered.emit()
 	
-	#shoot_marker.start()
+	shoot_marker.start()
 	pattern_index = 0
-	#shoot_marker.set_shoot_pattern_id(pattern_index)
+	shoot_marker.set_shoot_pattern_id(pattern_index)
 	pattern_change_time.start()
 
 func take_damage(amount : int):
@@ -83,7 +83,7 @@ func boss_destroyed():
 	is_final_boss_defeated = true
 	
 	boss_hit_box.set_deferred("monitoring", false)
-	#shoot_marker.stop()
+	shoot_marker.stop()
 	pattern_change_time.stop()
 	
 	await play_boss_destroying_animation()
@@ -112,3 +112,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PLAYER_BULLET") && !is_boss_entering:
 		take_damage(area.damage)
 		area.queue_free()
+
+func _on_shoot_patter_timer_timeout() -> void:
+	if is_final_boss_defeated:
+		return
+		
+	pattern_index = (pattern_index + 1) % 5
+	shoot_marker.set_shoot_pattern_id(pattern_index)

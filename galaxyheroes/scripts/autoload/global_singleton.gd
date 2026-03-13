@@ -25,6 +25,11 @@ var lifes : int = 0
 var missiles : int = 0
 var selecter_character_id : int = 0
 var game_state : GameState = GameState.PLAYING
+var level_scenes : Array[String] = [
+	"res://scenes/level/level_1.tscn",
+	"res://scenes/level/level_2.tscn",
+	"res://scenes/level/level_3.tscn"
+]
 
 func set_state(new_state : GameState) -> void:
 	if game_state == new_state:
@@ -43,6 +48,14 @@ func lose_life(amount: int = 1) -> void:
 	if lifes <= 0:
 		lifes = 0
 		set_state(GameState.GAME_OVER)
+
+func load_next_level() -> void:
+	var next_level : int = SaveSystem.data.level_unlocked
+	
+	if next_level - 1 < level_scenes.size():
+		get_tree().change_scene_to_file(level_scenes[next_level - 1])
+	else:
+		get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 
 func game_over() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu/game_over.tscn")

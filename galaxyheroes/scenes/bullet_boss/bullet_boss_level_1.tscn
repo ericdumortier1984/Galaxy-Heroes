@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8wc87tk8yq41"]
 
 [ext_resource type="Script" uid="uid://dhqyccdnajsec" path="res://scripts/enemy_shot/simple_enemy_bullet.gd" id="1_y7lbo"]
-[ext_resource type="Texture2D" uid="uid://78rb1awae5v2" path="res://images/enemy/enemy_bullet.png" id="2_n7qlf"]
+[ext_resource type="Texture2D" uid="uid://78rb1awae5v2" path="res://images/enemy/army/enemy_bullet.png" id="2_n7qlf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n7qlf"]
 
@@ -17,7 +17,7 @@ texture = ExtResource("2_n7qlf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1585612136]
 shape = SubResource("CircleShape2D_n7qlf")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=940841364]
+[node name="Simple Enemy Bullet Exit Notification" type="VisibleOnScreenNotifier2D" parent="." unique_id=940841364]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_exited" from="Simple Enemy Bullet Exit Notification" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

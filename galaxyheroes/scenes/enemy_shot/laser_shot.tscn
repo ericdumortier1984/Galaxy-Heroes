@@ -26,6 +26,8 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_r3koy")
 
 [node name="Laser Shot" type="Area2D" unique_id=86648190 groups=["ENEMY_BULLET"]]
+rotation = 3.1415927
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_icnxp")
 speed = 60
 

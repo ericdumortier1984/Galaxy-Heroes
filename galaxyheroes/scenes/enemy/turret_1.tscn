@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dbaiis2gihnqb"]
+
+[ext_resource type="Script" uid="uid://b3otcyh113akd" path="res://scripts/enemy/turret_1.gd" id="1_6j7cn"]
+[ext_resource type="Texture2D" uid="uid://csyjq7w5jc8ce" path="res://images/enemy/turret/turret_1.png" id="1_ccnvd"]
+[ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="2_gjqmo"]
+[ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="3_6j7cn"]
+[ext_resource type="Texture2D" uid="uid://b13jg8xvhgrk8" path="res://images/enemy/turret/turret_2.png" id="3_jhdpd"]
+[ext_resource type="Script" uid="uid://btg0ei3vcvnea" path="res://scripts/enemy_shot/shoot_marker_1.gd" id="4_dwyi2"]
+[ext_resource type="Texture2D" uid="uid://xxolhu35dw0g" path="res://images/enemy/turret/turret_3.png" id="4_yygbi"]
+[ext_resource type="PackedScene" uid="uid://cf3xt21qhso3k" path="res://scenes/enemy_shot/turret_shot_1.tscn" id="5_yygbi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fqly3"]
+size = Vector2(52, 54)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p8kjy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_yygbi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ccnvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jhdpd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ccnvd")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 2.0
+}]
+
+[node name="Turret 1" type="Node2D" unique_id=867154673]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_6j7cn")
+speed_enemy = 20
+max_life = 10
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1211460636 groups=["ENEMIES"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2098236672]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_fqly3")
+
+[node name="Turret Exit Notifier" type="VisibleOnScreenNotifier2D" parent="Area2D" unique_id=293490372]
+
+[node name="Fly" type="AnimatedSprite2D" parent="Area2D" unique_id=730593230]
+sprite_frames = SubResource("SpriteFrames_p8kjy")
+animation = &"fly"
+
+[node name="Shoot Point" type="Marker2D" parent="Area2D" unique_id=2110539101 groups=["TURRET MARKER"]]
+position = Vector2(-32, -8)
+script = ExtResource("4_dwyi2")
+bullet_scene = ExtResource("5_yygbi")
+
+[node name="Shoot Point2" type="Marker2D" parent="Area2D" unique_id=1993999073 groups=["TURRET MARKER"]]
+position = Vector2(0, -32)
+script = ExtResource("4_dwyi2")
+bullet_scene = ExtResource("5_yygbi")
+
+[node name="Shoot Point3" type="Marker2D" parent="Area2D" unique_id=834534059 groups=["TURRET MARKER"]]
+position = Vector2(32, -8)
+script = ExtResource("4_dwyi2")
+bullet_scene = ExtResource("5_yygbi")
+
+[node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=856996302]
+sprite_frames = ExtResource("2_gjqmo")
+animation = &"explosion"
+
+[node name="Explosion Sound" type="AudioStreamPlayer2D" parent="Explosion" unique_id=1814896662]
+stream = ExtResource("3_6j7cn")
+bus = &"SFX"
+
+[node name="Shoot Pattern Timer" type="Timer" parent="." unique_id=1096201306]
+wait_time = 3.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="Area2D/Turret Exit Notifier" to="." method="_on_turret_exit_notifier_screen_exited"]
+[connection signal="animation_finished" from="Explosion" to="." method="_on_explosion_animation_finished"]
+[connection signal="timeout" from="Shoot Pattern Timer" to="." method="_on_shoot_pattern_timer_timeout"]

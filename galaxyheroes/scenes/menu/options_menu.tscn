@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cngdwdxnaodn6" path="res://scripts/menu/options_menu.gd" id="1_liyum"]
 [ext_resource type="FontFile" uid="uid://uwduxpu7qq6u" path="res://fonts/Kenney Future Narrow.ttf" id="2_hm4m4"]
 [ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="2_ijpji"]
-[ext_resource type="Texture2D" uid="uid://b5tgjv83ju5jc" path="res://images/parallax/Space_background_1.png" id="2_lfjc7"]
+[ext_resource type="Texture2D" uid="uid://b5tgjv83ju5jc" path="res://images/parallax/space_background_1.png" id="2_lfjc7"]
 
 [node name="Options Menu" type="Control" unique_id=816235607]
 layout_mode = 3

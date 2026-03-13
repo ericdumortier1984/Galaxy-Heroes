@@ -20,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.5176471, 0.5176471, 0.105882354)
+color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=1887527589]
 layout_mode = 1
@@ -60,7 +60,8 @@ offset_top = 154.0
 offset_bottom = 154.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.5176471, 0.5176471, 0.105882354)
+scale = Vector2(1, 1.0800024)
+color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer2" type="MarginContainer" parent="HUD" unique_id=33134274]
 layout_mode = 1

@@ -6,8 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bs2l4uj36yoo5" path="res://scenes/player/billy_ship.tscn" id="2_io4i7"]
 [ext_resource type="PackedScene" uid="uid://odolpm16myxu" path="res://scenes/player/kimi_ship.tscn" id="3_rg4c2"]
 [ext_resource type="PackedScene" uid="uid://b6acd6hc8cldk" path="res://scenes/player/my_ship.tscn" id="4_a0lbm"]
-[ext_resource type="Texture2D" uid="uid://i14a6dkckkw0" path="res://images/parallax/Background Level 2.png" id="4_m25sp"]
-[ext_resource type="Texture2D" uid="uid://cfd1qehk0bcet" path="res://images/parallax/Earth.png" id="4_tguex"]
+[ext_resource type="Texture2D" uid="uid://cfd1qehk0bcet" path="res://images/parallax/earth.png" id="4_tguex"]
 [ext_resource type="PackedScene" uid="uid://c783um63s6pbh" path="res://scenes/enemy/enemy.tscn" id="5_hve35"]
 [ext_resource type="Texture2D" uid="uid://cu1vfywio2doh" path="res://images/parallax/parallax-space-stars.png" id="5_m25sp"]
 [ext_resource type="PackedScene" uid="uid://cm2akvbbk30fs" path="res://scenes/enemy/drone_1.tscn" id="6_a0lbm"]
@@ -23,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://drnty71x222l1" path="res://scenes/power_up/TripleShotPowerUp.tscn" id="15_wi0ma"]
 [ext_resource type="PackedScene" uid="uid://dfk4x0jtmembw" path="res://scenes/boss/level_2_boss.tscn" id="16_vni3u"]
 [ext_resource type="PackedScene" uid="uid://cyi8axn3trils" path="res://scenes/boss/level_2_final_boss.tscn" id="17_olix3"]
+[ext_resource type="Texture2D" uid="uid://b5tgjv83ju5jc" path="res://images/parallax/space_background_1.png" id="21_vni3u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7l0e"]
 
@@ -53,6 +53,7 @@ drone_1_scene = ExtResource("6_a0lbm")
 boss_scene = ExtResource("16_vni3u")
 final_boss_scene = ExtResource("17_olix3")
 score_boss_spawner = 1500
+score_final_boss_spawner = 4500
 boss_position_spawner = Vector2(300, 100)
 final_boss_position_spawner = Vector2(300, 100)
 
@@ -90,12 +91,14 @@ parameters/looping = false
 [node name="Background Parallax" type="ParallaxBackground" parent="Background" unique_id=900659381]
 
 [node name="Background Parallax Layer" type="ParallaxLayer" parent="Background/Background Parallax" unique_id=193064158]
+position = Vector2(0, -4)
 motion_mirroring = Vector2(272, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Background Parallax/Background Parallax Layer" unique_id=708252482]
-position = Vector2(137, 84)
-scale = Vector2(2.9953623, 1.4310524)
-texture = ExtResource("4_m25sp")
+modulate = Color(0.8784314, 0.7019608, 0.33333334, 0.93333334)
+position = Vector2(137, 90)
+scale = Vector2(1.2363635, 1.1)
+texture = ExtResource("21_vni3u")
 
 [node name="Earth Parallax" type="ParallaxBackground" parent="Background" unique_id=1729938017]
 

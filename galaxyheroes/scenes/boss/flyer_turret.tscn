@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://bgvry1beodjwv"]
+
+[ext_resource type="Script" uid="uid://b5wimejh7lw15" path="res://scripts/boss/flyer_turret.gd" id="1_8fde3"]
+[ext_resource type="Texture2D" uid="uid://bfsvis24ml8vw" path="res://images/boss/flyer_turret/flyer_turret.png" id="2_kerhg"]
+[ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="3_0jum4"]
+[ext_resource type="Script" uid="uid://b317ldxs6648n" path="res://scripts/boss_shot/flyer_turret_shot.gd" id="3_01qct"]
+[ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="4_01qct"]
+[ext_resource type="PackedScene" uid="uid://rulkvfhixd3e" path="res://scenes/bullet_boss/fire_ball.tscn" id="4_t22g1"]
+[ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="5_kerhg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t22g1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kerhg")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8hcha"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kerhg"]
+bg_color = Color(0.91764706, 0, 0, 0.23529412)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jum4"]
+bg_color = Color(0, 0.654902, 0.30980393, 1)
+
+[node name="Flyer Turret" type="Node2D" unique_id=1780359297 node_paths=PackedStringArray("explosion_animation") groups=["BOSSES"]]
+script = ExtResource("1_8fde3")
+max_life = 10
+explosion_animation = NodePath("Area2D/Explosion")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=9300824]
+
+[node name="Fly" type="AnimatedSprite2D" parent="Area2D" unique_id=1064852752]
+sprite_frames = SubResource("SpriteFrames_t22g1")
+animation = &"fly"
+
+[node name="Shoot Marker" type="Marker2D" parent="Area2D" unique_id=334402832 groups=["BOSS_MARKER"]]
+position = Vector2(-23, -2.495)
+script = ExtResource("3_01qct")
+first_boss_bullet_scene = ExtResource("4_t22g1")
+shot_interval = 0.5
+
+[node name="Fire rate timer" type="Timer" parent="Area2D/Shoot Marker" unique_id=182165029]
+
+[node name="Upper Colission Shape" type="CollisionShape2D" parent="Area2D" unique_id=1044522416]
+position = Vector2(0, -19)
+scale = Vector2(0.36000007, 0.3200004)
+shape = SubResource("CircleShape2D_8hcha")
+
+[node name="Lower Collision Shape" type="CollisionShape2D" parent="Area2D" unique_id=845689894]
+position = Vector2(0, 14.000004)
+scale = Vector2(0.36000007, 0.3200004)
+shape = SubResource("CircleShape2D_8hcha")
+
+[node name="Life Bar" type="ProgressBar" parent="Area2D" unique_id=1671837715]
+offset_left = -13.0
+offset_top = -25.0
+offset_right = -9.0
+offset_bottom = 2.0
+rotation = -1.5707964
+theme = ExtResource("3_0jum4")
+theme_override_styles/background = SubResource("StyleBoxFlat_kerhg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0jum4")
+max_value = 1.0
+value = 1.0
+fill_mode = 2
+show_percentage = false
+
+[node name="Explosion" type="AnimatedSprite2D" parent="Area2D" unique_id=1910447216]
+sprite_frames = ExtResource("4_01qct")
+animation = &"explosion"
+
+[node name="Exposion Sound" type="AudioStreamPlayer2D" parent="Area2D/Explosion" unique_id=422721537]
+stream = ExtResource("5_kerhg")
+bus = &"SFX"
+
+[node name="State Timer" type="Timer" parent="." unique_id=387812558]
+
+[node name="Shot Pattern Timer" type="Timer" parent="." unique_id=989905814]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Area2D/Shoot Marker/Fire rate timer" to="Area2D/Shoot Marker" method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="State Timer" to="." method="_on_state_timer_timeout"]
+[connection signal="timeout" from="Shot Pattern Timer" to="." method="_on_shot_pattern_timer_timeout"]

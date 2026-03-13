@@ -60,7 +60,6 @@ func set_boss_entry_finish() -> void:
 
 func set_boss_state() -> void:
 	change_boss_state(BossState.IDLE)
-	state_timer.start()
 
 func change_boss_state(new_state : BossState):
 	current_state = new_state

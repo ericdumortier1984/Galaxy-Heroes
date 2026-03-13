@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://b0144ki1pjn1i"]
+
+[ext_resource type="Script" uid="uid://1s4vrl378sp5" path="res://scripts/level/level_3.gd" id="1_jvbyd"]
+[ext_resource type="PackedScene" uid="uid://ciq4adxjkts06" path="res://scenes/menu/pause_menu.tscn" id="2_ci4up"]
+[ext_resource type="PackedScene" uid="uid://b6acd6hc8cldk" path="res://scenes/player/my_ship.tscn" id="2_t68c2"]
+[ext_resource type="PackedScene" uid="uid://bs2l4uj36yoo5" path="res://scenes/player/billy_ship.tscn" id="3_6s08d"]
+[ext_resource type="PackedScene" uid="uid://8fvtairywq4w" path="res://scenes/UI/GUI.tscn" id="3_lt2g7"]
+[ext_resource type="PackedScene" uid="uid://odolpm16myxu" path="res://scenes/player/kimi_ship.tscn" id="4_i21c8"]
+[ext_resource type="PackedScene" uid="uid://c630ty64aewe0" path="res://scenes/enemy/biter.tscn" id="5_af0ln"]
+[ext_resource type="PackedScene" uid="uid://dvfc6m85ei8h8" path="res://scenes/enemy/cyclop.tscn" id="6_rsiw8"]
+[ext_resource type="PackedScene" uid="uid://cm2akvbbk30fs" path="res://scenes/enemy/drone_1.tscn" id="7_62eb7"]
+[ext_resource type="PackedScene" uid="uid://c783um63s6pbh" path="res://scenes/enemy/enemy.tscn" id="8_q0p76"]
+[ext_resource type="PackedScene" uid="uid://bak7va5urn52c" path="res://scenes/enemy/gunner.tscn" id="9_rnty5"]
+[ext_resource type="PackedScene" uid="uid://dbaiis2gihnqb" path="res://scenes/enemy/turret_1.tscn" id="10_af0ln"]
+[ext_resource type="PackedScene" uid="uid://ckfkywx4hatop" path="res://scenes/power_up/double_shot_power_up.tscn" id="10_q5iha"]
+[ext_resource type="PackedScene" uid="uid://b5qckqvpm1nn" path="res://scenes/power_up/health_power_up.tscn" id="11_nlhay"]
+[ext_resource type="PackedScene" uid="uid://blyfvkp82ehbc" path="res://scenes/power_up/missile_power_up.tscn" id="12_ui0uc"]
+[ext_resource type="PackedScene" uid="uid://cft80hhc4bqth" path="res://scenes/power_up/shield_power_up.tscn" id="13_wgaue"]
+[ext_resource type="PackedScene" uid="uid://loi2c4jmpdgt" path="res://scenes/power_up/speed_power_up.tscn" id="14_gf5ec"]
+[ext_resource type="PackedScene" uid="uid://drnty71x222l1" path="res://scenes/power_up/TripleShotPowerUp.tscn" id="15_i12r4"]
+[ext_resource type="PackedScene" uid="uid://bgvry1beodjwv" path="res://scenes/boss/flyer_turret.tscn" id="17_af0ln"]
+[ext_resource type="PackedScene" uid="uid://2yxfntxjqtn2" path="res://scenes/boss/camel.tscn" id="18_af0ln"]
+[ext_resource type="Texture2D" uid="uid://70m3yh52hmhv" path="res://images/parallax/city_background.png" id="20_i21c8"]
+[ext_resource type="Texture2D" uid="uid://b16c6c5r41y8j" path="res://images/parallax/floor.png" id="21_i21c8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ss58e"]
+size = Vector2(285, 24)
+
+[sub_resource type="Curve2D" id="Curve2D_lt2g7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 272, 48, 0, 0, 0, 0, 272, 67, 0, 0, 0, 0, 272, 82, 0, 0, 0, 0, 272, 96, 0, 0, 0, 0, 272, 110, 0, 0, 0, 0, 272, 127, 0, 0, 0, 0, 277, 118, 0, 0, 0, 0, 277, 102, 0, 0, 0, 0, 277, 86, 0, 0, 0, 0, 277, 72, 0, 0, 0, 0, 277, 57, 0, 0, 0, 0, 275, 31)
+}
+point_count = 12
+
+[sub_resource type="Curve2D" id="Curve2D_rsiw8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 276, 18)
+}
+point_count = 1
+
+[sub_resource type="Curve2D" id="Curve2D_af0ln"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 274, 146, 0, 0, 0, 0, 279, 146, 0, 0, 0, 0, 282, 146)
+}
+point_count = 3
+
+[node name="Level 3" type="Node2D" unique_id=309792356]
+script = ExtResource("1_jvbyd")
+my_ship = Array[PackedScene]([ExtResource("2_t68c2"), ExtResource("3_6s08d"), ExtResource("4_i21c8")])
+enemy = Array[PackedScene]([ExtResource("5_af0ln"), ExtResource("6_rsiw8"), ExtResource("7_62eb7"), ExtResource("8_q0p76"), ExtResource("9_rnty5")])
+turret = Array[PackedScene]([ExtResource("10_af0ln")])
+power_up = Array[PackedScene]([ExtResource("10_q5iha"), ExtResource("11_nlhay"), ExtResource("12_ui0uc"), ExtResource("13_wgaue"), ExtResource("14_gf5ec"), ExtResource("15_i12r4")])
+first_boss_scene = ExtResource("17_af0ln")
+second_boss_scene = ExtResource("17_af0ln")
+third_boss_scene = ExtResource("18_af0ln")
+final_boss_scene = ExtResource("17_af0ln")
+score_first_boss_spawner = 100
+score_second_boss_spawner = 100
+score_third_boss_spawner = 500
+score_final_boss_spawner = 2500
+boss_position_spawner = Vector2(300, 100)
+
+[node name="Pause Menu" parent="." unique_id=1231375810 instance=ExtResource("2_ci4up")]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = 140.0
+offset_top = 90.0
+offset_right = 140.0
+offset_bottom = 90.0
+grow_vertical = 1
+
+[node name="GUI" parent="." unique_id=2111763531 instance=ExtResource("3_lt2g7")]
+
+[node name="Settings" type="Node" parent="." unique_id=1830823949]
+
+[node name="Enemy Spawn Timer" type="Timer" parent="Settings" unique_id=844321855]
+wait_time = 3.0
+autostart = true
+
+[node name="Turret Spawn Timer" type="Timer" parent="Settings" unique_id=1957970967]
+wait_time = 3.0
+autostart = true
+
+[node name="Power Up Spawn Timer" type="Timer" parent="Settings" unique_id=1399618617]
+wait_time = 10.0
+autostart = true
+
+[node name="Music Background" type="AudioStreamPlayer" parent="Settings" unique_id=1188132420]
+
+[node name="Background" type="Node" parent="." unique_id=901502264]
+
+[node name="Background Parallax" type="ParallaxBackground" parent="Background" unique_id=2071616552]
+
+[node name="Background Parallax Layer" type="ParallaxLayer" parent="Background/Background Parallax" unique_id=1546161504]
+motion_mirroring = Vector2(272, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Background Parallax/Background Parallax Layer" unique_id=985140752]
+position = Vector2(135.99998, 84.5)
+scale = Vector2(0.9444445, 0.72395825)
+texture = ExtResource("20_i21c8")
+
+[node name="Roof Background Parallax" type="ParallaxBackground" parent="Background" unique_id=598263880]
+visible = false
+
+[node name="Roof Background Parallax Layer" type="ParallaxLayer" parent="Background/Roof Background Parallax" unique_id=1747654820]
+motion_mirroring = Vector2(272, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Roof Background Parallax/Roof Background Parallax Layer" unique_id=1130642091]
+position = Vector2(135, 13)
+rotation = 3.1415927
+scale = Vector2(1, 0.611)
+texture = ExtResource("21_i21c8")
+
+[node name="Floor Background Parallax" type="ParallaxBackground" parent="Background" unique_id=749369933]
+
+[node name="Roof Background Parallax Layer" type="ParallaxLayer" parent="Background/Floor Background Parallax" unique_id=618840985]
+motion_mirroring = Vector2(272, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Floor Background Parallax/Roof Background Parallax Layer" unique_id=204571458]
+modulate = Color(0.15775332, 0.15775332, 0.15775332, 1)
+position = Vector2(135, 162.5)
+scale = Vector2(1, 0.40909076)
+texture = ExtResource("21_i21c8")
+
+[node name="Limits" type="StaticBody2D" parent="." unique_id=1679826424]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limits" unique_id=1959848596]
+position = Vector2(132.5, 2)
+shape = SubResource("RectangleShape2D_ss58e")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Limits" unique_id=64137438]
+position = Vector2(133, 166)
+shape = SubResource("RectangleShape2D_ss58e")
+
+[node name="Enemy Spawner" type="Path2D" parent="." unique_id=554412374]
+position = Vector2(0, 6)
+curve = SubResource("Curve2D_lt2g7")
+
+[node name="Enemy Path Follow" type="PathFollow2D" parent="Enemy Spawner" unique_id=572633711]
+position = Vector2(272, 48)
+rotation = 1.5707964
+
+[node name="Enemy Roof Spawner" type="Path2D" parent="." unique_id=1191635463]
+curve = SubResource("Curve2D_rsiw8")
+
+[node name="Enemy Roof Path Follow" type="PathFollow2D" parent="Enemy Roof Spawner" unique_id=203174901]
+
+[node name="Enemy Floor Spawner" type="Path2D" parent="." unique_id=986309232]
+curve = SubResource("Curve2D_af0ln")
+
+[node name="Enemy Floor Path Follow" type="PathFollow2D" parent="Enemy Floor Spawner" unique_id=1863829922]
+position = Vector2(274, 146)
+
+[connection signal="timeout" from="Settings/Enemy Spawn Timer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="Settings/Turret Spawn Timer" to="." method="_on_turret_spawn_timer_timeout"]
+[connection signal="timeout" from="Settings/Power Up Spawn Timer" to="." method="_on_power_up_spawn_timer_timeout"]

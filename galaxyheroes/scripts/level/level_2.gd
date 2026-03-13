@@ -5,7 +5,7 @@ extends Node2D
 @onready var upper_path_follow : PathFollow2D = $"Drone Upper Spawner/Upper Path Follow"
 @onready var lower_path_follow : PathFollow2D = $"Drone Lower Spawner/Lower Path Follow"
 @onready var music_background : AudioStreamPlayer = $"Settings/Music Background"
-@onready var my_ship_spawn_position : Vector2 = Vector2(40, get_viewport_rect().size.y / 2)
+@onready var my_ship_spawn_position : Vector2 = Vector2(20, get_viewport_rect().size.y / 2)
 
 # --- export --- #
 @export var my_ship : Array[PackedScene]
@@ -15,6 +15,7 @@ extends Node2D
 @export var boss_scene : PackedScene
 @export var final_boss_scene :  PackedScene
 @export var score_boss_spawner : int = 0
+@export var score_final_boss_spawner : int = 0
 @export var boss_position_spawner : Vector2
 @export var final_boss_position_spawner : Vector2
 
@@ -24,11 +25,13 @@ var final_boss_spawned : bool = false
 var boss_defeated : bool = false
 
 # --- int --- # 
+var score_afer_level : int = 0
 var score_after_boss : int = 0
 
 func _ready() -> void:
 	SaveSystem.load_game()
 	GlobalSingleton.set_state(GlobalSingleton.GameState.PLAYING)
+	score_afer_level = GlobalSingleton.score
 	start_level_2_intro_dialogue()
 	DialogueManager.dialogue_ended.connect(on_dialogue_ended)
 	set_character()
@@ -129,7 +132,7 @@ func check_boss_spawn():
 	if boss_spawned:
 		return
 	
-	if GlobalSingleton.score >= score_boss_spawner:
+	if GlobalSingleton.score >= score_afer_level + score_boss_spawner:
 		spawn_boss()
 
 func set_boss_entered():
@@ -156,7 +159,7 @@ func check_final_boss_spawn():
 	if not boss_defeated:
 		return
 	
-	if GlobalSingleton.score >= score_after_boss + 1000:
+	if GlobalSingleton.score >= score_after_boss + score_final_boss_spawner:
 		spawn_final_boss()
 
 func spawn_final_boss():

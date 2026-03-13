@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://yo7gfx4jha40"]
 
 [ext_resource type="Script" uid="uid://bn1c28pf1no43" path="res://scripts/menu/continue_menu.gd" id="1_45yx4"]
+[ext_resource type="Texture2D" uid="uid://b5tgjv83ju5jc" path="res://images/parallax/space_background_1.png" id="2_53jqc"]
 
 [node name="ContinueMenu" type="Control" unique_id=1703460085]
 layout_mode = 3
@@ -13,20 +14,22 @@ script = ExtResource("1_45yx4")
 
 [node name="Background" type="TextureRect" parent="." unique_id=187716627]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 272.0
+offset_bottom = 170.0
+texture = ExtResource("2_53jqc")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1773733307]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -1.0
-offset_right = 63.0
-offset_bottom = 1.0
+offset_top = 6.0000005
+offset_right = 114.0
+offset_bottom = 86.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 15
+scale = Vector2(0.65, 0.65)
+theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
@@ -39,36 +42,55 @@ size_flags_horizontal = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.13725491, 0.22745098, 0.34901962, 1)
+theme_override_colors/font_shadow_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
+theme_override_colors/font_outline_color = Color(0.13725491, 0.22745098, 0.34901962, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/font_size = 24
 text = "SELECT YOUR LEVEL"
 
-[node name="Selector" type="HBoxContainer" parent="MarginContainer" unique_id=953590767]
+[node name="Selector" type="VBoxContainer" parent="MarginContainer" unique_id=987094531]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Level 1" type="Button" parent="MarginContainer/Selector" unique_id=1832144081]
 layout_mode = 2
-focus_neighbor_right = NodePath("../Level 2")
+focus_neighbor_bottom = NodePath("../Level 2")
 text = "LEVEL 1:
-WELCOME TO THE WAR"
+WAR IN THE NEBULA"
 
 [node name="Level 2" type="Button" parent="MarginContainer/Selector" unique_id=1700751630]
 layout_mode = 2
-focus_neighbor_left = NodePath("../Level 1")
-focus_neighbor_bottom = NodePath("../../HBoxContainer/Back")
+focus_neighbor_top = NodePath("../Level 1")
+focus_neighbor_bottom = NodePath("../Level 3")
 text = "LEVEL 2:
-BACK TO THE EARTH"
+SIEGE ON THE LAST FRONTIER"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1061881814]
+[node name="Level 3" type="Button" parent="MarginContainer/Selector" unique_id=222532256]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Level 2")
+focus_neighbor_bottom = NodePath("../../../HBoxContainer/Back")
+text = "LEVEL 3:
+DAY ZERO"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1061881814]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 146.0
+offset_right = 43.0
+offset_bottom = 165.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 
-[node name="Back" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1495220577]
+[node name="Back" type="Button" parent="HBoxContainer" unique_id=1495220577]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../Selector/Level 2")
+focus_neighbor_top = NodePath("../../MarginContainer/Selector/Level 3")
 text = "BACK"
 
 [connection signal="pressed" from="MarginContainer/Selector/Level 1" to="." method="_on_level_1_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Selector/Level 2" to="." method="_on_level_2_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MarginContainer/Selector/Level 3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="HBoxContainer/Back" to="." method="_on_back_pressed"]

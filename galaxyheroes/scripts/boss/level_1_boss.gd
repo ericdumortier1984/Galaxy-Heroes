@@ -20,7 +20,7 @@ signal boss_defeated
 
 # --- int --- #
 var current_life : int
-var pattern_index := 0
+var pattern_index : int = 0
 
 # --- bool --- # 
 var is_boss_defeated : bool = false
@@ -59,7 +59,7 @@ func set_boss_entry_finish():
 	shoot_marker.set_shoot_pattern_id(pattern_index)
 	pattern_change_time.start()
 
-func take_damage(amount : int):
+func take_damage(amount : int) -> void:
 	if GlobalSingleton.game_state != GlobalSingleton.GameState.PLAYING:
 		return
 	if is_boss_defeated or is_boss_entering or is_boss_dying:

@@ -2,8 +2,20 @@
 
 [ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="1_g4cbk"]
 [ext_resource type="Script" uid="uid://blk0wayx2dfkl" path="res://scripts/boss/level_2_final_boss.gd" id="1_ty8f7"]
-[ext_resource type="Texture2D" uid="uid://c4s5y86ak6n7r" path="res://images/enemy/enemy_2.png" id="2_emcoa"]
+[ext_resource type="Texture2D" uid="uid://r3dbs0rbvwy4" path="res://images/boss/reptile_head/Final_boss_level_2.png" id="2_emcoa"]
 [ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="2_ty8f7"]
+[ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="2_ynjd1"]
+[ext_resource type="SpriteFrames" uid="uid://c0qe74b4y6bal" path="res://resources/animation/thrust_on.tres" id="4_mnurq"]
+[ext_resource type="SpriteFrames" uid="uid://cwkhdq3r3i44s" path="res://resources/animation/flash.tres" id="5_8f7ei"]
+[ext_resource type="Script" uid="uid://j0qk1bjxx8v4" path="res://scripts/boss_shot/alternate_shoot_pattern.gd" id="8_ecdjx"]
+[ext_resource type="PackedScene" uid="uid://c8wc87tk8yq41" path="res://scenes/bullet_boss/bullet_boss_level_1.tscn" id="9_ecdjx"]
+[ext_resource type="PackedScene" uid="uid://rulkvfhixd3e" path="res://scenes/bullet_boss/fire_ball.tscn" id="10_jk6bx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynjd1"]
+bg_color = Color(0.91764706, 0, 0, 0.23529412)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mnurq"]
+bg_color = Color(0, 0.654902, 0.30980393, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emcoa"]
 
@@ -18,16 +30,27 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Level 2 Final Boss" type="Node2D" unique_id=613086524 node_paths=PackedStringArray("explosion_animation") groups=["BOSSES"]]
+[node name="Level 2 Final Boss" type="Node2D" unique_id=613086524 node_paths=PackedStringArray("thrust_animation", "explosion_animation") groups=["BOSSES"]]
 script = ExtResource("1_ty8f7")
-max_life = 10
+thrust_animation = NodePath("Area2D/Thrust")
 explosion_animation = NodePath("Area2D/Explosion")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1148541853]
 
 [node name="ProgressBar" type="ProgressBar" parent="Area2D" unique_id=1176425001]
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = -13.0
+offset_top = -23.0
+offset_right = -8.0
+offset_bottom = 17.0
+rotation = -1.5707964
+theme = ExtResource("2_ynjd1")
+theme_override_font_sizes/font_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_ynjd1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mnurq")
+max_value = 1.0
+value = 1.0
+fill_mode = 2
+show_percentage = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2033199859]
 shape = SubResource("RectangleShape2D_emcoa")
@@ -36,6 +59,20 @@ shape = SubResource("RectangleShape2D_emcoa")
 sprite_frames = SubResource("SpriteFrames_ynjd1")
 animation = &"idle"
 
+[node name="Thrust" type="AnimatedSprite2D" parent="Area2D" unique_id=1920233485]
+z_index = -1
+position = Vector2(32, 1)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("4_mnurq")
+animation = &"Thrust on"
+
+[node name="Flash" type="AnimatedSprite2D" parent="Area2D" unique_id=2129353465]
+z_index = -1
+position = Vector2(-24.5, -0.5)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("5_8f7ei")
+animation = &"Flash"
+
 [node name="Explosion" type="AnimatedSprite2D" parent="Area2D" unique_id=1736044386]
 sprite_frames = ExtResource("1_g4cbk")
 animation = &"explosion"
@@ -43,6 +80,18 @@ animation = &"explosion"
 [node name="Explosion Sound" type="AudioStreamPlayer2D" parent="Area2D/Explosion" unique_id=1078460782]
 stream = ExtResource("2_ty8f7")
 
+[node name="Shoot Marker" type="Marker2D" parent="Area2D" unique_id=2008511070 node_paths=PackedStringArray("flash_animation", "fire_timer")]
+position = Vector2(-24.5, -0.5)
+script = ExtResource("8_ecdjx")
+bullet_boss_scene = ExtResource("9_ecdjx")
+fire_ball_scene = ExtResource("10_jk6bx")
+flash_animation = NodePath("../Flash")
+fire_timer = NodePath("Fire Rate Timer")
+
+[node name="Fire Rate Timer" type="Timer" parent="Area2D/Shoot Marker" unique_id=681420099]
+
 [node name="Shoot Patter Timer" type="Timer" parent="." unique_id=1036605793]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Area2D/Shoot Marker/Fire Rate Timer" to="Area2D/Shoot Marker" method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="Shoot Patter Timer" to="." method="_on_shoot_patter_timer_timeout"]

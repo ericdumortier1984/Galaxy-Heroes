@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="2_pvjee"]
 [ext_resource type="SpriteFrames" uid="uid://bp4fw47ytrcef" path="res://resources/animation/big_drone.tres" id="2_y7ven"]
 [ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="3_y7ven"]
-[ext_resource type="Script" uid="uid://bmuybs2nyds0a" path="res://scripts/boss/shoot_marker_boss_level_2.gd" id="6_ypv5m"]
+[ext_resource type="Script" uid="uid://bmuybs2nyds0a" path="res://scripts/boss_shot/shoot_drone.gd" id="6_ypv5m"]
 [ext_resource type="PackedScene" uid="uid://c8wc87tk8yq41" path="res://scenes/bullet_boss/bullet_boss_level_1.tscn" id="7_dss4s"]
 [ext_resource type="PackedScene" uid="uid://cm2akvbbk30fs" path="res://scenes/enemy/drone_1.tscn" id="7_pcaxs"]
 
@@ -29,6 +29,7 @@ position = Vector2(-23, -16)
 script = ExtResource("6_ypv5m")
 bullet_boss_scene = ExtResource("7_dss4s")
 drone_scene = ExtResource("7_pcaxs")
+shot_interval = 3.0
 
 [node name="Fire Rate Timer" type="Timer" parent="Area2D/Drone Shoot Marker" unique_id=2083062771]
 
@@ -37,6 +38,7 @@ position = Vector2(-23, 17)
 script = ExtResource("6_ypv5m")
 bullet_boss_scene = ExtResource("7_dss4s")
 drone_scene = ExtResource("7_pcaxs")
+shot_interval = 3.0
 
 [node name="Fire Rate Timer" type="Timer" parent="Area2D/Drone Shoot Marker 2" unique_id=754945935]
 

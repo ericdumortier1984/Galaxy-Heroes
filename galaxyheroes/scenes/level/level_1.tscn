@@ -101,6 +101,7 @@ centered = false
 [node name="Stars Parallax" type="ParallaxBackground" parent="Background" unique_id=321531945]
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Background/Stars Parallax" unique_id=847650881]
+motion_mirroring = Vector2(272, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Stars Parallax/ParallaxLayer2" unique_id=1837131367]
 texture = ExtResource("20_mw0mw")
@@ -109,6 +110,7 @@ centered = false
 [node name="Planet 1 Parallax" type="ParallaxBackground" parent="Background" unique_id=316932226]
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Background/Planet 1 Parallax" unique_id=1179408771]
+motion_mirroring = Vector2(544, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Planet 1 Parallax/ParallaxLayer3" unique_id=860366933]
 scale = Vector2(0.5, 0.5)
@@ -119,6 +121,7 @@ offset = Vector2(0, 272)
 [node name="Planet 2 Parallax" type="ParallaxBackground" parent="Background" unique_id=1960870134]
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="Background/Planet 2 Parallax" unique_id=1347545443]
+motion_mirroring = Vector2(544, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Planet 2 Parallax/ParallaxLayer4" unique_id=2115591541]
 texture = ExtResource("22_6yqvs")

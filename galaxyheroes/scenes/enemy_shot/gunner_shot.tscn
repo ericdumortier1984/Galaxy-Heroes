@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dkxcskgcgf3rt"]
 
 [ext_resource type="Script" uid="uid://ck43t6ki73gnx" path="res://scripts/enemy_shot/gunner_shot.gd" id="1_xiriw"]
-[ext_resource type="Texture2D" uid="uid://78rb1awae5v2" path="res://images/enemy/enemy_bullet.png" id="2_4bk4h"]
+[ext_resource type="Texture2D" uid="uid://78rb1awae5v2" path="res://images/enemy/army/enemy_bullet.png" id="2_4bk4h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4bk4h"]
 

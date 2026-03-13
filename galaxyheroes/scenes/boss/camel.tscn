@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://2yxfntxjqtn2"]
+
+[ext_resource type="Script" uid="uid://c7678wbtcsghh" path="res://scripts/boss/camel.gd" id="1_hwl22"]
+[ext_resource type="Texture2D" uid="uid://c5834v461qn7o" path="res://images/boss/camel/camel.png" id="2_05c0h"]
+[ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="3_4ges6"]
+[ext_resource type="Script" uid="uid://bqrlo5syvyctw" path="res://scripts/boss_shot/camel_shot.gd" id="3_t6p1n"]
+[ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="4_mk8mc"]
+[ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="5_t6p1n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ges6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_05c0h")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okago"]
+radius = 2.0
+height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mk8mc"]
+radius = 2.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t6p1n"]
+radius = 2.0
+height = 18.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okago"]
+bg_color = Color(0.91764706, 0, 0, 0.23529412)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mk8mc"]
+bg_color = Color(0, 0.654902, 0.30980393, 1)
+
+[node name="Camel" type="Node2D" unique_id=1285368405 groups=["BOSSES"]]
+scale = Vector2(2, 2)
+script = ExtResource("1_hwl22")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=623996405]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=1356261865]
+sprite_frames = SubResource("SpriteFrames_4ges6")
+animation = &"Fly"
+
+[node name="Left Leg Collider" type="CollisionShape2D" parent="Area2D" unique_id=1779280653]
+position = Vector2(2, 3)
+shape = SubResource("CapsuleShape2D_okago")
+
+[node name="Center Leg Collider" type="CollisionShape2D" parent="Area2D" unique_id=435977906]
+position = Vector2(9, 2)
+shape = SubResource("CapsuleShape2D_mk8mc")
+
+[node name="Right Leg Collider" type="CollisionShape2D" parent="Area2D" unique_id=1140751305]
+position = Vector2(17, 2)
+shape = SubResource("CapsuleShape2D_t6p1n")
+
+[node name="Lower Shoot Marker" type="Marker2D" parent="Area2D" unique_id=1933887638]
+position = Vector2(-14, -10.435)
+script = ExtResource("3_t6p1n")
+
+[node name="Fire Rate Timer" type="Timer" parent="Area2D/Lower Shoot Marker" unique_id=1875628247]
+
+[node name="Upper Shoot Marker" type="Marker2D" parent="Area2D" unique_id=27744186]
+position = Vector2(-12, -14.52)
+script = ExtResource("3_t6p1n")
+
+[node name="Fire Rate Timer" type="Timer" parent="Area2D/Upper Shoot Marker" unique_id=232637765]
+
+[node name="Life bar" type="ProgressBar" parent="Area2D" unique_id=217451881]
+offset_left = -4.0
+offset_top = -18.0
+offset_bottom = 9.0
+rotation = -1.5707964
+theme = ExtResource("3_4ges6")
+theme_override_styles/background = SubResource("StyleBoxFlat_okago")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mk8mc")
+max_value = 1.0
+value = 1.0
+fill_mode = 2
+show_percentage = false
+
+[node name="Explosion" type="AnimatedSprite2D" parent="Area2D" unique_id=534152280]
+sprite_frames = ExtResource("4_mk8mc")
+animation = &"explosion"
+
+[node name="Explosion Sound" type="AudioStreamPlayer2D" parent="Area2D/Explosion" unique_id=43862197]
+stream = ExtResource("5_t6p1n")
+
+[node name="State Timer" type="Timer" parent="." unique_id=1384625024]
+
+[node name="Shoot Pattern Timer" type="Timer" parent="." unique_id=2000576654]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Shoot Pattern Timer" to="." method="_on_shoot_pattern_timer_timeout"]

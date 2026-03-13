@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bx1ellmqau3xq" path="res://scripts/boss/level_1_boss.gd" id="1_2d454"]
 [ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="2_o2rdi"]
 [ext_resource type="SpriteFrames" uid="uid://c0qe74b4y6bal" path="res://resources/animation/thrust_on.tres" id="2_ojy85"]
-[ext_resource type="Script" uid="uid://j0qk1bjxx8v4" path="res://scripts/boss/shoot_marker_boss_level_1.gd" id="3_32dpx"]
+[ext_resource type="Script" uid="uid://j0qk1bjxx8v4" path="res://scripts/boss_shot/alternate_shoot_pattern.gd" id="3_32dpx"]
 [ext_resource type="PackedScene" uid="uid://c8wc87tk8yq41" path="res://scenes/bullet_boss/bullet_boss_level_1.tscn" id="4_2oim8"]
 [ext_resource type="Texture2D" uid="uid://bvd84em8u0ok3" path="res://images/boss/red_phantom/Red_Phantom.png" id="4_o2rdi"]
 [ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="4_x886r"]
@@ -95,16 +95,17 @@ position = Vector2(3.5000002, -7.5)
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_32dpx")
 
-[node name="Shoot Marker" type="Marker2D" parent="Area2D" unique_id=33269184 node_paths=PackedStringArray("flash_animation")]
+[node name="Shoot Marker" type="Marker2D" parent="Area2D" unique_id=33269184 node_paths=PackedStringArray("flash_animation", "fire_timer")]
 position = Vector2(-1.4999994, -14.25)
 script = ExtResource("3_32dpx")
 bullet_boss_scene = ExtResource("4_2oim8")
 flash_animation = NodePath("../Flash")
+fire_timer = NodePath("Fire Rate Timer")
 
 [node name="Fire Rate Timer" type="Timer" parent="Area2D/Shoot Marker" unique_id=1503005216]
 
 [node name="Shoot Pattern Timer" type="Timer" parent="." unique_id=1425911199]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="timeout" from="Area2D/Shoot Marker/Fire Rate Timer" to="Area2D/Shoot Marker" method="_on_shoot_marker_timer_timeout"]
+[connection signal="timeout" from="Area2D/Shoot Marker/Fire Rate Timer" to="Area2D/Shoot Marker" method="_on_fire_rate_timer_timeout"]
 [connection signal="timeout" from="Shoot Pattern Timer" to="." method="_on_shoot_pattern_timer_timeout"]

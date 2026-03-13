@@ -11,4 +11,4 @@ func _on_speed_button_pressed() -> void:
 
 func _on_continue_pressed() -> void:
 	SaveSystem.save_game()
-	get_tree().change_scene_to_file("res://scenes/level/level_2.tscn")
+	GlobalSingleton.load_next_level()
