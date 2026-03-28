@@ -18,12 +18,12 @@
 [ext_resource type="PackedScene" uid="uid://bs2l4uj36yoo5" path="res://scenes/player/billy_ship.tscn" id="14_1f0so"]
 [ext_resource type="PackedScene" uid="uid://odolpm16myxu" path="res://scenes/player/kimi_ship.tscn" id="15_1n0t4"]
 [ext_resource type="PackedScene" uid="uid://ciq4adxjkts06" path="res://scenes/menu/pause_menu.tscn" id="16_gfp5l"]
-[ext_resource type="PackedScene" uid="uid://8fvtairywq4w" path="res://scenes/UI/GUI.tscn" id="17_rtwb2"]
-[ext_resource type="AudioStream" uid="uid://np15djkx1m6n" path="res://audio/Music/Mr. Crowley (Instrumental).mp3" id="18_l0s6l"]
-[ext_resource type="Texture2D" uid="uid://mnkfkrwawcf4" path="res://images/parallax/blue-back.png" id="19_7mv57"]
+[ext_resource type="PackedScene" uid="uid://8fvtairywq4w" path="res://scenes/ui/GUI.tscn" id="17_rtwb2"]
 [ext_resource type="Texture2D" uid="uid://cu1vfywio2doh" path="res://images/parallax/parallax-space-stars.png" id="20_mw0mw"]
-[ext_resource type="Texture2D" uid="uid://bvb8g3e7tiiqu" path="res://images/parallax/planet.png" id="21_pbljq"]
-[ext_resource type="Texture2D" uid="uid://bc8wck6n1eshb" path="res://images/parallax/prop-planet-big.png" id="22_6yqvs"]
+[ext_resource type="AudioStream" uid="uid://b6vk22nf8rtku" path="res://audio/Music/Metallica - Creeping Death.mp3" id="20_ox3e1"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8e0j7"]
+load_path = "res://.godot/imported/Space_background_2.png-bc20c8671d648cd18ef478bde72517d3.ctex"
 
 [sub_resource type="Curve2D" id="Curve2D_7gny6"]
 _data = {
@@ -54,7 +54,7 @@ lower_asteroid = Array[PackedScene]([ExtResource("6_8e0j7"), ExtResource("7_13hc
 power_up_scene = Array[PackedScene]([ExtResource("6_hkufj"), ExtResource("7_rfyx5"), ExtResource("8_1kt21"), ExtResource("9_mferh"), ExtResource("10_j1614"), ExtResource("11_nwfd4")])
 boss_scene = ExtResource("12_odw4r")
 my_ships = Array[PackedScene]([ExtResource("13_0wlyu"), ExtResource("14_1f0so"), ExtResource("15_1n0t4")])
-boss_score_spawner = 1500
+boss_score_spawner = 2500
 boss_spawn_point = Vector2(300, 100)
 
 [node name="Pause Menu" parent="." unique_id=146995166 instance=ExtResource("16_gfp5l")]
@@ -63,9 +63,9 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 144.0
-offset_top = 65.0
+offset_top = 80.0
 offset_right = 144.0
-offset_bottom = 65.0
+offset_bottom = 80.0
 grow_horizontal = 1
 grow_vertical = 1
 
@@ -82,8 +82,9 @@ wait_time = 10.0
 autostart = true
 
 [node name="Music Background" type="AudioStreamPlayer" parent="Setttings" unique_id=354565913]
-stream = ExtResource("18_l0s6l")
+stream = ExtResource("20_ox3e1")
 autoplay = true
+bus = &"Music"
 parameters/looping = false
 
 [node name="Background" type="Node" parent="." unique_id=796757467]
@@ -94,8 +95,10 @@ parameters/looping = false
 motion_mirroring = Vector2(272, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Background Parallax/ParallaxLayer" unique_id=1368952497]
-scale = Vector2(1, 1.443)
-texture = ExtResource("19_7mv57")
+modulate = Color(0.19506663, 0.19506675, 0.19506669, 1)
+position = Vector2(-2.2737368e-13, 0)
+scale = Vector2(1.238, 1.05)
+texture = SubResource("CompressedTexture2D_8e0j7")
 centered = false
 
 [node name="Stars Parallax" type="ParallaxBackground" parent="Background" unique_id=321531945]
@@ -104,29 +107,9 @@ centered = false
 motion_mirroring = Vector2(272, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Stars Parallax/ParallaxLayer2" unique_id=1837131367]
+modulate = Color(0.12156863, 0.09411765, 0.5411765, 0.7254902)
 texture = ExtResource("20_mw0mw")
 centered = false
-
-[node name="Planet 1 Parallax" type="ParallaxBackground" parent="Background" unique_id=316932226]
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="Background/Planet 1 Parallax" unique_id=1179408771]
-motion_mirroring = Vector2(544, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Planet 1 Parallax/ParallaxLayer3" unique_id=860366933]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("21_pbljq")
-centered = false
-offset = Vector2(0, 272)
-
-[node name="Planet 2 Parallax" type="ParallaxBackground" parent="Background" unique_id=1960870134]
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="Background/Planet 2 Parallax" unique_id=1347545443]
-motion_mirroring = Vector2(544, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Planet 2 Parallax/ParallaxLayer4" unique_id=2115591541]
-texture = ExtResource("22_6yqvs")
-centered = false
-offset = Vector2(272, 0)
 
 [node name="Enemy Spawner" type="Path2D" parent="." unique_id=740562042]
 position = Vector2(0, 15.582609)

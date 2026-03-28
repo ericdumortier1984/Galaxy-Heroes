@@ -16,7 +16,6 @@ var velocity : Vector2
 func _ready() -> void:
 	super._ready()
 	player_ship = get_tree().get_first_node_in_group("PLAYER_SHIP")
-	#disable_shot()
 
 func _process(delta: float) -> void:
 	if explosion or GlobalSingleton.game_state != GlobalSingleton.GameState.PLAYING:
@@ -25,8 +24,6 @@ func _process(delta: float) -> void:
 	if player_ship:
 		chase_player_ship(delta)
 		drone_rotate(delta)
-	
-	#set_enemy_out_screen()
 
 func chase_player_ship(delta: float) -> void:
 	var new_direction = (player_ship.global_position - global_position).normalized()
@@ -37,10 +34,6 @@ func chase_player_ship(delta: float) -> void:
 
 func drone_rotate(delta: float) -> void:
 	rotation += rotation_speed * delta
-
-#func disable_shot():
-	#if shoot_timer.is_inside_tree():
-	#	shoot_timer.stop()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()

@@ -14,8 +14,8 @@ extends Node2D
 @export var drone_1_scene : PackedScene
 @export var boss_scene : PackedScene
 @export var final_boss_scene :  PackedScene
-@export var score_boss_spawner : int = 0
-@export var score_final_boss_spawner : int = 0
+@export var score_boss_spawner : int = 1500
+@export var score_final_boss_spawner : int = 4500
 @export var boss_position_spawner : Vector2
 @export var final_boss_position_spawner : Vector2
 
@@ -23,15 +23,19 @@ extends Node2D
 var boss_spawned : bool = false
 var final_boss_spawned : bool = false
 var boss_defeated : bool = false
+var level_completed : bool = false
 
 # --- int --- # 
-var score_afer_level : int = 0
+var level_start_score : int = 0
 var score_after_boss : int = 0
 
 func _ready() -> void:
+	await get_tree().process_frame
+	Transition.fade_out()
 	SaveSystem.load_game()
+	GlobalSingleton.load_game_state()
 	GlobalSingleton.set_state(GlobalSingleton.GameState.PLAYING)
-	score_afer_level = GlobalSingleton.score
+	level_start_score = GlobalSingleton.score
 	start_level_2_intro_dialogue()
 	DialogueManager.dialogue_ended.connect(on_dialogue_ended)
 	set_character()
@@ -41,6 +45,12 @@ func _process(delta: float) -> void:
 	parallax_behavior(delta)
 	check_boss_spawn()
 	check_final_boss_spawn()
+
+func get_level_score() -> int:
+	if not boss_defeated:
+		return min(GlobalSingleton.score - level_start_score, score_boss_spawner)
+	
+	return score_boss_spawner + (GlobalSingleton.score - score_after_boss)
 
 func set_character():
 	var my_ship_id := SaveSystem.data.selecter_character_id
@@ -132,7 +142,7 @@ func check_boss_spawn():
 	if boss_spawned:
 		return
 	
-	if GlobalSingleton.score >= score_afer_level + score_boss_spawner:
+	if get_level_score() >= score_boss_spawner:
 		spawn_boss()
 
 func set_boss_entered():
@@ -159,7 +169,7 @@ func check_final_boss_spawn():
 	if not boss_defeated:
 		return
 	
-	if GlobalSingleton.score >= score_after_boss + score_final_boss_spawner:
+	if get_level_score() >= score_boss_spawner + score_final_boss_spawner:
 		spawn_final_boss()
 
 func spawn_final_boss():
@@ -192,10 +202,9 @@ func show_level_completed():
 	sprite_win_label.queue_free()
 
 func set_win_level():
-	SaveSystem.data.level_unlocked = 3
-	SaveSystem.save_game()
+	GlobalSingleton.complete_level(2)
 	SaveSystem.update_hi_score(GlobalSingleton.score)
-	get_tree().change_scene_to_file("res://scenes/menu/upgrade_menu.tscn")
+	Transition.change_scene("res://scenes/menu/upgrade_menu.tscn")
 
 func win_level():
 	GlobalSingleton.set_state(GlobalSingleton.GameState.WIN)

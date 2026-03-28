@@ -5,7 +5,7 @@ signal boss_entered
 signal boss_defeated
 
 # --- export --- #
-@export var max_life : int = 100
+@export var max_life : int = 1
 @export var boss_offset : float = 1.0
 @export var thrust_animation : AnimatedSprite2D
 @export var explosion_animation : AnimatedSprite2D

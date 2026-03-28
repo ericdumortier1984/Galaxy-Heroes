@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://vvknmocqd43l" path="res://scripts/menu/select_character.gd" id="1_cd1mt"]
 [ext_resource type="Texture2D" uid="uid://b5tgjv83ju5jc" path="res://images/parallax/space_background_1.png" id="2_r3wrp"]
+[ext_resource type="Texture2D" uid="uid://q0wbo4r7syb8" path="res://images/miniature/ryo.png" id="3_ghpkh"]
+[ext_resource type="Texture2D" uid="uid://cw6w1cuqpj5b" path="res://images/ship/billy/Billy.png" id="4_perpj"]
+[ext_resource type="Texture2D" uid="uid://3kppuqaccuit" path="res://images/miniature/kimi.png" id="5_s701b"]
 
 [node name="SelectCharacter" type="Control" unique_id=1732266047]
 layout_mode = 3
@@ -15,7 +18,7 @@ script = ExtResource("1_cd1mt")
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1812458178]
 layout_mode = 0
 offset_right = 273.0
-offset_bottom = 169.0
+offset_bottom = 170.0
 texture = ExtResource("2_r3wrp")
 
 [node name="Margin Title" type="MarginContainer" parent="." unique_id=1995435576]
@@ -37,10 +40,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.137255, 0.227451, 0.34902, 1)
 theme_override_colors/font_shadow_color = Color(0.94902, 0.94902, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.137255, 0.227451, 0.34902, 1)
-theme_override_constants/paragraph_spacing = 0
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/outline_size = 3
-theme_override_constants/shadow_outline_size = 7
+theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 16
 text = "SELECT CHARACTER"
 
@@ -57,6 +57,7 @@ offset_right = 41.5
 offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 14
 
 [node name="Character Ryo" type="Button" parent="Select Character Button Container" unique_id=2012034528]
 layout_mode = 2
@@ -65,17 +66,44 @@ size_flags_vertical = 4
 text = "RYO
 "
 
+[node name="Ryo Texture" type="TextureRect" parent="Select Character Button Container/Character Ryo" unique_id=54802651]
+layout_mode = 0
+offset_left = -24.5
+offset_top = 2.0
+offset_right = 39.5
+offset_bottom = 66.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_ghpkh")
+
 [node name="Character Billy" type="Button" parent="Select Character Button Container" unique_id=333921463]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "BILLY"
 
+[node name="Billy Texture" type="TextureRect" parent="Select Character Button Container/Character Billy" unique_id=1996251821]
+layout_mode = 0
+offset_left = -18.5
+offset_top = -1.0
+offset_right = 45.5
+offset_bottom = 63.0
+scale = Vector2(0.25, 0.333)
+texture = ExtResource("4_perpj")
+
 [node name="Character Kimi" type="Button" parent="Select Character Button Container" unique_id=53499361]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "KIMI"
+
+[node name="Kimi Texture" type="TextureRect" parent="Select Character Button Container/Character Kimi" unique_id=1511562797]
+layout_mode = 0
+offset_left = -23.5
+offset_top = 3.0
+offset_right = 40.5
+offset_bottom = 67.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_s701b")
 
 [node name="Button Back Container" type="HBoxContainer" parent="." unique_id=66351220]
 layout_mode = 1

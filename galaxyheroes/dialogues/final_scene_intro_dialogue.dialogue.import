@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cx53ng6gp0er6"
+path="res://.godot/imported/final_scene_intro_dialogue.dialogue-846aa3b613050bd6baf2a1163cb60a08.tres"
+
+[deps]
+
+source_file="res://dialogues/final_scene_intro_dialogue.dialogue"
+dest_files=["res://.godot/imported/final_scene_intro_dialogue.dialogue-846aa3b613050bd6baf2a1163cb60a08.tres"]
+
+[params]
+
+defaults=true

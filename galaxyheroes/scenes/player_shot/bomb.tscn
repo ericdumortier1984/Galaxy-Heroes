@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bqosvu3yl0b65"]
+
+[ext_resource type="Script" uid="uid://b2g6jrn0tstxg" path="res://scripts/player_shot/bomb.gd" id="1_s1px0"]
+[ext_resource type="Texture2D" uid="uid://bx74o06wgpmk4" path="res://images/ship/army/bomb.png" id="2_ck8xm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_65n7m"]
+radius = 30.02988
+
+[node name="Bomb" type="Area2D" unique_id=1306655621 groups=["PLAYER_BULLET"]]
+scale = Vector2(0.15, 0.15)
+script = ExtResource("1_s1px0")
+damage = 20
+shot_velocity = Vector2(120, -120)
+shot_gravity = Vector2(0, 120)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=838493052]
+texture = ExtResource("2_ck8xm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=840194794]
+position = Vector2(2, 6)
+scale = Vector2(0.84000045, 0.7599996)
+shape = SubResource("CircleShape2D_65n7m")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1770886602 groups=["PLAYER_BULLET"]]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

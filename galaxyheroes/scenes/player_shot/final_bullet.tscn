@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://4fxqu6x8rve6"]
+
+[ext_resource type="Script" uid="uid://ddvl0763mv6lr" path="res://scripts/player_shot/final_bullet.gd" id="1_oog8y"]
+[ext_resource type="Texture2D" uid="uid://d4evp3nkc7qc4" path="res://images/ship/effect/shoot2.png" id="2_276s5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3b1h"]
+size = Vector2(12, 7)
+
+[node name="Final Bullet" type="Area2D" unique_id=1577843740 groups=["PLAYER_BULLET"]]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_oog8y")
+final_bullet_speed = 100
+damage = 999
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=854740867]
+texture = ExtResource("2_276s5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=53536434]
+shape = SubResource("RectangleShape2D_t3b1h")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=782146680 groups=["PLAYER_BULLET"]]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

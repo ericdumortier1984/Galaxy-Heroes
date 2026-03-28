@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cxm8ejha7ch0n"]
+
+[ext_resource type="Script" uid="uid://tco71k2lvcvv" path="res://scripts/player_shot/bullet_rain.gd" id="1_h77cl"]
+[ext_resource type="PackedScene" uid="uid://dssdp5w0x2x2c" path="res://scenes/player_shot/simple_bullet.tscn" id="2_e0xmt"]
+[ext_resource type="Texture2D" uid="uid://d4evp3nkc7qc4" path="res://images/ship/effect/shoot2.png" id="3_h77cl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_haekt"]
+
+[node name="BulletRain" type="Area2D" unique_id=1394596549 groups=["PLAYER_BULLET"]]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_h77cl")
+bullet_scene = ExtResource("2_e0xmt")
+rain_timer = 5.0
+rain_fire_rate = 0.001
+rain_speed = 100.0
+rain_width = 272.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=102378841]
+rotation = 0.6981317
+texture = ExtResource("3_h77cl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1845558610]
+rotation = 0.6981317
+scale = Vector2(1, 0.15364069)
+shape = SubResource("RectangleShape2D_haekt")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1308237873]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

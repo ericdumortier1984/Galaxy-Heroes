@@ -2,6 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dcugvf1phaeno" path="res://scripts/menu/upgrade_menu.gd" id="1_e3qxy"]
 [ext_resource type="Texture2D" uid="uid://b5tgjv83ju5jc" path="res://images/parallax/space_background_1.png" id="2_ksfom"]
+[ext_resource type="Texture2D" uid="uid://cab4sdprcy2oy" path="res://images/power up/Life.png" id="3_abae0"]
+[ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="3_qc4dq"]
+[ext_resource type="Texture2D" uid="uid://cpsx20eig0bnk" path="res://images/power up/Speed.png" id="5_qtsdg"]
+[ext_resource type="Texture2D" uid="uid://bp0fwa2o5jd04" path="res://images/power up/Shield.png" id="6_2eev4"]
+[ext_resource type="Texture2D" uid="uid://d0cuqqlj7dvwh" path="res://images/ship/army/drone.png" id="7_bxs0s"]
+[ext_resource type="Texture2D" uid="uid://b0sv3v45t3ll3" path="res://images/ship/army/bullet_rain.png" id="8_bxs0s"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_822md"]
+load_path = "res://.godot/imported/bomb.png-2a038900fdaf830fb6bfcbeb64d422bc.ctex"
 
 [node name="Upgrade Menu" type="Control" unique_id=119627933]
 layout_mode = 3
@@ -27,7 +36,7 @@ offset_left = -81.5
 offset_right = 81.5
 offset_bottom = 40.0
 grow_horizontal = 2
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 0
 
 [node name="Title" type="Label" parent="Margin Title" unique_id=703831244]
 layout_mode = 2
@@ -37,68 +46,249 @@ theme_override_colors/font_shadow_color = Color(0.94902, 0.94902, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.137255, 0.227451, 0.34902, 1)
 theme_override_constants/paragraph_spacing = 0
 theme_override_constants/shadow_offset_x = 1
-theme_override_constants/outline_size = 3
-theme_override_constants/shadow_outline_size = 7
+theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 16
-text = "UPGRADE YOUR SHIP"
+text = "CHOOSE BOTH"
 
-[node name="Upgrades Container" type="VBoxContainer" parent="." unique_id=304664865]
+[node name="Skill Upgrades Container" type="VBoxContainer" parent="." unique_id=304664865]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
+offset_top = -55.5
+offset_right = 120.0
+offset_bottom = 55.5
 grow_vertical = 2
+theme_override_constants/separation = -10
 
-[node name="Upgrade Fire Rate" type="HBoxContainer" parent="Upgrades Container" unique_id=495118139]
+[node name="Label" type="Label" parent="Skill Upgrades Container" unique_id=1398201176]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_qc4dq")
+theme_override_colors/font_color = Color(0.13725491, 0.22745098, 0.34901962, 1)
+theme_override_colors/font_shadow_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
+theme_override_colors/font_outline_color = Color(0.13725491, 0.22745098, 0.34901962, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 10
+text = "SHIP UPGRADE"
+
+[node name="Life Margin Container" type="MarginContainer" parent="Skill Upgrades Container" unique_id=1214310641]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Upgrade Life" type="VBoxContainer" parent="Skill Upgrades Container/Life Margin Container" unique_id=1556371285]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Life Button" type="Button" parent="Skill Upgrades Container/Life Margin Container/Upgrade Life" unique_id=161633043]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../Speed Margin Container/Upgrade Speed/Speed Button")
+theme = ExtResource("3_qc4dq")
+text = "LIFE + 1"
+
+[node name="Sprite2D" type="TextureRect" parent="Skill Upgrades Container/Life Margin Container/Upgrade Life/Life Button" unique_id=224896084]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 2.5
+offset_right = 120.0
+offset_bottom = 66.5
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_abae0")
+
+[node name="Speed Margin Container" type="MarginContainer" parent="Skill Upgrades Container" unique_id=110165174]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Upgrade Speed" type="VBoxContainer" parent="Skill Upgrades Container/Speed Margin Container" unique_id=1047062843]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Upgrades Container/Upgrade Fire Rate" unique_id=1331039128]
+[node name="Speed Button" type="Button" parent="Skill Upgrades Container/Speed Margin Container/Upgrade Speed" unique_id=277517346]
 layout_mode = 2
-text = "FIRE RATE"
+size_flags_horizontal = 0
+focus_neighbor_top = NodePath("../../../Life Margin Container/Upgrade Life/Life Button")
+focus_neighbor_bottom = NodePath("../../../Shield Margin Container/Upgrade Shield Timer/Time Shield Button")
+text = "SPEED + 5"
 
-[node name="Fire Rate Button" type="Button" parent="Upgrades Container/Upgrade Fire Rate" unique_id=1912615754]
-layout_mode = 2
-focus_neighbor_bottom = NodePath("../../Upgrade Damage/Damage Button")
-text = "+10"
+[node name="Sprite2D" type="TextureRect" parent="Skill Upgrades Container/Speed Margin Container/Upgrade Speed/Speed Button" unique_id=287237061]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 2.5
+offset_right = 134.0
+offset_bottom = 66.5
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_qtsdg")
 
-[node name="Upgrade Damage" type="HBoxContainer" parent="Upgrades Container" unique_id=907803231]
+[node name="Shield Margin Container" type="MarginContainer" parent="Skill Upgrades Container" unique_id=788289642]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Upgrade Shield Timer" type="VBoxContainer" parent="Skill Upgrades Container/Shield Margin Container" unique_id=45287785]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Upgrades Container/Upgrade Damage" unique_id=101492217]
+[node name="Time Shield Button" type="Button" parent="Skill Upgrades Container/Shield Margin Container/Upgrade Shield Timer" unique_id=1100441578]
 layout_mode = 2
-text = "DAMAGE  "
+size_flags_horizontal = 0
+focus_neighbor_top = NodePath("../../../Speed Margin Container/Upgrade Speed/Speed Button")
+focus_neighbor_bottom = NodePath("../../../../Continue Margin Container/Continue")
+text = "TIME SHIELD + 5"
 
-[node name="Damage Button" type="Button" parent="Upgrades Container/Upgrade Damage" unique_id=747091809]
-layout_mode = 2
-focus_neighbor_top = NodePath("../../Upgrade Fire Rate/Fire Rate Button")
-focus_neighbor_bottom = NodePath("../../Upgrade Speed/Speed Button")
-text = "+10"
+[node name="Sprite2D" type="TextureRect" parent="Skill Upgrades Container/Shield Margin Container/Upgrade Shield Timer/Time Shield Button" unique_id=1069877665]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 3.5
+offset_right = 202.0
+offset_bottom = 67.5
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_2eev4")
 
-[node name="Upgrade Speed" type="HBoxContainer" parent="Upgrades Container" unique_id=2128446499]
+[node name="Weapon Upgrade Container" type="VBoxContainer" parent="." unique_id=147278125]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -55.5
+offset_bottom = 55.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = -10
+
+[node name="Label" type="Label" parent="Weapon Upgrade Container" unique_id=772912317]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_qc4dq")
+theme_override_colors/font_color = Color(0.13725491, 0.22745098, 0.34901962, 1)
+theme_override_colors/font_shadow_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
+theme_override_colors/font_outline_color = Color(0.13725491, 0.22745098, 0.34901962, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 10
+text = "ARMAMENT"
+
+[node name="Bomb Margin Container" type="MarginContainer" parent="Weapon Upgrade Container" unique_id=88169770]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Add Bomb" type="VBoxContainer" parent="Weapon Upgrade Container/Bomb Margin Container" unique_id=381090556]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Bomb Button" type="Button" parent="Weapon Upgrade Container/Bomb Margin Container/Add Bomb" unique_id=234202393]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../Drone Margin Container/Add Drone/Drone Button")
+theme = ExtResource("3_qc4dq")
+text = "BOMB"
+
+[node name="Sprite2D" type="TextureRect" parent="Weapon Upgrade Container/Bomb Margin Container/Add Bomb/Bomb Button" unique_id=809005799]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 0.5
+offset_right = 105.0
+offset_bottom = 64.5
+scale = Vector2(0.25, 0.25)
+texture = SubResource("CompressedTexture2D_822md")
+
+[node name="Drone Margin Container" type="MarginContainer" parent="Weapon Upgrade Container" unique_id=154953841]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Add Drone" type="VBoxContainer" parent="Weapon Upgrade Container/Drone Margin Container" unique_id=910891353]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Upgrades Container/Upgrade Speed" unique_id=782228378]
+[node name="Drone Button" type="Button" parent="Weapon Upgrade Container/Drone Margin Container/Add Drone" unique_id=961225363]
 layout_mode = 2
-text = "SPEED       "
+size_flags_horizontal = 0
+focus_neighbor_top = NodePath("../../../Bomb Margin Container/Add Bomb/Bomb Button")
+focus_neighbor_bottom = NodePath("../../../Rain Margin Container/Add Rain/Rain Button")
+text = "DRONE"
 
-[node name="Speed Button" type="Button" parent="Upgrades Container/Upgrade Speed" unique_id=277517346]
-layout_mode = 2
-focus_neighbor_top = NodePath("../../Upgrade Damage/Damage Button")
-focus_neighbor_bottom = NodePath("../../Continue")
-text = "+10"
+[node name="Sprite2D" type="TextureRect" parent="Weapon Upgrade Container/Drone Margin Container/Add Drone/Drone Button" unique_id=268695874]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 1.5
+offset_right = 112.0
+offset_bottom = 65.5
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_bxs0s")
 
-[node name="Continue" type="Button" parent="Upgrades Container" unique_id=776031592]
+[node name="Rain Margin Container" type="MarginContainer" parent="Weapon Upgrade Container" unique_id=1789898081]
 layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Add Rain" type="VBoxContainer" parent="Weapon Upgrade Container/Rain Margin Container" unique_id=863411079]
+layout_mode = 2
+
+[node name="Rain Button" type="Button" parent="Weapon Upgrade Container/Rain Margin Container/Add Rain" unique_id=270834773]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_neighbor_top = NodePath("../../../Drone Margin Container/Add Drone/Drone Button")
+focus_neighbor_bottom = NodePath("../../../../Continue Margin Container/Continue")
+text = "BULLET RAIN"
+
+[node name="Sprite2D" type="TextureRect" parent="Weapon Upgrade Container/Rain Margin Container/Add Rain/Rain Button" unique_id=323111696]
+layout_mode = 0
+offset_left = 83.0
+offset_top = -1.4999989
+offset_right = 147.0
+offset_bottom = 62.5
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("8_bxs0s")
+
+[node name="Continue Margin Container" type="MarginContainer" parent="." unique_id=706394736]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -39.0
+offset_right = 42.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Continue" type="Button" parent="Continue Margin Container" unique_id=776031592]
+layout_mode = 2
+size_flags_vertical = 8
+focus_neighbor_top = NodePath("../../Skill Upgrades Container/Shield Margin Container/Upgrade Shield Timer/Time Shield Button")
 text = "CONTINUE"
 
-[connection signal="pressed" from="Upgrades Container/Upgrade Fire Rate/Fire Rate Button" to="." method="_on_fire_rate_button_pressed"]
-[connection signal="pressed" from="Upgrades Container/Upgrade Damage/Damage Button" to="." method="_on_damage_button_pressed"]
-[connection signal="pressed" from="Upgrades Container/Upgrade Speed/Speed Button" to="." method="_on_speed_button_pressed"]
-[connection signal="pressed" from="Upgrades Container/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Skill Upgrades Container/Life Margin Container/Upgrade Life/Life Button" to="." method="_on_life_button_pressed"]
+[connection signal="pressed" from="Skill Upgrades Container/Speed Margin Container/Upgrade Speed/Speed Button" to="." method="_on_speed_button_pressed"]
+[connection signal="pressed" from="Skill Upgrades Container/Shield Margin Container/Upgrade Shield Timer/Time Shield Button" to="." method="_on_time_shield_button_pressed"]
+[connection signal="pressed" from="Weapon Upgrade Container/Bomb Margin Container/Add Bomb/Bomb Button" to="." method="_on_bomb_button_pressed"]
+[connection signal="pressed" from="Weapon Upgrade Container/Drone Margin Container/Add Drone/Drone Button" to="." method="_on_drone_button_pressed"]
+[connection signal="pressed" from="Weapon Upgrade Container/Rain Margin Container/Add Rain/Rain Button" to="." method="_on_rain_button_pressed"]
+[connection signal="pressed" from="Continue Margin Container/Continue" to="." method="_on_continue_pressed"]

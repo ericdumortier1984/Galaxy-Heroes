@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ciq4adxjkts06" path="res://scenes/menu/pause_menu.tscn" id="2_ci4up"]
 [ext_resource type="PackedScene" uid="uid://b6acd6hc8cldk" path="res://scenes/player/my_ship.tscn" id="2_t68c2"]
 [ext_resource type="PackedScene" uid="uid://bs2l4uj36yoo5" path="res://scenes/player/billy_ship.tscn" id="3_6s08d"]
-[ext_resource type="PackedScene" uid="uid://8fvtairywq4w" path="res://scenes/UI/GUI.tscn" id="3_lt2g7"]
+[ext_resource type="PackedScene" uid="uid://8fvtairywq4w" path="res://scenes/ui/GUI.tscn" id="3_lt2g7"]
 [ext_resource type="PackedScene" uid="uid://odolpm16myxu" path="res://scenes/player/kimi_ship.tscn" id="4_i21c8"]
 [ext_resource type="PackedScene" uid="uid://c630ty64aewe0" path="res://scenes/enemy/biter.tscn" id="5_af0ln"]
 [ext_resource type="PackedScene" uid="uid://dvfc6m85ei8h8" path="res://scenes/enemy/cyclop.tscn" id="6_rsiw8"]
@@ -20,8 +20,10 @@
 [ext_resource type="PackedScene" uid="uid://drnty71x222l1" path="res://scenes/power_up/TripleShotPowerUp.tscn" id="15_i12r4"]
 [ext_resource type="PackedScene" uid="uid://bgvry1beodjwv" path="res://scenes/boss/flyer_turret.tscn" id="17_af0ln"]
 [ext_resource type="PackedScene" uid="uid://2yxfntxjqtn2" path="res://scenes/boss/camel.tscn" id="18_af0ln"]
+[ext_resource type="PackedScene" uid="uid://bcwcuoyt03yof" path="res://scenes/boss/final_boss.tscn" id="19_rsiw8"]
 [ext_resource type="Texture2D" uid="uid://70m3yh52hmhv" path="res://images/parallax/city_background.png" id="20_i21c8"]
 [ext_resource type="Texture2D" uid="uid://b16c6c5r41y8j" path="res://images/parallax/floor.png" id="21_i21c8"]
+[ext_resource type="AudioStream" uid="uid://c041pmumg8v23" path="res://audio/Music/Megadeth - Hangar 18 (instrumental).mp3" id="22_62eb7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ss58e"]
 size = Vector2(285, 24)
@@ -53,11 +55,7 @@ power_up = Array[PackedScene]([ExtResource("10_q5iha"), ExtResource("11_nlhay"),
 first_boss_scene = ExtResource("17_af0ln")
 second_boss_scene = ExtResource("17_af0ln")
 third_boss_scene = ExtResource("18_af0ln")
-final_boss_scene = ExtResource("17_af0ln")
-score_first_boss_spawner = 100
-score_second_boss_spawner = 100
-score_third_boss_spawner = 500
-score_final_boss_spawner = 2500
+final_boss_scene = ExtResource("19_rsiw8")
 boss_position_spawner = Vector2(300, 100)
 
 [node name="Pause Menu" parent="." unique_id=1231375810 instance=ExtResource("2_ci4up")]
@@ -67,9 +65,9 @@ anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.0
 offset_left = 140.0
-offset_top = 90.0
+offset_top = 80.0
 offset_right = 140.0
-offset_bottom = 90.0
+offset_bottom = 80.0
 grow_vertical = 1
 
 [node name="GUI" parent="." unique_id=2111763531 instance=ExtResource("3_lt2g7")]
@@ -89,6 +87,9 @@ wait_time = 10.0
 autostart = true
 
 [node name="Music Background" type="AudioStreamPlayer" parent="Settings" unique_id=1188132420]
+stream = ExtResource("22_62eb7")
+autoplay = true
+bus = &"Music"
 
 [node name="Background" type="Node" parent="." unique_id=901502264]
 

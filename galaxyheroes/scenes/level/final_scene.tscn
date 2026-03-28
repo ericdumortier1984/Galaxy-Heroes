@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://ljjicdf5mfd1"]
+
+[ext_resource type="Script" uid="uid://bgj8dll8b82j8" path="res://scripts/level/final_scene.gd" id="1_jq3oi"]
+[ext_resource type="PackedScene" uid="uid://b6acd6hc8cldk" path="res://scenes/player/my_ship.tscn" id="2_ifphl"]
+[ext_resource type="PackedScene" uid="uid://bs2l4uj36yoo5" path="res://scenes/player/billy_ship.tscn" id="3_260hk"]
+[ext_resource type="PackedScene" uid="uid://odolpm16myxu" path="res://scenes/player/kimi_ship.tscn" id="4_alfcl"]
+[ext_resource type="Texture2D" uid="uid://70m3yh52hmhv" path="res://images/parallax/city_background.png" id="4_shl74"]
+[ext_resource type="PackedScene" uid="uid://4fxqu6x8rve6" path="res://scenes/player_shot/final_bullet.tscn" id="5_260hk"]
+[ext_resource type="Texture2D" uid="uid://b16c6c5r41y8j" path="res://images/parallax/floor.png" id="5_ifphl"]
+[ext_resource type="PackedScene" uid="uid://bcwcuoyt03yof" path="res://scenes/boss/final_boss.tscn" id="6_alfcl"]
+[ext_resource type="AudioStream" uid="uid://dc1h3u85ul0i1" path="res://audio/Music/Queen - Innuendo.mp3" id="7_260hk"]
+[ext_resource type="Texture2D" uid="uid://duunv0n36w6wg" path="res://images/UI/texture/black_rect_texture.png" id="9_ifphl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_260hk"]
+size = Vector2(285, 55)
+
+[node name="Final Scene" type="Node2D" unique_id=1183440743]
+script = ExtResource("1_jq3oi")
+my_ship = Array[PackedScene]([ExtResource("2_ifphl"), ExtResource("3_260hk"), ExtResource("4_alfcl")])
+final_bullet_scene = ExtResource("5_260hk")
+final_boss_scene = ExtResource("6_alfcl")
+
+[node name="Settings" type="Node" parent="." unique_id=1089072510]
+
+[node name="Music Background" type="AudioStreamPlayer" parent="Settings" unique_id=242769194]
+stream = ExtResource("7_260hk")
+autoplay = true
+bus = &"Music"
+
+[node name="Camera2D" type="Camera2D" parent="Settings" unique_id=1212208050]
+position = Vector2(135, 87)
+scale = Vector2(0.25, 0.25)
+
+[node name="Background" type="Node" parent="." unique_id=713671839]
+
+[node name="Background Parallax" type="ParallaxBackground" parent="Background" unique_id=1761402531]
+
+[node name="Background Parallax Layer" type="ParallaxLayer" parent="Background/Background Parallax" unique_id=332731029]
+motion_mirroring = Vector2(272, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Background Parallax/Background Parallax Layer" unique_id=1828057738]
+position = Vector2(135.99998, 84.5)
+scale = Vector2(0.9444445, 0.72395825)
+texture = ExtResource("4_shl74")
+
+[node name="Roof Background Parallax" type="ParallaxBackground" parent="Background" unique_id=1639379785]
+visible = false
+
+[node name="Roof Background Parallax Layer" type="ParallaxLayer" parent="Background/Roof Background Parallax" unique_id=806404468]
+motion_mirroring = Vector2(272, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Roof Background Parallax/Roof Background Parallax Layer" unique_id=1696360435]
+position = Vector2(135, 13)
+rotation = 3.1415927
+scale = Vector2(1, 0.611)
+texture = ExtResource("5_ifphl")
+
+[node name="Floor Background Parallax" type="ParallaxBackground" parent="Background" unique_id=853568653]
+
+[node name="Roof Background Parallax Layer" type="ParallaxLayer" parent="Background/Floor Background Parallax" unique_id=246512993]
+motion_mirroring = Vector2(272, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Floor Background Parallax/Roof Background Parallax Layer" unique_id=1676077455]
+modulate = Color(0.15775332, 0.15775332, 0.15775332, 1)
+position = Vector2(135, 162.5)
+scale = Vector2(1, 0.40909076)
+texture = ExtResource("5_ifphl")
+
+[node name="Limits" type="StaticBody2D" parent="." unique_id=328047665]
+
+[node name="Sprite2D" type="Sprite2D" parent="Limits" unique_id=1251636625]
+modulate = Color(0, 0, 0, 1)
+z_index = 1
+position = Vector2(0, 5)
+scale = Vector2(-62.36426, -1.796557)
+texture = ExtResource("9_ifphl")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Limits" unique_id=599317405]
+modulate = Color(0, 0, 0, 1)
+z_index = 1
+position = Vector2(0, 165)
+scale = Vector2(-62.36426, -1.2365574)
+texture = ExtResource("9_ifphl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limits" unique_id=968034474]
+position = Vector2(132.5, 17.5)
+shape = SubResource("RectangleShape2D_260hk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Limits" unique_id=298067626]
+position = Vector2(133, 166)
+shape = SubResource("RectangleShape2D_260hk")

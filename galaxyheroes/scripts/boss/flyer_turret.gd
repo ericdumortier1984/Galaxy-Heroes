@@ -87,7 +87,7 @@ func take_damage(amount : int) -> void:
 	damage_sound.play()
 	health_bar.value = current_life
 	
-	if(current_life <= 0):
+	if current_life <= 0:
 		first_boss_destroyed()
 
 func first_boss_destroyed() -> void:

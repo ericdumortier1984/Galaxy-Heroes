@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c0sms6llwbt7a" path="res://scripts/hud/gui.gd" id="1_5j4t3"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gfri"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hruu"]
+bg_color = Color(0, 0.69530547, 0.6210373, 1)
+
 [node name="GUI" type="CanvasLayer" unique_id=2111763531]
 script = ExtResource("1_5j4t3")
 
@@ -83,3 +89,37 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "MISSILES"
+
+[node name="MarginContainer3" type="MarginContainer" parent="HUD" unique_id=452455649]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 125.0
+offset_top = 134.0
+offset_right = 3.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Label" type="Label" parent="HUD/MarginContainer3" unique_id=247975943]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "SPECIAL"
+
+[node name="Special Bar" type="ProgressBar" parent="HUD/MarginContainer3" unique_id=1793480330]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_6gfri")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7hruu")
+max_value = 1.0
+value = 1.0
+show_percentage = false

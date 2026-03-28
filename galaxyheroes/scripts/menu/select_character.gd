@@ -7,6 +7,7 @@ extends Control
 
 func _ready() -> void:
 	await get_tree().process_frame
+	Transition.fade_out()
 	match SaveSystem.data.selecter_character_id:
 		0 : character_ryo_button.grab_focus()
 		1 : character_billy_button.grab_focus()

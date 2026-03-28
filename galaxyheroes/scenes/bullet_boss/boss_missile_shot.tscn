@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bwonup8dkrfb1"]
+
+[ext_resource type="Texture2D" uid="uid://d04y10s4miwfl" path="res://images/ship/army/missile.png" id="1_dekym"]
+[ext_resource type="Script" uid="uid://cxil6ft1noqdo" path="res://scripts/boss_shot/boss_missile_shot.gd" id="1_nrqmc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrqmc"]
+size = Vector2(10, 19)
+
+[node name="Boss Missile Shot" type="Area2D" unique_id=191384820 groups=["ENEMY_BULLET"]]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_nrqmc")
+speed = 80
+rotation_speed = 20.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1809203894]
+modulate = Color(0, 1, 0.09803922, 1)
+rotation = 1.5707964
+texture = ExtResource("1_dekym")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=557203584]
+position = Vector2(0, -0.5)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_nrqmc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=618589821]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

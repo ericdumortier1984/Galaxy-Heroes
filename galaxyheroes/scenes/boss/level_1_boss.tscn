@@ -34,6 +34,7 @@ size = Vector2(2.9500017, 5.5000005)
 rotation = -1.5707964
 scale = Vector2(4, 4)
 script = ExtResource("1_2d454")
+max_life = 100
 thrust_animation = NodePath("Area2D/Thrust")
 explosion_animation = NodePath("Area2D/Explosion")
 

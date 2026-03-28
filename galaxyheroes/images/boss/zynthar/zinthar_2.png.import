@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5834v461qn7o"
-path="res://.godot/imported/camel.png-eb5818eb9f67d035b28a7d785cc3869a.ctex"
+uid="uid://drg700an78epa"
+path="res://.godot/imported/zinthar_2.png-3624bab6ba2e9927382327115ec644fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/boss/camel/camel.png"
-dest_files=["res://.godot/imported/camel.png-eb5818eb9f67d035b28a7d785cc3869a.ctex"]
+source_file="res://images/boss/zynthar/zinthar_2.png"
+dest_files=["res://.godot/imported/zinthar_2.png-3624bab6ba2e9927382327115ec644fa.ctex"]
 
 [params]
 

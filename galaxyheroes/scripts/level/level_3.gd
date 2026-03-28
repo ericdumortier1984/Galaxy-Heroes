@@ -16,10 +16,10 @@ extends Node2D
 @export var second_boss_scene : PackedScene
 @export var third_boss_scene : PackedScene
 @export var final_boss_scene :  PackedScene
-@export var score_first_boss_spawner : int 
-@export var score_second_boss_spawner : int 
-@export var score_third_boss_spawner : int 
-@export var score_final_boss_spawner : int 
+@export var score_first_boss_spawner : int = 1500
+@export var score_second_boss_spawner : int = 1500
+@export var score_third_boss_spawner : int = 3500
+@export var score_final_boss_spawner : int = 6500
 @export var boss_position_spawner : Vector2
 
 # --- bool --- #
@@ -29,21 +29,24 @@ var is_third_boss_spawned : bool = false
 var is_final_boss_spawned : bool = false
 var is_first_boss_defeated : bool = false
 var is_third_boss_defeated : bool = false
+var is_final_boss_defeated: bool = false
 
 # --- int --- # 
-var score_afer_level : int = 0
+var level_start_score : int = 0
 var score_after_first_boss : int = 0
 var score_after_second_boss : int = 0
 var score_after_third_boss : int = 0
 
 func _ready() -> void:
+	await get_tree().process_frame
+	Transition.fade_out()
 	SaveSystem.load_game()
+	GlobalSingleton.load_game_state()
 	GlobalSingleton.set_state(GlobalSingleton.GameState.PLAYING)
-	score_afer_level = GlobalSingleton.score
+	level_start_score = GlobalSingleton.score
 	set_character()
 	start_level_3_intro_dialogue()
 	DialogueManager.dialogue_ended.connect(on_dialogue_ended)
-	music_background.bus = "Music"
 
 func _process(delta: float) -> void:
 	parallax_behavior(delta)
@@ -56,6 +59,9 @@ func parallax_behavior(delta_time) -> void:
 	get_node("Background/Background Parallax").scroll_base_offset -= Vector2(1, 0) * 8 * delta_time
 	get_node("Background/Floor Background Parallax").scroll_base_offset -= Vector2(1, 0) * 8 * delta_time
 	get_node("Background/Roof Background Parallax").scroll_base_offset -= Vector2(1, 0) * 8 * delta_time
+
+func get_level_score() -> int:
+	return GlobalSingleton.score - level_start_score
 
 func set_character():
 	var my_ship_id := SaveSystem.data.selecter_character_id
@@ -125,6 +131,26 @@ func start_level_3_third_boss_intro_dialogue() -> void:
 		load("res://dialogues/level_3_intro_third_boss_dialogue.dialogue"), my_dialogue_id
 	)
 
+func get_level_3_final_boss_intro_dialogue(my_ship_id : int) -> String:
+	match my_ship_id:
+		0:
+			return "ryo_level_3_final_boss_intro"
+		1:
+			return "billy_level_3_final_boss_intro"
+		2:
+			return "kimi_level_3_final_boss_intro"
+		_:
+			return "ryo_level_3_final_boss_intro"
+
+func start_level_3_final_boss_intro_dialogue() -> void:
+	var my_ship_id = SaveSystem.data.selecter_character_id
+	var my_dialogue_id =  get_level_3_final_boss_intro_dialogue(my_ship_id)
+	
+	GlobalSingleton.set_state(GlobalSingleton.GameState.DIALOGUING)
+	DialogueManager.show_dialogue_balloon(
+		load("res://dialogues/level_3_intro_final_boss_dialogue.dialogue"), my_dialogue_id
+	)
+
 func on_dialogue_ended(_resource):
 	GlobalSingleton.set_state(GlobalSingleton.GameState.PLAYING)
 
@@ -143,28 +169,28 @@ func check_first_boss_spawn() -> void:
 	if is_first_boss_spawned:
 		return
 		
-	if GlobalSingleton.score >= score_afer_level + score_first_boss_spawner:
+	if get_level_score() >= score_first_boss_spawner:
 		spawn_first_boss()
 
 func check_second_boss_spawn() -> void:
 	if is_second_boss_spawned:
 		return
 		
-	if GlobalSingleton.score >= score_after_first_boss + score_second_boss_spawner:
+	if get_level_score() >= score_second_boss_spawner:
 		spawn_second_boss()
 
 func check_third_boss_spawn() -> void:
 	if is_third_boss_spawned:
 		return
 		
-	if GlobalSingleton.score >= score_after_second_boss + score_third_boss_spawner:
+	if get_level_score() >= score_third_boss_spawner:
 		spawn_third_boss()
 
 func check_final_boss_spawn() -> void:
 	if is_final_boss_spawned:
 		return
 		
-	if GlobalSingleton.score >= score_after_second_boss + score_final_boss_spawner:
+	if get_level_score() >= score_final_boss_spawner:
 		spawn_final_boss()
 
 func spawn_first_boss() -> void:
@@ -194,12 +220,17 @@ func spawn_final_boss() -> void:
 	var final_boss_instance = final_boss_scene.instantiate()
 	final_boss_instance.global_position = boss_position_spawner
 	add_child(final_boss_instance)
+	final_boss_instance.final_boss_entered.connect(set_final_boss_entered)
+	final_boss_instance.final_boss_defeated.connect(set_final_boss_defeated)
 
 func set_first_boss_entered() -> void:
 	start_level_3_first_boss_intro_dialogue()
 
 func set_third_boss_entered() -> void:
 	start_level_3_third_boss_intro_dialogue()
+
+func set_final_boss_entered() -> void:
+	start_level_3_final_boss_intro_dialogue()
 
 func set_first_boss_defeated() -> void:
 	is_first_boss_defeated = true
@@ -209,40 +240,22 @@ func set_third_boss_defeated() -> void:
 	is_third_boss_defeated = true
 	score_after_third_boss = GlobalSingleton.score
 
-func set_win_level():
-	SaveSystem.data.level_unlocked = 4
-	SaveSystem.save_game()
-	SaveSystem.update_hi_score(GlobalSingleton.score)
-	get_tree().change_scene_to_file("res://scenes/menu/upgrade_menu.tscn")
+func set_final_boss_defeated():
+	is_final_boss_defeated = true
+	call_deferred("win_level")
 
-func show_level_completed(): 
-	var texture_win_label = load("res://images/UI/text/Level_2_completed.png")
-	var sprite_win_label = Sprite2D.new()
-	sprite_win_label.texture = texture_win_label
-	sprite_win_label.centered = true
-	sprite_win_label.modulate.a = 0.0
-	sprite_win_label.position = get_viewport_rect().size / 2
-	add_child(sprite_win_label)
+func set_win_level():
+	var ship_reference = get_tree().get_first_node_in_group("PLAYER_SHIP")
 	
-	var tween = create_tween()
-	tween.tween_property(sprite_win_label, "modulate:a", 1.0, 1.0)
-	await tween.finished
-	
-	await get_tree().create_timer(2.5).timeout
-	
-	var tween_out = create_tween()
-	tween_out.tween_property(sprite_win_label, "modulate:a", 0.0, 0.0)
-	await tween_out.finished
-	
-	sprite_win_label.queue_free()
+	GlobalSingleton.complete_level(3)
+	SaveSystem.update_hi_score(GlobalSingleton.score)
+	GlobalSingleton.selected_character_final_position = ship_reference.global_position
+	Transition.change_scene("res://scenes/level/final_scene.tscn")
 
 func win_level():
 	GlobalSingleton.set_state(GlobalSingleton.GameState.WIN)
-	await show_level_completed()
+	await get_tree().create_timer(2.5).timeout
 	set_win_level()
-
-func set_final_boss_defeated():
-	call_deferred("win_level")
 
 func _on_enemy_spawn_timer_timeout() -> void:
 	if GlobalSingleton.game_state != GlobalSingleton.GameState.PLAYING:

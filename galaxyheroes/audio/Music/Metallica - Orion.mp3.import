@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://xkyrg714wox0"
+path="res://.godot/imported/Metallica - Orion.mp3-97f4393b087fc1160e6d4c3e63ddcbd1.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/Metallica - Orion.mp3"
+dest_files=["res://.godot/imported/Metallica - Orion.mp3-97f4393b087fc1160e6d4c3e63ddcbd1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

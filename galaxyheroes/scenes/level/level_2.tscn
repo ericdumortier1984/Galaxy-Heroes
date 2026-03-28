@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bingxbe6sb35m" path="res://scripts/level/level_2.gd" id="1_2g46k"]
 [ext_resource type="PackedScene" uid="uid://ciq4adxjkts06" path="res://scenes/menu/pause_menu.tscn" id="1_u7l0e"]
-[ext_resource type="PackedScene" uid="uid://8fvtairywq4w" path="res://scenes/UI/GUI.tscn" id="2_2g46k"]
+[ext_resource type="PackedScene" uid="uid://8fvtairywq4w" path="res://scenes/ui/GUI.tscn" id="2_2g46k"]
 [ext_resource type="PackedScene" uid="uid://bs2l4uj36yoo5" path="res://scenes/player/billy_ship.tscn" id="2_io4i7"]
 [ext_resource type="PackedScene" uid="uid://odolpm16myxu" path="res://scenes/player/kimi_ship.tscn" id="3_rg4c2"]
 [ext_resource type="PackedScene" uid="uid://b6acd6hc8cldk" path="res://scenes/player/my_ship.tscn" id="4_a0lbm"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://b5qckqvpm1nn" path="res://scenes/power_up/health_power_up.tscn" id="6_mkem1"]
 [ext_resource type="PackedScene" uid="uid://bak7va5urn52c" path="res://scenes/enemy/gunner.tscn" id="7_sjad2"]
 [ext_resource type="PackedScene" uid="uid://dvfc6m85ei8h8" path="res://scenes/enemy/cyclop.tscn" id="8_t71ko"]
-[ext_resource type="AudioStream" uid="uid://w3op1pp2o0wj" path="res://audio/Music/Orion.mp3" id="9_rg4c2"]
 [ext_resource type="PackedScene" uid="uid://c630ty64aewe0" path="res://scenes/enemy/biter.tscn" id="9_vni3u"]
 [ext_resource type="PackedScene" uid="uid://ckfkywx4hatop" path="res://scenes/power_up/double_shot_power_up.tscn" id="11_olix3"]
 [ext_resource type="PackedScene" uid="uid://blyfvkp82ehbc" path="res://scenes/power_up/missile_power_up.tscn" id="12_2evwt"]
@@ -22,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://drnty71x222l1" path="res://scenes/power_up/TripleShotPowerUp.tscn" id="15_wi0ma"]
 [ext_resource type="PackedScene" uid="uid://dfk4x0jtmembw" path="res://scenes/boss/level_2_boss.tscn" id="16_vni3u"]
 [ext_resource type="PackedScene" uid="uid://cyi8axn3trils" path="res://scenes/boss/level_2_final_boss.tscn" id="17_olix3"]
+[ext_resource type="AudioStream" uid="uid://xkyrg714wox0" path="res://audio/Music/Metallica - Orion.mp3" id="20_vni3u"]
 [ext_resource type="Texture2D" uid="uid://b5tgjv83ju5jc" path="res://images/parallax/space_background_1.png" id="21_vni3u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7l0e"]
@@ -52,8 +52,6 @@ power_up = Array[PackedScene]([ExtResource("6_mkem1"), ExtResource("11_olix3"), 
 drone_1_scene = ExtResource("6_a0lbm")
 boss_scene = ExtResource("16_vni3u")
 final_boss_scene = ExtResource("17_olix3")
-score_boss_spawner = 1500
-score_final_boss_spawner = 4500
 boss_position_spawner = Vector2(300, 100)
 final_boss_position_spawner = Vector2(300, 100)
 
@@ -64,9 +62,9 @@ anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.0
 offset_left = 139.0
-offset_top = 90.0
+offset_top = 80.0
 offset_right = 139.0
-offset_bottom = 90.0
+offset_bottom = 80.0
 grow_vertical = 1
 
 [node name="GUI" parent="." unique_id=2111763531 instance=ExtResource("2_2g46k")]
@@ -82,7 +80,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="Music Background" type="AudioStreamPlayer" parent="Settings" unique_id=1176397759]
-stream = ExtResource("9_rg4c2")
+stream = ExtResource("20_vni3u")
 autoplay = true
 parameters/looping = false
 

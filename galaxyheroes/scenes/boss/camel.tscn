@@ -1,34 +1,71 @@
 [gd_scene format=3 uid="uid://2yxfntxjqtn2"]
 
 [ext_resource type="Script" uid="uid://c7678wbtcsghh" path="res://scripts/boss/camel.gd" id="1_hwl22"]
-[ext_resource type="Texture2D" uid="uid://c5834v461qn7o" path="res://images/boss/camel/camel.png" id="2_05c0h"]
+[ext_resource type="Texture2D" uid="uid://b2cbw6oxi0var" path="res://images/boss/camel/camel_down.png" id="2_u7hsw"]
 [ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="3_4ges6"]
 [ext_resource type="Script" uid="uid://bqrlo5syvyctw" path="res://scripts/boss_shot/camel_shot.gd" id="3_t6p1n"]
+[ext_resource type="Texture2D" uid="uid://b4h22cxs3wky4" path="res://images/boss/camel/Boss_0.4.png" id="3_ytb3d"]
 [ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="4_mk8mc"]
 [ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="5_t6p1n"]
+[ext_resource type="Texture2D" uid="uid://8176881v6x0k" path="res://images/boss/camel/Boss_0.4_step_1.png" id="5_vce75"]
+[ext_resource type="Texture2D" uid="uid://cv6xm3x8enl8r" path="res://images/boss/camel/Boss_0.4_step_2.png" id="6_hnr1s"]
+[ext_resource type="Texture2D" uid="uid://8w5e6dym6xdq" path="res://images/boss/camel/Boss_0.4_step_4.png" id="7_l7kb6"]
+[ext_resource type="PackedScene" uid="uid://bwonup8dkrfb1" path="res://scenes/bullet_boss/boss_missile_shot.tscn" id="9_hnr1s"]
+[ext_resource type="Texture2D" uid="uid://kn4d3ewb02it" path="res://images/boss/camel/Boss_0.4_step_6.png" id="9_o35ub"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ges6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_05c0h")
+"texture": ExtResource("2_u7hsw")
 }],
 "loop": true,
-"name": &"Fly",
+"name": &"down",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ytb3d")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_hnr1s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vce75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_l7kb6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_o35ub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_l7kb6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hnr1s")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 2.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okago"]
 radius = 2.0
-height = 16.0
+height = 4.4444466
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mk8mc"]
 radius = 2.0
-height = 20.0
+height = 14.999954
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t6p1n"]
-radius = 2.0
-height = 18.0
+radius = 1.666666
+height = 3.333332
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okago"]
 bg_color = Color(0.91764706, 0, 0, 0.23529412)
@@ -36,44 +73,44 @@ bg_color = Color(0.91764706, 0, 0, 0.23529412)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mk8mc"]
 bg_color = Color(0, 0.654902, 0.30980393, 1)
 
-[node name="Camel" type="Node2D" unique_id=1285368405 groups=["BOSSES"]]
-scale = Vector2(2, 2)
+[node name="Camel" type="Node2D" unique_id=1285368405 node_paths=PackedStringArray("explosion_animation") groups=["BOSSES"]]
+scale = Vector2(1.8, 1.8)
 script = ExtResource("1_hwl22")
+explosion_animation = NodePath("Area2D/Explosion")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=623996405]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=1356261865]
 sprite_frames = SubResource("SpriteFrames_4ges6")
-animation = &"Fly"
+animation = &"idle"
 
 [node name="Left Leg Collider" type="CollisionShape2D" parent="Area2D" unique_id=1779280653]
-position = Vector2(2, 3)
+position = Vector2(-8.333334, 19.444447)
+scale = Vector2(0.7555553, 0.73333335)
 shape = SubResource("CapsuleShape2D_okago")
 
 [node name="Center Leg Collider" type="CollisionShape2D" parent="Area2D" unique_id=435977906]
-position = Vector2(9, 2)
+position = Vector2(0, 20.555557)
+scale = Vector2(1, 0.2222225)
 shape = SubResource("CapsuleShape2D_mk8mc")
 
 [node name="Right Leg Collider" type="CollisionShape2D" parent="Area2D" unique_id=1140751305]
-position = Vector2(17, 2)
+position = Vector2(7.7777777, 19.444445)
 shape = SubResource("CapsuleShape2D_t6p1n")
 
-[node name="Lower Shoot Marker" type="Marker2D" parent="Area2D" unique_id=1933887638]
-position = Vector2(-14, -10.435)
+[node name="Missile launcher" type="Marker2D" parent="Area2D" unique_id=1933887638 groups=["BOSS_MARKER"]]
+position = Vector2(-5, -1.1111112)
 script = ExtResource("3_t6p1n")
+missile_scene = ExtResource("9_hnr1s")
+missile_launch_interval = 1.0
 
-[node name="Fire Rate Timer" type="Timer" parent="Area2D/Lower Shoot Marker" unique_id=1875628247]
+[node name="Fire Rate Timer" type="Timer" parent="Area2D/Missile launcher" unique_id=1875628247]
 
-[node name="Upper Shoot Marker" type="Marker2D" parent="Area2D" unique_id=27744186]
-position = Vector2(-12, -14.52)
-script = ExtResource("3_t6p1n")
-
-[node name="Fire Rate Timer" type="Timer" parent="Area2D/Upper Shoot Marker" unique_id=232637765]
-
-[node name="Life bar" type="ProgressBar" parent="Area2D" unique_id=217451881]
-offset_left = -4.0
-offset_top = -18.0
-offset_bottom = 9.0
+[node name="Life Bar" type="ProgressBar" parent="Area2D" unique_id=217451881]
+offset_left = -12.77778
+offset_top = -20.0
+offset_right = -8.77778
+offset_bottom = 7.0
 rotation = -1.5707964
 theme = ExtResource("3_4ges6")
 theme_override_styles/background = SubResource("StyleBoxFlat_okago")
@@ -89,10 +126,13 @@ animation = &"explosion"
 
 [node name="Explosion Sound" type="AudioStreamPlayer2D" parent="Area2D/Explosion" unique_id=43862197]
 stream = ExtResource("5_t6p1n")
+bus = &"SFX"
 
 [node name="State Timer" type="Timer" parent="." unique_id=1384625024]
 
-[node name="Shoot Pattern Timer" type="Timer" parent="." unique_id=2000576654]
+[node name="Missile Pattern Timer" type="Timer" parent="." unique_id=2000576654]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="timeout" from="Shoot Pattern Timer" to="." method="_on_shoot_pattern_timer_timeout"]
+[connection signal="timeout" from="Area2D/Missile launcher/Fire Rate Timer" to="Area2D/Missile launcher" method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="State Timer" to="." method="_on_state_timer_timeout"]
+[connection signal="timeout" from="Missile Pattern Timer" to="." method="_on_shoot_pattern_timer_timeout"]

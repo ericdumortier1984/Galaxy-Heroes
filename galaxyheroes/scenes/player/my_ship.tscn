@@ -5,9 +5,12 @@
 [ext_resource type="SpriteFrames" uid="uid://c0qe74b4y6bal" path="res://resources/animation/thrust_on.tres" id="3_30y1p"]
 [ext_resource type="AudioStream" uid="uid://bd1x542v64cfd" path="res://audio/Sound/shot 1.wav" id="3_idh8e"]
 [ext_resource type="PackedScene" uid="uid://dyqg5r2ompagx" path="res://scenes/player_shot/missile_player.tscn" id="3_ihnag"]
+[ext_resource type="PackedScene" uid="uid://bqosvu3yl0b65" path="res://scenes/player_shot/bomb.tscn" id="4_8mk6u"]
 [ext_resource type="SpriteFrames" uid="uid://dyhmqvbgie5da" path="res://resources/animation/fly_my_ship.tres" id="4_30y1p"]
+[ext_resource type="PackedScene" uid="uid://i1kkj40ska7t" path="res://scenes/player_shot/drone_2.tscn" id="5_kedir"]
 [ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="5_xc83v"]
 [ext_resource type="SpriteFrames" uid="uid://cwkhdq3r3i44s" path="res://resources/animation/flash.tres" id="6_ihnag"]
+[ext_resource type="PackedScene" uid="uid://cxm8ejha7ch0n" path="res://scenes/player_shot/bullet_rain.tscn" id="6_x3w6w"]
 [ext_resource type="Material" uid="uid://bndtnurpvsuyw" path="res://resources/shader/shield_shader_material.tres" id="7_30y1p"]
 [ext_resource type="Texture2D" uid="uid://dbmxhe256i0e2" path="res://images/UI/texture/circle_contour.png" id="7_ueu1l"]
 [ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="13_v1j34"]
@@ -27,7 +30,11 @@ motion_mode = 1
 script = ExtResource("1_tu07k")
 bullet_scene = ExtResource("2_bgatt")
 missile_scene = ExtResource("3_ihnag")
+bomb_scene = ExtResource("4_8mk6u")
+drone_weapon_scene = ExtResource("5_kedir")
+bullet_rain_scene = ExtResource("6_x3w6w")
 my_area2d = NodePath("Area2D")
+safe_time = 5.0
 shield_color = Color(1, 0.2628613, 0.20336351, 0.078431375)
 shot_sound = NodePath("Simple Shot Sound")
 explosion_sound = NodePath("Explosion Sound")

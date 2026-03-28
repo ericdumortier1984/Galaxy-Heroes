@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://loi2c4jmpdgt"]
 
 [ext_resource type="Script" uid="uid://bfrnc4ljxwfo5" path="res://scripts/power_up/power_up.gd" id="1_synnc"]
-[ext_resource type="PackedScene" uid="uid://df0ayymloi0lg" path="res://scenes/Effect/pick_up_effect.tscn" id="2_ee13q"]
+[ext_resource type="PackedScene" uid="uid://df0ayymloi0lg" path="res://scenes/effect/pick_up_effect.tscn" id="2_ee13q"]
 [ext_resource type="Texture2D" uid="uid://c2cgutrqfgdb7" path="res://images/ship/army/simple_bullet.png" id="3_bp7xb"]
 [ext_resource type="Texture2D" uid="uid://cpsx20eig0bnk" path="res://images/power up/Speed.png" id="3_ee13q"]
 [ext_resource type="Material" uid="uid://cwx0vmugqqs5k" path="res://resources/shader/bubble_shader_material.tres" id="3_ldhh3"]

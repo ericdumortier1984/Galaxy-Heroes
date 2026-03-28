@@ -7,7 +7,7 @@ extends Node2D
 @export var power_up_scene : Array[PackedScene]
 @export var boss_scene : PackedScene
 @export var my_ships : Array[PackedScene]
-@export var boss_score_spawner : int = 0
+@export var boss_score_spawner : int = 1500
 @export var boss_spawn_point : Vector2
 
 # --- onready --- #
@@ -19,19 +19,26 @@ extends Node2D
 # --- bool --- #
 var boss_spawned : bool = false
 var boss_instance = Level1Boss
+var level_completed : bool = false
+
+# --- int --- # 
+var level_start_score : int = 0
 
 func _ready() -> void:
-	$"Setttings/Music Background".bus = "Music"
+	await get_tree().process_frame
+	Transition.fade_out()
+	GlobalSingleton.load_game_state()
+	level_start_score = GlobalSingleton.score
 	start_intro_dialogue()
 	DialogueManager.dialogue_ended.connect(on_dialogue_ended)
 	set_character()
-	GlobalSingleton.score = 0
-	GlobalSingleton.lifes = 3
-	GlobalSingleton.missiles = 0
 
 func _process(delta: float) -> void:
 	parallax_behavior(delta)
 	check_boss_spawn()
+
+func get_level_score() -> int:
+	return GlobalSingleton.score - level_start_score
 
 func set_character():
 	var my_ship_id := SaveSystem.data.selecter_character_id
@@ -44,14 +51,13 @@ func set_character():
 func parallax_behavior(delta_time) -> void:
 	get_node("Background/Background Parallax").scroll_base_offset -= Vector2(1, 0) * 8 * delta_time
 	get_node("Background/Stars Parallax").scroll_base_offset -= Vector2(1, 0) * 16 * delta_time
-	get_node("Background/Planet 1 Parallax").scroll_base_offset -= Vector2(1, 0) * 24 * delta_time
-	get_node("Background/Planet 2 Parallax").scroll_base_offset -= Vector2(1, 0) * 24 * delta_time
 
 func check_boss_spawn():
 	if boss_spawned:
 		return
 		
-	if GlobalSingleton.score >= boss_score_spawner:
+	#if GlobalSingleton.score >= boss_score_spawner:
+	if get_level_score() >= boss_score_spawner:
 		boss_spawn()
 
 func boss_spawn():
@@ -91,10 +97,11 @@ func show_level_completed():
 	sprite_win_label.queue_free()
 
 func set_win_level():
-	SaveSystem.data.level_unlocked = 2
-	SaveSystem.save_game()
+	#SaveSystem.data.level_unlocked = 2
+	#SaveSystem.save_game()
+	GlobalSingleton.complete_level(1)
 	SaveSystem.update_hi_score(GlobalSingleton.score)
-	get_tree().change_scene_to_file("res://scenes/menu/upgrade_menu.tscn")
+	Transition.change_scene("res://scenes/menu/upgrade_menu.tscn")
 
 func win_level():
 	GlobalSingleton.set_state(GlobalSingleton.GameState.WIN)

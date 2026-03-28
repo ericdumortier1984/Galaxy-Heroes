@@ -29,6 +29,7 @@ buses/default_bus_layout="uid://ckklhevefspb0"
 GlobalSingleton="*res://scripts/autoload/global_singleton.gd"
 SaveSystem="*res://scripts/autoload/save_system.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+Transition="*uid://b3mg3clpokwgy"
 
 [dialogue_manager]
 
@@ -125,10 +126,15 @@ shoot_missile={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":3,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+shoot_special={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/intro_dialogue.dialogue", "res://dialogues/intro_boss_level_1_dialogue.dialogue", "res://dialogues/level_2_intro_dialogue.dialogue", "res://dialogues/intro_dialogue_boss_level_2.dialogue", "res://dialogues/intro_dialogue_final_boss_level_2.dialogue", "res://dialogues/level_3_intro_dialogue.dialogue", "res://dialogues/level_3_intro_first_boss_dialogue.dialogue", "res://dialogues/level_3_intro_third_boss_dialogue.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/intro_dialogue.dialogue", "res://dialogues/intro_boss_level_1_dialogue.dialogue", "res://dialogues/level_2_intro_dialogue.dialogue", "res://dialogues/intro_dialogue_boss_level_2.dialogue", "res://dialogues/intro_dialogue_final_boss_level_2.dialogue", "res://dialogues/level_3_intro_dialogue.dialogue", "res://dialogues/level_3_intro_first_boss_dialogue.dialogue", "res://dialogues/level_3_intro_third_boss_dialogue.dialogue", "res://dialogues/level_3_intro_final_boss_dialogue.dialogue", "res://dialogues/final_scene_intro_dialogue.dialogue", "res://dialogues/final_scene_final_dialogue.dialogue")
 
 [rendering]
 

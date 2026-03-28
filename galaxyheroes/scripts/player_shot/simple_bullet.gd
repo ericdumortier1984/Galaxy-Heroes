@@ -16,6 +16,7 @@ func _physics_process(delta):
 
 func set_direction(new_direction):
 	direction = new_direction.normalized() 
+	rotation = direction.angle()
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("ENEMIES"):

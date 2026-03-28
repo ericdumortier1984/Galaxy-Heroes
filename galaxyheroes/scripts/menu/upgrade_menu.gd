@@ -1,13 +1,83 @@
 extends Control
 
-func _on_fire_rate_button_pressed() -> void:
-	SaveSystem.data.fire_rate_upgrade += 1
+# ---  onready --- #
+@onready var first_option_button : Button = $"Skill Upgrades Container/Life Margin Container/Upgrade Life/Life Button"
+@onready var continue_button : Button = $"Continue Margin Container/Continue"
 
-func _on_damage_button_pressed() -> void:
-	SaveSystem.data.damage_upgrade += 1
+# --- bool --- #
+var skill_selected : bool = false
+var weapon_selected : bool = false
+
+func _ready() -> void:
+	first_option_button.grab_focus()
+	continue_button.disabled = true
+
+func _on_life_button_pressed() -> void:
+	if skill_selected:
+		return
+	
+	skill_selected = true
+	SaveSystem.data.upgrade_life += 1
+	GlobalSingleton.upgrade_life = SaveSystem.data.upgrade_life
+	GlobalSingleton.lifes += 1
+	SaveSystem.data.lifes = GlobalSingleton.lifes
+	
+	disable_skill_buttons()
+	check_upgrade_selected()
 
 func _on_speed_button_pressed() -> void:
-	SaveSystem.data.speed += 1
+	if skill_selected:
+		return
+	skill_selected = true
+	SaveSystem.data.upgrade_speed += 5
+	disable_skill_buttons()
+	check_upgrade_selected()
+
+func _on_time_shield_button_pressed() -> void:
+	if skill_selected:
+		return
+	skill_selected = true
+	SaveSystem.data.upgrade_time_shield += 5
+	disable_skill_buttons()
+	check_upgrade_selected()
+
+func _on_bomb_button_pressed() -> void:
+	if weapon_selected:
+		return
+	weapon_selected = true
+	SaveSystem.data.weapon_selected = GlobalSingleton.ExtraWeapon.BOMB
+	disable_weapon_buttons()
+	check_upgrade_selected()
+
+func _on_drone_button_pressed() -> void:
+	if weapon_selected:
+		return
+	weapon_selected = true
+	SaveSystem.data.weapon_selected = GlobalSingleton.ExtraWeapon.DRONE
+	disable_weapon_buttons()
+	check_upgrade_selected()
+
+func _on_rain_button_pressed() -> void:
+	if weapon_selected:
+		return
+	weapon_selected = true
+	SaveSystem.data.weapon_selected = GlobalSingleton.ExtraWeapon.BULLET_RAIN
+	disable_weapon_buttons()
+	check_upgrade_selected()
+
+func disable_skill_buttons() -> void:
+	$"Skill Upgrades Container/Life Margin Container/Upgrade Life/Life Button".disabled = true
+	$"Skill Upgrades Container/Speed Margin Container/Upgrade Speed/Speed Button".disabled = true
+	$"Skill Upgrades Container/Shield Margin Container/Upgrade Shield Timer/Time Shield Button".disabled = true
+
+func disable_weapon_buttons() -> void:
+	$"Weapon Upgrade Container/Bomb Margin Container/Add Bomb/Bomb Button".disabled = true
+	$"Weapon Upgrade Container/Drone Margin Container/Add Drone/Drone Button".disabled = true
+	$"Weapon Upgrade Container/Rain Margin Container/Add Rain/Rain Button".disabled = true
+
+func check_upgrade_selected() -> void:
+	if skill_selected and weapon_selected:
+		continue_button.disabled = false
 
 func _on_continue_pressed() -> void:
 	SaveSystem.save_game()

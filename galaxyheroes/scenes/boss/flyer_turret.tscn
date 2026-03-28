@@ -29,7 +29,6 @@ bg_color = Color(0, 0.654902, 0.30980393, 1)
 
 [node name="Flyer Turret" type="Node2D" unique_id=1780359297 node_paths=PackedStringArray("explosion_animation") groups=["BOSSES"]]
 script = ExtResource("1_8fde3")
-max_life = 10
 explosion_animation = NodePath("Area2D/Explosion")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=9300824]
