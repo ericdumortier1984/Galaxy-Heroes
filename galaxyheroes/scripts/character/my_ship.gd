@@ -16,9 +16,9 @@ enum FlyState { IDLE, UP, DOWN }
 @export var drone_weapon_scene : PackedScene
 @export var bullet_rain_scene : PackedScene
 @export var my_area2d : Area2D
-@export var speed := 80 
+@export var speed : int = 80
 @export var respawn_time : float = 1.5
-@export var safe_time : float = 1.0
+@export var safe_time : float = 2.0
 @export var fire_rate : float = 0.18
 @export var shield_color : Color
 @export var blinking_time : float = 0.15
@@ -39,11 +39,11 @@ var is_special_weapon : bool = false
 
 # --- int --- #
 var normal_speed : int
-var normal_safe_time : int
 var bullet_size_count : int = 1
 
 # --- float --- #
 var fire_timer : float = 0.0
+var normal_safe_time : float
 
 # --- state --- #
 var fly_state : FlyState
@@ -228,10 +228,10 @@ func set_explosion():
 	if current_weapon_drone:
 		current_weapon_drone.queue_free()
 
-func set_safe_time(safe_time : float):
+func set_safe_time(duration : float):
 	is_blinking = true
 	var safe_time_elapsed : float = 0.0
-	while safe_time_elapsed < safe_time:
+	while safe_time_elapsed < duration:
 		my_animated_ship.visible = not my_animated_ship.visible
 		my_area2d.set_deferred("monitoring", false)
 		
@@ -255,7 +255,7 @@ func set_shield_time(shield_duration : float):
 	shield_sprite.hide()
 	my_area2d.set_deferred("monitoring", true)
 
-func set_powered_speed(duration: float = 5.0 , powered: int = 90):
+func set_powered_speed(duration: float = 5.0 , powered: int = 85):
 	if is_powered_speed:
 		return
 	

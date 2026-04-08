@@ -1,9 +1,9 @@
 extends Control
 
-@onready var select_one_button : Button = $MarginContainer/Video
-@onready var select_two_button : Button = $MarginContainer/Audio
-@onready var select_three_button : Button = $"MarginContainer/Key Controller"
-@onready var select_four_button : Button = $MarginContainer/Back
+@onready var select_one_button : Button = $Video
+@onready var select_two_button : Button = $Audio
+@onready var select_three_button : Button = $"Key Controller"
+@onready var select_four_button : Button = $Back
 
 # --- panels --- #
 @onready var audio_panel : Control = $"MarginContainer/Audio Panel"
@@ -11,21 +11,22 @@ extends Control
 @onready var key_controller_panel : Control = $"MarginContainer/Key Controller Panel"
 
 # --- buttons --- #
-@onready var audio_button : Button = $MarginContainer/Audio
-@onready var video_button : Button = $MarginContainer/Video
-@onready var key_controller_button : Button = $"MarginContainer/Key Controller"
+@onready var audio_button : Button = $Audio
+@onready var video_button : Button = $Video
+@onready var key_controller_button : Button = $"Key Controller"
+@onready var screen_option_button : OptionButton = $"MarginContainer/Video Panel/OptionButton"
 
 # --- sliders --- #
-@onready var music_slider : Slider = $"MarginContainer/Audio Panel/VBoxContainer/Music Slider"
-@onready var sfx_slider : Slider = $"MarginContainer/Audio Panel/VBoxContainer/SFX Slider"
-@onready var brightness_slider : Slider = $"MarginContainer/Video Panel/VBoxContainer/HSlider"
+@onready var music_slider : Slider = $"MarginContainer/Audio Panel/Music Slider"
+@onready var sfx_slider : Slider = $"MarginContainer/Audio Panel/SFX Slider"
+@onready var brightness_slider : Slider = $"MarginContainer/Video Panel/HSlider"
 
 func _ready() -> void:
 	await get_tree().process_frame
-	show_audio_panel()
 	music_slider.value = SaveSystem.data.music_volume
 	sfx_slider.value = SaveSystem.data.sfx_volume
 	brightness_slider.value = SaveSystem.data.brightness
+	show_audio_panel()
 
 func show_audio_panel():
 	audio_panel.visible = true
@@ -40,6 +41,7 @@ func show_audio_panel():
 	music_slider.grab_focus()
 
 func show_video_panel():
+	set_video_settings()
 	audio_panel.visible = false
 	key_controller_panel.visible = false
 	video_panel.visible = true
@@ -63,34 +65,49 @@ func show_key_controller_panel():
 	key_controller_button.visible = false
 	
 	await get_tree().process_frame
-	$MarginContainer/Back.grab_focus()
+	$Back.grab_focus()
 
-# --- sliders --- #
+func set_video_settings() -> void:
+	if SaveSystem.data.full_screen:
+		screen_option_button.select(0)
+	else:
+		screen_option_button.select(1)
+
 func _on_h_slider_value_changed(value: float) -> void:
 	SaveSystem.data.music_volume = value
 	SaveSystem.apply_settings()
-	SaveSystem.save_game()
 
 func _on_sfx_slider_value_changed(value: float) -> void:
 	SaveSystem.data.sfx_volume = value
 	SaveSystem.apply_settings()
-	SaveSystem.save_game()
 
 func _on_brightness_slider_value_changed(value: float) -> void:
 	SaveSystem.data.brightness = value
 	SaveSystem.apply_settings()
+
+func _on_option_button_item_selected(index: int) -> void:
+	UiSound.play_mouse_clic_sound()
+	match index:
+		0:
+			SaveSystem.data.full_screen = true
+		1:
+			SaveSystem.data.full_screen = false
+	SaveSystem.apply_settings()
 	SaveSystem.save_game()
 
-# --- buttons pressed --- #
 func _on_video_pressed() -> void:
+	UiSound.play_mouse_clic_sound()
 	show_video_panel()
 
 func _on_audio_pressed() -> void:
+	UiSound.play_mouse_clic_sound()
 	show_audio_panel()
 
 func _on_key_controller_pressed() -> void:
+	UiSound.play_mouse_clic_sound()
 	show_key_controller_panel()
 
 func _on_back_pressed() -> void:
+	UiSound.play_mouse_clic_sound()
 	SaveSystem.save_game()
 	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")

@@ -5,21 +5,16 @@
 [ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="2_pvjee"]
 [ext_resource type="SpriteFrames" uid="uid://bp4fw47ytrcef" path="res://resources/animation/big_drone.tres" id="2_y7ven"]
 [ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="3_y7ven"]
-[ext_resource type="Script" uid="uid://bmuybs2nyds0a" path="res://scripts/boss_shot/shoot_drone.gd" id="6_ypv5m"]
+[ext_resource type="Script" uid="uid://bmuybs2nyds0a" path="res://scripts/boss_marker_shot/shoot_drone.gd" id="6_ypv5m"]
 [ext_resource type="PackedScene" uid="uid://c8wc87tk8yq41" path="res://scenes/bullet_boss/bullet_boss_level_1.tscn" id="7_dss4s"]
 [ext_resource type="PackedScene" uid="uid://cm2akvbbk30fs" path="res://scenes/enemy/drone_1.tscn" id="7_pcaxs"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypv5m"]
-bg_color = Color(0.91764706, 0, 0, 0.23529412)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcaxs"]
-bg_color = Color(0, 0.654902, 0.30980393, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikxfw"]
 size = Vector2(6, 7)
 
 [node name="Level 2 Boss" type="Node2D" unique_id=1196738463 node_paths=PackedStringArray("explosion_animation") groups=["BOSSES"]]
 script = ExtResource("1_euph8")
+max_life = 150
 explosion_animation = NodePath("Area2D/Explosion")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1309396639]
@@ -50,8 +45,6 @@ offset_bottom = 2.0
 rotation = -1.5707964
 theme = ExtResource("2_pvjee")
 theme_override_font_sizes/font_size = 5
-theme_override_styles/background = SubResource("StyleBoxFlat_ypv5m")
-theme_override_styles/fill = SubResource("StyleBoxFlat_pcaxs")
 max_value = 1.0
 value = 1.0
 fill_mode = 2

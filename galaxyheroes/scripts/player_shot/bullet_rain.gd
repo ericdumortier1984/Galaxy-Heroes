@@ -21,7 +21,7 @@ var fire_rate_timer : float = 0.0
 var screen_size : Vector2
 
 func _ready() -> void:
-	var screen_size = get_viewport_rect().size
+	screen_size = get_viewport_rect().size
 
 func _process(delta: float) -> void:
 	set_fire_rate_timer(delta)

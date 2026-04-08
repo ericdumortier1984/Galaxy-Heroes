@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bcwcuoyt03yof" path="res://scenes/boss/final_boss.tscn" id="6_alfcl"]
 [ext_resource type="AudioStream" uid="uid://dc1h3u85ul0i1" path="res://audio/Music/Queen - Innuendo.mp3" id="7_260hk"]
 [ext_resource type="Texture2D" uid="uid://duunv0n36w6wg" path="res://images/UI/texture/black_rect_texture.png" id="9_ifphl"]
+[ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="11_alfcl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_260hk"]
 size = Vector2(285, 55)
@@ -89,3 +90,21 @@ shape = SubResource("RectangleShape2D_260hk")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Limits" unique_id=298067626]
 position = Vector2(133, 166)
 shape = SubResource("RectangleShape2D_260hk")
+
+[node name="Control" type="Control" parent="." unique_id=170879188]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Skip" type="Label" parent="Control" unique_id=1071589016]
+visible = false
+layout_mode = 1
+offset_left = 6.0
+offset_top = 127.0
+offset_right = 139.0
+offset_bottom = 136.0
+theme = ExtResource("11_alfcl")
+text = "PRESS SHOOT TO KILL ZYNTHAR..."

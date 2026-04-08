@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bayokcodngq26"]
+
+[ext_resource type="Script" uid="uid://duk6k0xh4rh11" path="res://scripts/enemy/bombardier.gd" id="1_kv0pq"]
+[ext_resource type="SpriteFrames" uid="uid://c0qe74b4y6bal" path="res://resources/animation/thrust_on.tres" id="2_q2dvk"]
+[ext_resource type="Texture2D" uid="uid://bwdy5mvfgtfwr" path="res://images/enemy/bombardier/bombardier.png" id="3_6lw0h"]
+[ext_resource type="Script" uid="uid://cnxqb6d0diyvo" path="res://scripts/enemy_marker/bombardier_marker.gd" id="4_65m6p"]
+[ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="4_pfsxx"]
+[ext_resource type="PackedScene" uid="uid://dic78nqss6qb0" path="res://scenes/enemy_shot/bombardier_shot.tscn" id="5_6lw0h"]
+[ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="5_65m6p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_65m6p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6lw0h")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kv0pq"]
+size = Vector2(56, 12)
+
+[node name="Bombardier" type="Node2D" unique_id=1878698038]
+scale = Vector2(0.55, 0.55)
+script = ExtResource("1_kv0pq")
+max_life = 4
+
+[node name="Area2D" type="Area2D" parent="." unique_id=102510574 groups=["ENEMIES"]]
+
+[node name="Thrust" type="AnimatedSprite2D" parent="Area2D" unique_id=1893351214]
+modulate = Color(0.2, 1, 0, 1)
+position = Vector2(27.94, -3.305)
+scale = Vector2(0.43, 0.43)
+sprite_frames = ExtResource("2_q2dvk")
+animation = &"Thrust on"
+
+[node name="Fly" type="AnimatedSprite2D" parent="Area2D" unique_id=104839065]
+sprite_frames = SubResource("SpriteFrames_65m6p")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=134282356]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_kv0pq")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Area2D" unique_id=446161194]
+
+[node name="Drop Bomb Marker" type="Marker2D" parent="." unique_id=1964825160]
+position = Vector2(21.818182, 3.6363635)
+script = ExtResource("4_65m6p")
+bomb_scene = ExtResource("5_6lw0h")
+drop_bomb_interval = 1.0
+
+[node name="Drop Bomb rate Timer" type="Timer" parent="Drop Bomb Marker" unique_id=1892612228]
+
+[node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=1358423192]
+sprite_frames = ExtResource("4_pfsxx")
+animation = &"explosion"
+
+[node name="Explosion Sound" type="AudioStreamPlayer2D" parent="Explosion" unique_id=1240875868]
+stream = ExtResource("5_65m6p")
+bus = &"SFX"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="Area2D/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Drop Bomb Marker/Drop Bomb rate Timer" to="Drop Bomb Marker" method="_on_drop_bomb_rate_timer_timeout"]
+[connection signal="animation_finished" from="Explosion" to="." method="_on_explosion_animation_finished"]

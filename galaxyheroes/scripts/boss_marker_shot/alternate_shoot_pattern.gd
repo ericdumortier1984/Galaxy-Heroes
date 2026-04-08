@@ -35,6 +35,7 @@ func set_boss_fire_ball(direction : Vector2, offset := Vector2.ZERO):
 	fire_ball.global_position = global_position + offset
 	fire_ball.set_direction(direction.normalized())
 	get_tree().current_scene.add_child(fire_ball)
+	flash_animation.play()
 
 func set_boss_bullet(direction : Vector2) -> void:
 	var boss_bullet = bullet_boss_scene.instantiate()
@@ -56,7 +57,7 @@ func set_shot_pattern_fan() -> void:
 				  -0.10, 0.4, 0.10]:
 		set_boss_bullet(Vector2.LEFT.rotated(angle))
 
-func set_shot_fire_line():
+func set_shot_fire_line() -> void:
 	var fire_ball_count := 5
 	var fire_ball_spacing := 5
 	var fire_ball_random_angle := randf_range(-0.5, 0.5)
@@ -66,16 +67,24 @@ func set_shot_fire_line():
 		var fire_ball_spawn_offset :=  -direction * fire_ball_spacing * i
 		set_boss_fire_ball(direction, fire_ball_spawn_offset)
 
-func set_fan_shot_fire_ball():
-	var fire_ball_count := 5
-	var fire_ball_spacing := 2
-	var fire_ball_random_angle := randf_range(-0.5, 0.5)
+func shoot_radial() -> void:
+	var bullets := 25
+	
+	for i in bullets:
+		var angle = (TAU / bullets) * i
+		set_boss_bullet(Vector2.RIGHT.rotated(angle))
+
+func set_fan_shot_fire_ball() -> void:
+	var fire_ball_count := 8
+	var total_angle := 0.8
+	var angle_step := total_angle / (fire_ball_count - 1)
+	var start_angle := -total_angle / 2
 	
 	for i in fire_ball_count:
-		var fire_ball_offset_y := (i - fire_ball_count / 2) * fire_ball_spacing
-		var fire_ball_individual_angle := fire_ball_random_angle + randf_range(-0.25, 0.25)
-		var fire_ball_direction := Vector2.LEFT.rotated(fire_ball_individual_angle)
-		set_boss_fire_ball(fire_ball_direction, Vector2(0, fire_ball_offset_y))
+		var angle := start_angle + (i * angle_step)
+		var direction := Vector2.LEFT.rotated(angle)
+		
+		set_boss_fire_ball(direction, Vector2.ZERO)
 
 func _on_fire_rate_timer_timeout() -> void:
 	if not can_shoot:
@@ -89,9 +98,10 @@ func _on_fire_rate_timer_timeout() -> void:
 		1:
 			set_shot_pattern_double()
 		2:
-			flash_animation.play()
 			set_shot_pattern_fan()
 		3:
-			set_shot_fire_line()
+			shoot_radial()
 		4:
+			set_shot_fire_line()
+		5:
 			set_fan_shot_fire_ball()

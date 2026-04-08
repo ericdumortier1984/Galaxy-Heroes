@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 
 func set_direction(new_direction : Vector2) -> void:
 	direction = new_direction.normalized()
+	rotation = direction.angle()
 
 func move_turret_bullet(delta : float) -> void:
 	global_position += direction * speed * delta

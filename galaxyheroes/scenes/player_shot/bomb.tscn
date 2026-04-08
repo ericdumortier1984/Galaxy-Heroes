@@ -2,14 +2,18 @@
 
 [ext_resource type="Script" uid="uid://b2g6jrn0tstxg" path="res://scripts/player_shot/bomb.gd" id="1_s1px0"]
 [ext_resource type="Texture2D" uid="uid://bx74o06wgpmk4" path="res://images/ship/army/bomb.png" id="2_ck8xm"]
+[ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="3_65n7m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_65n7m"]
 radius = 30.02988
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1a6m"]
+
 [node name="Bomb" type="Area2D" unique_id=1306655621 groups=["PLAYER_BULLET"]]
 scale = Vector2(0.15, 0.15)
 script = ExtResource("1_s1px0")
-damage = 20
+life_time = 0.75
+damage = 10
 shot_velocity = Vector2(120, -120)
 shot_gravity = Vector2(0, 120)
 
@@ -22,6 +26,19 @@ scale = Vector2(0.84000045, 0.7599996)
 shape = SubResource("CircleShape2D_65n7m")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1770886602 groups=["PLAYER_BULLET"]]
+
+[node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=1926343027]
+visible = false
+scale = Vector2(8, 8)
+sprite_frames = ExtResource("3_65n7m")
+animation = &"explosion"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=378171044]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1376490065]
+scale = Vector2(220, 220)
+shape = SubResource("CircleShape2D_n1a6m")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

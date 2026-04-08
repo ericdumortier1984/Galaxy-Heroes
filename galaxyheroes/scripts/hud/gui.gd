@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var special_weapon_label : Label = $HUD/MarginContainer3/Label
 @onready var special_weapon_bar : ProgressBar = $"HUD/MarginContainer3/Special Bar"
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$HUD/MarginContainer/Score.text = "SCORE: " + str(GlobalSingleton.score)
 	$HUD/MarginContainer/Lifes.text = "LIFES: " + str(GlobalSingleton.lifes)
 	$HUD/MarginContainer2/Missiles.text = "MISSILES: " + str(GlobalSingleton.missiles)

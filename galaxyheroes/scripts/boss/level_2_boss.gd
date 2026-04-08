@@ -2,13 +2,13 @@ class_name Level2Boss
 extends Node2D
 
 enum BossState { IDLE, OPEN, CLOSE }
+enum PositionBossState { UP, CENTER, DOWN, FORWARD, BACK }
 
 signal boss_entered
 signal boss_defeated
 
 # --- export --- #
 @export var max_life : int = 100
-@export var boss_offset : float = 1.0
 @export var explosion_animation : AnimatedSprite2D
 
 # --- onready ---# 
@@ -27,8 +27,17 @@ var is_boss_defeated : bool = false
 var is_boss_entering : bool = false
 var is_boss_dying : bool = false
 
+# --- fight_position --- #
+var target_position : Vector2
+var position_up: float
+var position_center : float
+var position_down : float
+var position_forward : float
+var position_back : float
+
 # --- state --- #
 var current_state : BossState = BossState.IDLE
+var current_position_state : PositionBossState
 
 func _ready() -> void:
 	set_boss_bar_health()
@@ -57,6 +66,8 @@ func set_boss_entry_finish() -> void:
 	
 	boss_entered.emit()
 	set_boss_state()
+	set_fight_position()
+	set_boss_position_state()
 
 func set_boss_state() -> void:
 	change_boss_state(BossState.IDLE)
@@ -77,6 +88,46 @@ func change_boss_state(new_state : BossState):
 			boss_animated_sprite.play("close")
 			state_timer.wait_time = 5.0
 	state_timer.start()
+
+func set_boss_position_state() -> void:
+	change_boss_fight_position(PositionBossState.CENTER)
+
+func change_boss_fight_position(new_state : PositionBossState) -> void:
+	current_position_state= new_state
+	
+	match current_position_state:
+		PositionBossState.FORWARD:
+			target_position = Vector2(position_forward, global_position.y)
+			state_timer.wait_time = 2.0
+		PositionBossState.CENTER:
+			target_position = Vector2(position_center, global_position.y)
+			state_timer.wait_time = 2.0
+		PositionBossState.BACK:
+			target_position = Vector2(position_back, global_position.y)
+			state_timer.wait_time = 2.0
+		PositionBossState.UP:
+			target_position = Vector2(global_position.x, position_up)
+			state_timer.wait_time = 2.0
+		PositionBossState.DOWN:
+			target_position = Vector2(global_position.x, position_down)
+			state_timer.wait_time = 2.0
+			
+	set_first_level_boss_fight_movement_tween()
+	state_timer.start()
+
+func set_fight_position() -> void:
+	var screen_size = get_viewport_rect().size
+	position_forward = screen_size.x * 0.3
+	position_center = screen_size.x * 0.5
+	position_back = screen_size.x * 0.8
+	position_up = screen_size.y * 0.3 
+	position_down = screen_size.y * 0.6
+
+func set_first_level_boss_fight_movement_tween() -> void:
+	var fight_movement_tween = get_tree().create_tween()
+	fight_movement_tween.tween_property(
+		self, "global_position", target_position, 2.5
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func take_damage(amount : int):
 	if GlobalSingleton.game_state != GlobalSingleton.GameState.PLAYING:
@@ -136,7 +187,14 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		take_damage(area.damage)
 		area.queue_free()
 
+func set_position_in_timer() -> void:
+	var new_level_boss_state_position = current_position_state
+	while new_level_boss_state_position == current_position_state:
+		new_level_boss_state_position = (randi() % 5) as PositionBossState
+	change_boss_fight_position(new_level_boss_state_position)
+
 func _on_state_timer_timeout() -> void:
+	set_position_in_timer()
 	match current_state:
 		BossState.IDLE:
 			change_boss_state(BossState.CLOSE)

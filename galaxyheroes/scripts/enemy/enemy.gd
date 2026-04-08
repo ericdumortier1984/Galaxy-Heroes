@@ -9,6 +9,7 @@ extends Node2D
 @onready var explosion_sound : AudioStreamPlayer2D = $"Explosion/Explosion Sound"
 @onready var thrust_animation : AnimatedSprite2D = get_node_or_null("Area2D/Thrust")
 @onready var flash_animation : AnimatedSprite2D = get_node_or_null("Flash 1")
+@onready var fly_animation : AnimatedSprite2D = get_node_or_null("Area2D/Fly")
 
 # --- vector --- #
 var direction = Vector2.ZERO
@@ -33,7 +34,7 @@ func _ready():
 	set_animations()
 	check_boss()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if explosion or GlobalSingleton.game_state != GlobalSingleton.GameState.PLAYING:
 		return
 
@@ -71,8 +72,9 @@ func shoot():
 		flash_animation.play("Flash")
 
 func set_animations():
-	$Area2D/Fly.play("fly")
-	if flash_animation:
+	if fly_animation:
+		$Area2D/Fly.play("fly")
+	if thrust_animation:
 		thrust_animation.play("Thrust on")
 
 func check_boss():
@@ -99,5 +101,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PLAYER_BULLET"):
 		if thrust_animation:
 			thrust_animation.stop()
-		take_damage(1)
+		take_damage(area.damage)
 		set_explosion()

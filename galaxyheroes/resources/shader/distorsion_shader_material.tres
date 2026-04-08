@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://devmevu8bt1f0"]
+
+[ext_resource type="Shader" uid="uid://11p17vn1kvp8" path="res://resources/shader/distorsion_shader_material.gdshader" id="1_sos78"]
+
+[resource]
+shader = ExtResource("1_sos78")
+shader_parameter/trail_color = Color(0.6925505, 0.77090174, 0.50210136, 0.47058824)
+shader_parameter/stretch = 0.2
+shader_parameter/speed = 10.0

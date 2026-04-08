@@ -7,9 +7,9 @@ extends Resource
 
 # --- screen --- #
 @export var resolution : Vector2i = Vector2i(1280, 720)
-@export var full_screen : bool = false
+@export var full_screen : bool = true
 @export var windowed : bool = false
-@export var brightness : float = 0.5
+@export var brightness : float = 50.0
 
 # --- game --- #
 @export var score : int

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b13jg8xvhgrk8"
-path="res://.godot/imported/turret_2.png-9442e853969d762d4f3176cd39edf8c8.ctex"
+uid="uid://buu6g1nep868v"
+path="res://.godot/imported/final_boss_level_two.png-02adb1df75d4873381980f9c2c3d89ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/enemy/turret/turret_2.png"
-dest_files=["res://.godot/imported/turret_2.png-9442e853969d762d4f3176cd39edf8c8.ctex"]
+source_file="res://images/boss_shot/final_boss_level_two.png"
+dest_files=["res://.godot/imported/final_boss_level_two.png-02adb1df75d4873381980f9c2c3d89ea.ctex"]
 
 [params]
 

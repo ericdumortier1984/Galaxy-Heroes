@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c783um63s6pbh" path="res://scenes/enemy/enemy.tscn" id="8_q0p76"]
 [ext_resource type="PackedScene" uid="uid://bak7va5urn52c" path="res://scenes/enemy/gunner.tscn" id="9_rnty5"]
 [ext_resource type="PackedScene" uid="uid://dbaiis2gihnqb" path="res://scenes/enemy/turret_1.tscn" id="10_af0ln"]
+[ext_resource type="PackedScene" uid="uid://bayokcodngq26" path="res://scenes/enemy/bombardier.tscn" id="10_q0p76"]
 [ext_resource type="PackedScene" uid="uid://ckfkywx4hatop" path="res://scenes/power_up/double_shot_power_up.tscn" id="10_q5iha"]
 [ext_resource type="PackedScene" uid="uid://b5qckqvpm1nn" path="res://scenes/power_up/health_power_up.tscn" id="11_nlhay"]
 [ext_resource type="PackedScene" uid="uid://blyfvkp82ehbc" path="res://scenes/power_up/missile_power_up.tscn" id="12_ui0uc"]
@@ -49,7 +50,7 @@ point_count = 3
 [node name="Level 3" type="Node2D" unique_id=309792356]
 script = ExtResource("1_jvbyd")
 my_ship = Array[PackedScene]([ExtResource("2_t68c2"), ExtResource("3_6s08d"), ExtResource("4_i21c8")])
-enemy = Array[PackedScene]([ExtResource("5_af0ln"), ExtResource("6_rsiw8"), ExtResource("7_62eb7"), ExtResource("8_q0p76"), ExtResource("9_rnty5")])
+enemy = Array[PackedScene]([ExtResource("5_af0ln"), ExtResource("6_rsiw8"), ExtResource("7_62eb7"), ExtResource("8_q0p76"), ExtResource("9_rnty5"), ExtResource("10_q0p76")])
 turret = Array[PackedScene]([ExtResource("10_af0ln")])
 power_up = Array[PackedScene]([ExtResource("10_q5iha"), ExtResource("11_nlhay"), ExtResource("12_ui0uc"), ExtResource("13_wgaue"), ExtResource("14_gf5ec"), ExtResource("15_i12r4")])
 first_boss_scene = ExtResource("17_af0ln")
@@ -79,7 +80,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="Turret Spawn Timer" type="Timer" parent="Settings" unique_id=1957970967]
-wait_time = 3.0
+wait_time = 6.0
 autostart = true
 
 [node name="Power Up Spawn Timer" type="Timer" parent="Settings" unique_id=1399618617]

@@ -126,7 +126,6 @@ func complete_level(current_level: int) -> void:
 	
 	if SaveSystem.data.level_unlocked < next_level:
 		SaveSystem.data.level_unlocked = next_level
-	#SaveSystem.data.current_level = next_level
 	
 	if next_level > level_scenes.size():
 		SaveSystem.data.current_level = 1
@@ -144,7 +143,10 @@ func load_next_level() -> void:
 	else:
 		get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 
-func game_over() -> void:
+func set_game_over() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu/game_over.tscn")
 	SaveSystem.update_hi_score(score)
 	SaveSystem.save_game()
+
+func game_over() -> void:
+	call_deferred("set_game_over")

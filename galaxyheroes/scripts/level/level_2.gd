@@ -14,7 +14,7 @@ extends Node2D
 @export var drone_1_scene : PackedScene
 @export var boss_scene : PackedScene
 @export var final_boss_scene :  PackedScene
-@export var score_boss_spawner : int = 1500
+@export var score_boss_spawner : int = 2500
 @export var score_final_boss_spawner : int = 4500
 @export var boss_position_spawner : Vector2
 @export var final_boss_position_spawner : Vector2

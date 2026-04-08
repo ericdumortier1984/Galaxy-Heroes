@@ -1,6 +1,7 @@
 extends Node2D
 
 # --- onready --- #
+@onready var skip_text : Label = $Control/Skip
 @onready var bullet_camera : Camera2D = $Settings/Camera2D
 @onready var music_background : AudioStreamPlayer = $"Settings/Music Background"
 @onready var final_boss_position : Vector2 = Vector2(get_viewport_rect().size.x * 0.8, 
@@ -126,9 +127,23 @@ func on_dialogue_ended(_resource):
 	if is_final_dialogue:
 		show_credits()
 	else:
+		show_skip_intro_label()
 		GlobalSingleton.set_state(GlobalSingleton.GameState.PLAYING)
+		
+
+func show_skip_intro_label() -> void:
+	skip_text.visible = true
+	blink_skip_text()
+
+func blink_skip_text() -> void: 
+	while skip_text.visible:
+		var blink_tween = create_tween()
+		blink_tween.tween_property(skip_text, "modulate:a", 0.0, 0.5) 
+		blink_tween.tween_property(skip_text, "modulate:a", 1.0, 0.5)
+		await blink_tween.finished
 
 func set_final_bullet_camera(final_bullet) -> void:
+	skip_text.visible = false
 	GlobalSingleton.set_state(GlobalSingleton.GameState.CINEMATIC)
 	Engine.time_scale = 0.3
 	

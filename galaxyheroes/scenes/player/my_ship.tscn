@@ -34,7 +34,6 @@ bomb_scene = ExtResource("4_8mk6u")
 drone_weapon_scene = ExtResource("5_kedir")
 bullet_rain_scene = ExtResource("6_x3w6w")
 my_area2d = NodePath("Area2D")
-safe_time = 5.0
 shield_color = Color(1, 0.2628613, 0.20336351, 0.078431375)
 shot_sound = NodePath("Simple Shot Sound")
 explosion_sound = NodePath("Explosion Sound")
@@ -45,16 +44,16 @@ thrust_animation = NodePath("Thrust")
 ship_frames = ExtResource("4_30y1p")
 my_animated_ship = NodePath("Fly")
 
+[node name="Thrust" type="AnimatedSprite2D" parent="." unique_id=1147406748]
+position = Vector2(-69.725, 12.56)
+scale = Vector2(0.96999985, 0.96999985)
+sprite_frames = ExtResource("3_30y1p")
+animation = &"Thrust on"
+
 [node name="Fly" type="AnimatedSprite2D" parent="." unique_id=447946116]
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("4_30y1p")
 animation = &"idle"
-
-[node name="Thrust" type="AnimatedSprite2D" parent="." unique_id=1147406748]
-position = Vector2(-65, 14.999999)
-scale = Vector2(0.5, 0.5)
-sprite_frames = ExtResource("3_30y1p")
-animation = &"Thrust on"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1032809103]
 visible = false

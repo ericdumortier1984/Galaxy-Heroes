@@ -44,6 +44,39 @@ func shoot_radial() -> void:
 		var angle = (TAU / bullets) * i
 		shoot(Vector2.RIGHT.rotated(angle))
 
+func shoot_spiral() -> void:
+	var spiral_angle := 0.0
+	var bullets := 4
+	
+	for i in bullets:
+		var angle = spiral_angle + (i * 0.2)
+		shoot(Vector2.LEFT.rotated(angle))
+	
+	spiral_angle += 0.15
+
+func shoot_ring_burst() -> void:
+	var bullets := 20
+	
+	for i in bullets:
+		var angle = (TAU / bullets) * i
+		shoot(Vector2.RIGHT.rotated(angle))
+
+func shoot_ring_wave() -> void:
+	for j in 3:
+		await get_tree().create_timer(0.15).timeout
+		shoot_ring_burst()
+
+func shoot_fan_advanced() -> void:
+	var bullets := 12
+	var total_angle := 1.2
+	
+	var step = total_angle / (bullets - 1)
+	var start = -total_angle / 2
+	
+	for i in bullets:
+		var angle = start + i * step
+		shoot(Vector2.LEFT.rotated(angle))
+
 func _on_fire_rate_timer_timeout() -> void:
 	if not is_final_boss_can_shoot:
 		return
@@ -55,3 +88,9 @@ func _on_fire_rate_timer_timeout() -> void:
 			shoot_cone()
 		1:
 			shoot_radial()
+		2: 
+			shoot_spiral()
+		3: 
+			shoot_ring_wave()
+		5:
+			shoot_fan_advanced()

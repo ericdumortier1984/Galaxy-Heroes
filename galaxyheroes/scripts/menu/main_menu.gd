@@ -20,18 +20,23 @@ func set_continue_game():
 		continue_button.modulate = Color(1,1,1,0.4)
 
 func _on_start_pressed() -> void:
+	UiSound.play_mouse_clic_sound()
 	GlobalSingleton.start_new_game()
 	get_tree().change_scene_to_file("res://scenes/menu/select_character.tscn")
 
 func _on_load_pressed() -> void:
+	UiSound.play_mouse_clic_sound()
 	GlobalSingleton.load_game_state()
 	get_tree().change_scene_to_file("res://scenes/menu/continue_menu.tscn")
 
 func _on_options_pressed() -> void:
+	UiSound.play_mouse_clic_sound()
 	get_tree().change_scene_to_file("res://scenes/menu/options_menu.tscn")
 
 func _on_credits_pressed() -> void:
+	UiSound.play_mouse_clic_sound()
 	get_tree().change_scene_to_file("res://scenes/menu/credits.tscn")
 
 func _on_exit_pressed() -> void:
+	UiSound.play_mouse_clic_sound()
 	get_tree().quit()

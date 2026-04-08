@@ -33,8 +33,8 @@ func set_movement(delta: float) -> void:
 
 func set_color_bubble():
 	if bubble.material is ShaderMaterial:
-		var material := bubble.material as ShaderMaterial
-		material.set_shader_parameter("bubble_color", bubble_color)
+		var shader_material := bubble.material as ShaderMaterial
+		shader_material.set_shader_parameter("bubble_color", bubble_color)
 
 func spawn_pick_up_effect():
 	if pick_up_particle_scene == null:

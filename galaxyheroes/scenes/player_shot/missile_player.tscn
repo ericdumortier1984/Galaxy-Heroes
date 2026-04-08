@@ -9,7 +9,7 @@
 scale = Vector2(0.15, 0.15)
 script = ExtResource("1_6ah8i")
 speed = 250
-damage = 2
+damage = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1980577270]
 rotation = 1.5707964

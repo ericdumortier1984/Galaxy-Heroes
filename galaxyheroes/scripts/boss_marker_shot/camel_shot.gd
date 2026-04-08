@@ -7,6 +7,8 @@ extends Marker2D
 
 # --- onready --- #
 @onready var missile_launcher_timer : Timer = $"Fire Rate Timer"
+@onready var flash_animation : AnimatedSprite2D = $"../Flash"
+@onready var sprite_animation : AnimatedSprite2D = $"../AnimatedSprite2D"
 
 # --- bool --- #
 var can_shot : bool = false
@@ -31,11 +33,13 @@ func stop_shot_third_boss() -> void :
 func spawn_missile_instance(direction: Vector2) -> void:
 	var missile_instance = missile_scene.instantiate()
 	
-	missile_direction = direction.normalized()
-	missile_instance.global_position = global_position
-	missile_instance.set_direction(missile_direction)
-	
-	get_tree().current_scene.add_child(missile_instance)
+	if sprite_animation.animation == "idle":
+		missile_direction = direction.normalized()
+		missile_instance.global_position = global_position
+		missile_instance.set_direction(missile_direction)
+		
+		get_tree().current_scene.add_child(missile_instance)
+		flash_animation.play("fire_flash")
 
 func _on_fire_rate_timer_timeout() -> void:
 	if not can_shot:

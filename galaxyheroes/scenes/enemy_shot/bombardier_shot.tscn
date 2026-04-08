@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dic78nqss6qb0"]
+
+[ext_resource type="Script" uid="uid://bee6eg4tqodkq" path="res://scripts/enemy_shot/bombardier_shot.gd" id="1_b7l6r"]
+[ext_resource type="Texture2D" uid="uid://3n78ch0sy866" path="res://images/enemy/bombardier/enemy_bomb.png" id="2_jult8"]
+[ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="3_vgmqf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnpsk"]
+radius = 9.999999
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jult8"]
+radius = 149.99998
+
+[node name="Bombardier Shot" type="Area2D" unique_id=173222896 groups=["ENEMY_BULLET"]]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_b7l6r")
+life_time = 0.75
+damage = 1
+shot_velocity = Vector2(60, -60)
+shot_gravity = Vector2(-60, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2005368501]
+texture = ExtResource("2_jult8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=913437377]
+scale = Vector2(2.751, -2.855)
+shape = SubResource("CircleShape2D_pnpsk")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2088510096]
+
+[node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=1040870891]
+visible = false
+sprite_frames = ExtResource("3_vgmqf")
+animation = &"explosion"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1332071648]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1925512284]
+scale = Vector2(220, 220)
+shape = SubResource("CircleShape2D_jult8")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

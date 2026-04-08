@@ -54,7 +54,6 @@ lower_asteroid = Array[PackedScene]([ExtResource("6_8e0j7"), ExtResource("7_13hc
 power_up_scene = Array[PackedScene]([ExtResource("6_hkufj"), ExtResource("7_rfyx5"), ExtResource("8_1kt21"), ExtResource("9_mferh"), ExtResource("10_j1614"), ExtResource("11_nwfd4")])
 boss_scene = ExtResource("12_odw4r")
 my_ships = Array[PackedScene]([ExtResource("13_0wlyu"), ExtResource("14_1f0so"), ExtResource("15_1n0t4")])
-boss_score_spawner = 2500
 boss_spawn_point = Vector2(300, 100)
 
 [node name="Pause Menu" parent="." unique_id=146995166 instance=ExtResource("16_gfp5l")]

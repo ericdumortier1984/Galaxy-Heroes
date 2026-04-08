@@ -21,7 +21,7 @@ texture = ExtResource("1_1r3a4")
 scale = Vector2(1, 0.7069594)
 shape = SubResource("CircleShape2D_1nj0i")
 
-[node name="Simple Enemy Bullet Exit Notification" type="VisibleOnScreenNotifier2D" parent="." unique_id=1780214383]
+[node name="Exit Notifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=1780214383]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="screen_exited" from="Simple Enemy Bullet Exit Notification" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_exited" from="Exit Notifier" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

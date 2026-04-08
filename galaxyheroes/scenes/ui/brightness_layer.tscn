@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://rfv3ywayalfx"]
+
+[ext_resource type="Script" uid="uid://dog2xkj7ab1u" path="res://scripts/autoload/brightness.gd" id="1_5q7si"]
+
+[node name="BrightnessLayer" type="CanvasLayer" unique_id=1573882422]
+script = ExtResource("1_5q7si")
+
+[node name="Brightness" type="ColorRect" parent="." unique_id=1952592397]
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.23529412)

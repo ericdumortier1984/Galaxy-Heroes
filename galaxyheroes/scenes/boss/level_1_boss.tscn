@@ -3,18 +3,13 @@
 [ext_resource type="Script" uid="uid://bx1ellmqau3xq" path="res://scripts/boss/level_1_boss.gd" id="1_2d454"]
 [ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="2_o2rdi"]
 [ext_resource type="SpriteFrames" uid="uid://c0qe74b4y6bal" path="res://resources/animation/thrust_on.tres" id="2_ojy85"]
-[ext_resource type="Script" uid="uid://j0qk1bjxx8v4" path="res://scripts/boss_shot/alternate_shoot_pattern.gd" id="3_32dpx"]
+[ext_resource type="Script" uid="uid://j0qk1bjxx8v4" path="res://scripts/boss_marker_shot/alternate_shoot_pattern.gd" id="3_32dpx"]
 [ext_resource type="PackedScene" uid="uid://c8wc87tk8yq41" path="res://scenes/bullet_boss/bullet_boss_level_1.tscn" id="4_2oim8"]
 [ext_resource type="Texture2D" uid="uid://bvd84em8u0ok3" path="res://images/boss/red_phantom/Red_Phantom.png" id="4_o2rdi"]
 [ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="4_x886r"]
 [ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="5_x886r"]
 [ext_resource type="SpriteFrames" uid="uid://w1qqu3htvqmo" path="res://resources/animation/boss_flash.tres" id="7_rynr1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2rdi"]
-bg_color = Color(0.91764706, 0, 0, 0.23529412)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbc2i"]
-bg_color = Color(3.7541986e-06, 0.6543177, 0.31161097, 1)
+[ext_resource type="PackedScene" uid="uid://rulkvfhixd3e" path="res://scenes/bullet_boss/fire_ball.tscn" id="10_igpt4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rq6ru"]
 animations = [{
@@ -42,23 +37,21 @@ explosion_animation = NodePath("Area2D/Explosion")
 
 [node name="ProgressBar" type="ProgressBar" parent="Area2D" unique_id=2093423868]
 offset_left = 9.000001
-offset_top = -9.75
+offset_top = -7.0
 offset_right = 12.000001
-offset_bottom = 10.25
+offset_bottom = 12.964027
+scale = Vector2(0.75, 0.75)
 theme = ExtResource("2_o2rdi")
 theme_override_font_sizes/font_size = 5
-theme_override_styles/background = SubResource("StyleBoxFlat_o2rdi")
-theme_override_styles/fill = SubResource("StyleBoxFlat_tbc2i")
 max_value = 1.0
 value = 1.0
 fill_mode = 2
 show_percentage = false
 
 [node name="Thrust" type="AnimatedSprite2D" parent="Area2D" unique_id=1190432846]
-visible = false
-position = Vector2(-1.8358786e-07, 4.2)
+position = Vector2(2.9999995, 13.25)
 rotation = -1.5707964
-scale = Vector2(0.099999994, 0.099999994)
+scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("2_ojy85")
 animation = &"Thrust on"
 
@@ -81,7 +74,7 @@ volume_db = -5.0
 bus = &"SFX"
 
 [node name="Flash" type="AnimatedSprite2D" parent="Area2D" unique_id=1451248353]
-modulate = Color(0, 1, 0.09803922, 1)
+modulate = Color(0.12941177, 0.7058824, 0.1882353, 1)
 z_index = -1
 position = Vector2(-1.4999994, -14.25)
 rotation = 1.5707964
@@ -100,6 +93,7 @@ shape = SubResource("RectangleShape2D_32dpx")
 position = Vector2(-1.4999994, -14.25)
 script = ExtResource("3_32dpx")
 bullet_boss_scene = ExtResource("4_2oim8")
+fire_ball_scene = ExtResource("10_igpt4")
 flash_animation = NodePath("../Flash")
 fire_timer = NodePath("Fire Rate Timer")
 
@@ -107,6 +101,9 @@ fire_timer = NodePath("Fire Rate Timer")
 
 [node name="Shoot Pattern Timer" type="Timer" parent="." unique_id=1425911199]
 
+[node name="Position State Timer" type="Timer" parent="." unique_id=1458246406]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Area2D/Shoot Marker/Fire Rate Timer" to="Area2D/Shoot Marker" method="_on_fire_rate_timer_timeout"]
 [connection signal="timeout" from="Shoot Pattern Timer" to="." method="_on_shoot_pattern_timer_timeout"]
+[connection signal="timeout" from="Position State Timer" to="." method="_on_position_state_timer_timeout"]

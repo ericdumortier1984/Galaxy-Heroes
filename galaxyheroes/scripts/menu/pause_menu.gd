@@ -6,7 +6,7 @@ extends Control
 # --- bool --- #
 var is_paused : bool = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_paused:
 		return
 
@@ -33,6 +33,7 @@ func _on_resume_pressed() -> void:
 			balloon.regain_focus()
 
 func _on_main_menu_pressed() -> void:
+	UiSound.play_mouse_clic_sound()
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 

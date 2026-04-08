@@ -137,5 +137,5 @@ func _on_shot_pattern_timer_timeout() -> void:
 	if is_final_boss_defeated:
 		return
 		
-	shot_pattern_index = (shot_pattern_index + 1) % 2
+	shot_pattern_index = (shot_pattern_index + 1) % 6
 	shot_marker.set_shot_pattern_index(shot_pattern_index)

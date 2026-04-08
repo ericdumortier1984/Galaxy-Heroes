@@ -29,14 +29,10 @@ func _process(delta : float) -> void:
 	
 	global_position += direction * speed * delta
 	
-	if raycast.is_colliding():
-		var area = raycast.get_collider()
-	
 	set_laser_beam_particle()
 
 func set_laser_beam_particle():
 	var laser_start_pos = line_2d.points[1]
-	var laser_end_pos = line_2d.points[0]
 	
 	laser_particle.position = laser_start_pos
 

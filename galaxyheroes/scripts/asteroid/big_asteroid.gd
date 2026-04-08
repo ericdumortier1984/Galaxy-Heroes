@@ -18,10 +18,10 @@ func spawn_fragments():
 		Vector2(-1, 1)
 	]
 	
-	for direction in array_direction:
+	for fragment_direction in array_direction:
 		var small_steroid = small_asteroid_scene.instantiate()
 		small_steroid.global_position = global_position
-		small_steroid.direction = direction.normalized()
+		small_steroid.direction = fragment_direction.normalized()
 		get_parent().add_child(small_steroid)
 		
 	GlobalSingleton.score += 20
@@ -34,7 +34,7 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	if area.is_in_group("PLAYER_BULLET"):
-		take_damage(1)
+		take_damage(area.damage)
 		explode()
 
 func _on_explosion_animation_finished() -> void:

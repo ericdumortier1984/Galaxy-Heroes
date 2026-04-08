@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://caiwmtttmpcr4"]
+
+[ext_resource type="Texture2D" uid="uid://dn20gofanevn7" path="res://images/boss_shot/simple_finalboss_bullet.png" id="1_dhkit"]
+[ext_resource type="Script" uid="uid://dhqyccdnajsec" path="res://scripts/enemy_shot/simple_enemy_bullet.gd" id="1_frvsj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_frvsj"]
+radius = 29.15476
+
+[node name="FinalBossSimpleBullet" type="Area2D" unique_id=1887084250 groups=["ENEMY_BULLET"]]
+scale = Vector2(0.15, 0.15)
+script = ExtResource("1_frvsj")
+speed = 60
+speed_rotation = 45.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=426897200]
+texture = ExtResource("1_dhkit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=78784026]
+shape = SubResource("CircleShape2D_frvsj")
+
+[node name="Exit Notifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=388274802]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="Exit Notifier" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

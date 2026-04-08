@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bxxgl1kpegjyi"]
+
+[ext_resource type="Script" uid="uid://d1xn5odf0c4v1" path="res://scripts/boss_shot/flyer_turret_bullet.gd" id="1_uvbr0"]
+[ext_resource type="Texture2D" uid="uid://bb6y3thl7kwn8" path="res://images/boss_shot/flyer_turret_bullet_3.png" id="2_6udq8"]
+[ext_resource type="Texture2D" uid="uid://p0l03a5s5p81" path="res://images/boss_shot/flyer_turret_bullet.png" id="2_tjae0"]
+[ext_resource type="Texture2D" uid="uid://buk0sfcppsfgg" path="res://images/boss_shot/flyer_turret_bullet_2.png" id="3_tjae0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6udq8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6udq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tjae0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6udq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tjae0")
+}],
+"loop": false,
+"name": &"in_fire",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6udq8"]
+size = Vector2(53, 26)
+
+[node name="BulletFlyerTurret" type="Area2D" unique_id=563432149 groups=["ENEMY_BULLET"]]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_uvbr0")
+speed = 90
+
+[node name="AnimateSprite2D" type="AnimatedSprite2D" parent="." unique_id=1009473881]
+sprite_frames = SubResource("SpriteFrames_6udq8")
+animation = &"in_fire"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1628537537]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_6udq8")
+
+[node name="Exit Notifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=337633892]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="Exit Notifier" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

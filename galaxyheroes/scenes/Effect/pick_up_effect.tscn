@@ -12,8 +12,5 @@ script = ExtResource("1_k8xya")
 material = ExtResource("1_i0ney")
 texture = ExtResource("2_k8xya")
 
-[node name="CPU Particle" type="CPUParticles2D" parent="." unique_id=1621404796]
-color = Color(1, 1, 1, 0)
-
 [node name="Pick Up Sound" type="AudioStreamPlayer2D" parent="." unique_id=1570187545]
 stream = ExtResource("4_qtt38")

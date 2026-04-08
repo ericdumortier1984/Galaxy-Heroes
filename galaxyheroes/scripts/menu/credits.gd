@@ -7,4 +7,5 @@ func _ready():
 	select_button.grab_focus()
 
 func _on_back_pressed() -> void:
+	UiSound.play_mouse_clic_sound()
 	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")

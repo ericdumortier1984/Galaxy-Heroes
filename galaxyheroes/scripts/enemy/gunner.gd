@@ -14,7 +14,6 @@ func _process(delta: float) -> void:
 		return
 	
 	set_movement(delta)
-	#set_enemy_out_screen()
 
 func set_movement(delta : float) -> void:
 	global_position.x += direction.x * speed_enemy * delta

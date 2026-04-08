@@ -61,6 +61,13 @@ func parallax_behavior(delta_time) -> void:
 	get_node("Background/Roof Background Parallax").scroll_base_offset -= Vector2(1, 0) * 8 * delta_time
 
 func get_level_score() -> int:
+	if not is_first_boss_defeated:
+		return min(GlobalSingleton.score - level_start_score, score_first_boss_spawner)
+	if not is_third_boss_defeated:
+		return min(GlobalSingleton.score - level_start_score, score_third_boss_spawner)
+	if not is_final_boss_defeated:
+		return min(GlobalSingleton.score - level_start_score, score_final_boss_spawner)
+	
 	return GlobalSingleton.score - level_start_score
 
 func set_character():

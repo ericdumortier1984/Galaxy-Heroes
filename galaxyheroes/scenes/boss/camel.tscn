@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c7678wbtcsghh" path="res://scripts/boss/camel.gd" id="1_hwl22"]
 [ext_resource type="Texture2D" uid="uid://b2cbw6oxi0var" path="res://images/boss/camel/camel_down.png" id="2_u7hsw"]
 [ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="3_4ges6"]
-[ext_resource type="Script" uid="uid://bqrlo5syvyctw" path="res://scripts/boss_shot/camel_shot.gd" id="3_t6p1n"]
+[ext_resource type="Script" uid="uid://bqrlo5syvyctw" path="res://scripts/boss_marker_shot/camel_shot.gd" id="3_t6p1n"]
 [ext_resource type="Texture2D" uid="uid://b4h22cxs3wky4" path="res://images/boss/camel/Boss_0.4.png" id="3_ytb3d"]
 [ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="4_mk8mc"]
 [ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="5_t6p1n"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://8w5e6dym6xdq" path="res://images/boss/camel/Boss_0.4_step_4.png" id="7_l7kb6"]
 [ext_resource type="PackedScene" uid="uid://bwonup8dkrfb1" path="res://scenes/bullet_boss/boss_missile_shot.tscn" id="9_hnr1s"]
 [ext_resource type="Texture2D" uid="uid://kn4d3ewb02it" path="res://images/boss/camel/Boss_0.4_step_6.png" id="9_o35ub"]
+[ext_resource type="SpriteFrames" uid="uid://rqqjpu5ix1w" path="res://resources/animation/fire_flash.tres" id="13_cwha3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ges6"]
 animations = [{
@@ -67,18 +68,25 @@ height = 14.999954
 radius = 1.666666
 height = 3.333332
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okago"]
-bg_color = Color(0.91764706, 0, 0, 0.23529412)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mk8mc"]
-bg_color = Color(0, 0.654902, 0.30980393, 1)
-
 [node name="Camel" type="Node2D" unique_id=1285368405 node_paths=PackedStringArray("explosion_animation") groups=["BOSSES"]]
 scale = Vector2(1.8, 1.8)
 script = ExtResource("1_hwl22")
+max_life = 150
 explosion_animation = NodePath("Area2D/Explosion")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=623996405]
+
+[node name="Life Bar" type="ProgressBar" parent="Area2D" unique_id=217451881]
+offset_left = -12.77778
+offset_top = -20.0
+offset_right = -8.77778
+offset_bottom = 7.0
+rotation = -1.5707964
+theme = ExtResource("3_4ges6")
+max_value = 1.0
+value = 1.0
+fill_mode = 2
+show_percentage = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=1356261865]
 sprite_frames = SubResource("SpriteFrames_4ges6")
@@ -102,23 +110,9 @@ shape = SubResource("CapsuleShape2D_t6p1n")
 position = Vector2(-5, -1.1111112)
 script = ExtResource("3_t6p1n")
 missile_scene = ExtResource("9_hnr1s")
-missile_launch_interval = 1.0
+missile_launch_interval = 0.5
 
 [node name="Fire Rate Timer" type="Timer" parent="Area2D/Missile launcher" unique_id=1875628247]
-
-[node name="Life Bar" type="ProgressBar" parent="Area2D" unique_id=217451881]
-offset_left = -12.77778
-offset_top = -20.0
-offset_right = -8.77778
-offset_bottom = 7.0
-rotation = -1.5707964
-theme = ExtResource("3_4ges6")
-theme_override_styles/background = SubResource("StyleBoxFlat_okago")
-theme_override_styles/fill = SubResource("StyleBoxFlat_mk8mc")
-max_value = 1.0
-value = 1.0
-fill_mode = 2
-show_percentage = false
 
 [node name="Explosion" type="AnimatedSprite2D" parent="Area2D" unique_id=534152280]
 sprite_frames = ExtResource("4_mk8mc")
@@ -127,6 +121,13 @@ animation = &"explosion"
 [node name="Explosion Sound" type="AudioStreamPlayer2D" parent="Area2D/Explosion" unique_id=43862197]
 stream = ExtResource("5_t6p1n")
 bus = &"SFX"
+
+[node name="Flash" type="AnimatedSprite2D" parent="Area2D" unique_id=455329261]
+position = Vector2(-8.4, -1.111)
+rotation = -3.1415925
+scale = Vector2(0.25, 0.25)
+sprite_frames = ExtResource("13_cwha3")
+animation = &"fire_flash"
 
 [node name="State Timer" type="Timer" parent="." unique_id=1384625024]
 

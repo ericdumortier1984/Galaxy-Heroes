@@ -7,8 +7,8 @@ extends Node2D
 @export var power_up_scene : Array[PackedScene]
 @export var boss_scene : PackedScene
 @export var my_ships : Array[PackedScene]
-@export var boss_score_spawner : int = 1500
-@export var boss_spawn_point : Vector2
+@export var boss_score_spawner : int = 2500 
+@export var boss_spawn_point : Vector2 
 
 # --- onready --- #
 @onready var my_ship_spawn_position : Vector2 = Vector2(20, get_viewport_rect().size.y / 2)
@@ -56,7 +56,6 @@ func check_boss_spawn():
 	if boss_spawned:
 		return
 		
-	#if GlobalSingleton.score >= boss_score_spawner:
 	if get_level_score() >= boss_score_spawner:
 		boss_spawn()
 
@@ -97,8 +96,6 @@ func show_level_completed():
 	sprite_win_label.queue_free()
 
 func set_win_level():
-	#SaveSystem.data.level_unlocked = 2
-	#SaveSystem.save_game()
 	GlobalSingleton.complete_level(1)
 	SaveSystem.update_hi_score(GlobalSingleton.score)
 	Transition.change_scene("res://scenes/menu/upgrade_menu.tscn")

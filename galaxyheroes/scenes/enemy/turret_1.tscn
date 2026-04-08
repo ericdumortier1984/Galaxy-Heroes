@@ -3,38 +3,19 @@
 [ext_resource type="Script" uid="uid://b3otcyh113akd" path="res://scripts/enemy/turret_1.gd" id="1_6j7cn"]
 [ext_resource type="Texture2D" uid="uid://csyjq7w5jc8ce" path="res://images/enemy/turret/turret_1.png" id="1_ccnvd"]
 [ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="2_gjqmo"]
+[ext_resource type="Texture2D" uid="uid://bu5ddy2ga6vxv" path="res://images/enemy/turret/turret_cannons.png" id="2_jhdpd"]
 [ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="3_6j7cn"]
-[ext_resource type="Texture2D" uid="uid://b13jg8xvhgrk8" path="res://images/enemy/turret/turret_2.png" id="3_jhdpd"]
-[ext_resource type="Script" uid="uid://btg0ei3vcvnea" path="res://scripts/enemy_shot/shoot_marker_1.gd" id="4_dwyi2"]
-[ext_resource type="Texture2D" uid="uid://xxolhu35dw0g" path="res://images/enemy/turret/turret_3.png" id="4_yygbi"]
+[ext_resource type="Script" uid="uid://btg0ei3vcvnea" path="res://scripts/enemy_marker/shoot_marker_1.gd" id="4_dwyi2"]
 [ext_resource type="PackedScene" uid="uid://cf3xt21qhso3k" path="res://scenes/enemy_shot/turret_shot_1.tscn" id="5_yygbi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fqly3"]
 size = Vector2(52, 54)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_p8kjy"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_yygbi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("1_ccnvd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_jhdpd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("1_ccnvd")
-}],
-"loop": true,
-"name": &"fly",
-"speed": 2.0
-}]
-
 [node name="Turret 1" type="Node2D" unique_id=867154673]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_6j7cn")
+cannon_rotation_speed = 50.0
+cannon_rotation_offset = 90.0
 speed_enemy = 20
 max_life = 10
 
@@ -46,24 +27,34 @@ shape = SubResource("RectangleShape2D_fqly3")
 
 [node name="Turret Exit Notifier" type="VisibleOnScreenNotifier2D" parent="Area2D" unique_id=293490372]
 
-[node name="Fly" type="AnimatedSprite2D" parent="Area2D" unique_id=730593230]
-sprite_frames = SubResource("SpriteFrames_p8kjy")
-animation = &"fly"
+[node name="Cannons" type="Node2D" parent="Area2D" unique_id=55815104]
+position = Vector2(0, -15)
+scale = Vector2(0.865, 0.865)
 
-[node name="Shoot Point" type="Marker2D" parent="Area2D" unique_id=2110539101 groups=["TURRET MARKER"]]
-position = Vector2(-32, -8)
+[node name="Cannons Sprite" type="Sprite2D" parent="Area2D/Cannons" unique_id=641080590]
+position = Vector2(0, -8)
+texture = ExtResource("2_jhdpd")
+
+[node name="Shoot Point" type="Marker2D" parent="Area2D/Cannons" unique_id=2110539101 groups=["TURRET MARKER"]]
+position = Vector2(-12, -35)
+scale = Vector2(0.439, 1.012)
 script = ExtResource("4_dwyi2")
 bullet_scene = ExtResource("5_yygbi")
 
-[node name="Shoot Point2" type="Marker2D" parent="Area2D" unique_id=1993999073 groups=["TURRET MARKER"]]
-position = Vector2(0, -32)
+[node name="Shoot Point2" type="Marker2D" parent="Area2D/Cannons" unique_id=1993999073 groups=["TURRET MARKER"]]
+position = Vector2(0, -35)
+scale = Vector2(0.439, 1.012)
 script = ExtResource("4_dwyi2")
 bullet_scene = ExtResource("5_yygbi")
 
-[node name="Shoot Point3" type="Marker2D" parent="Area2D" unique_id=834534059 groups=["TURRET MARKER"]]
-position = Vector2(32, -8)
+[node name="Shoot Point3" type="Marker2D" parent="Area2D/Cannons" unique_id=834534059 groups=["TURRET MARKER"]]
+position = Vector2(12, -35)
+scale = Vector2(0.439, 1.012)
 script = ExtResource("4_dwyi2")
 bullet_scene = ExtResource("5_yygbi")
+
+[node name="Cannon Body" type="Sprite2D" parent="Area2D" unique_id=1318829082]
+texture = ExtResource("1_ccnvd")
 
 [node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=856996302]
 sprite_frames = ExtResource("2_gjqmo")

@@ -59,6 +59,19 @@ func set_boss_entry_finish():
 	shoot_marker.set_shoot_pattern_id(pattern_index)
 	pattern_change_time.start()
 
+func update_aura() -> void:
+	if boss_animated_sprite.material is ShaderMaterial:
+		var mat := boss_animated_sprite.material as ShaderMaterial
+		
+		var life_amount_ratio := float(current_life) / float(max_life)
+		var damage_amount_ratio := 1.0 - life_amount_ratio
+		var boss_aura_thickness : float = lerp(0.015, 0.1, damage_amount_ratio)
+		var boss_aura_intensity : float = lerp(1.5, 5.0, damage_amount_ratio)
+		var boss_aura_speed : float = lerp(2.0, 10.0, damage_amount_ratio)
+		mat.set_shader_parameter("aura_thickness", boss_aura_thickness)
+		mat.set_shader_parameter("aura_intensity", boss_aura_intensity)
+		mat.set_shader_parameter("aura_change_speed", boss_aura_speed)
+
 func take_damage(amount : int):
 	if GlobalSingleton.game_state != GlobalSingleton.GameState.PLAYING:
 		return
@@ -74,6 +87,8 @@ func take_damage(amount : int):
 	
 	if current_life <= 0:
 		boss_destroyed()
+		
+	update_aura()
 
 func boss_destroyed():
 	if is_boss_dying:
@@ -117,5 +132,5 @@ func _on_shoot_patter_timer_timeout() -> void:
 	if is_final_boss_defeated:
 		return
 		
-	pattern_index = (pattern_index + 1) % 5
+	pattern_index = (pattern_index + 1) % 6
 	shoot_marker.set_shoot_pattern_id(pattern_index)

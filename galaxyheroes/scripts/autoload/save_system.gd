@@ -3,12 +3,13 @@ extends Node
 var data : SaveData
 
 func _ready() -> void:
+	await get_tree().process_frame
 	load_game()
 	apply_settings()
 
 func apply_settings():
 	_apply_audio()
-	#_apply_video()
+	_apply_video()
 
 func _apply_audio():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),
@@ -16,12 +17,16 @@ func _apply_audio():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"),
 	linear_to_db(data.sfx_volume / 100.0))
 
-#func _apply_video():
-	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN 
-	#if data.fullscreen
-	#else 
-	#DisplayServer.WINDOW_MODE_WINDOWED)
-	#DisplayServer.window_set_size(data.resolution)
+func _apply_video():
+	if BrightnessLayer == null:
+		return
+	BrightnessLayer.set_brightness(data.brightness)
+	
+	if data.full_screen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN) 
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	DisplayServer.window_set_size(data.resolution)
 
 func save_game():
 	if data == null:

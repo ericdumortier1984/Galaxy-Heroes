@@ -2,7 +2,7 @@ class_name SimpleEnemy
 extends Enemy
 
 # --- onready --- #
-@onready var exit_screen_notifier : VisibleOnScreenNotifier2D = $Area2D/VisibleOnScreenNotifier2D
+@onready var exit_screen_notifier : VisibleOnScreenNotifier2D = $"Area2D/Exit Notifier"
 @onready var shoot_marker : SimpleEnemyMarker = $"Shoot Point"
 
 func _ready() -> void:

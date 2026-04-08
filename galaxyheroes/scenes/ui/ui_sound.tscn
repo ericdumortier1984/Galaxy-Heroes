@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://difr6apbll46y"]
+
+[ext_resource type="Script" uid="uid://drt3q4ncerotb" path="res://scripts/autoload/ui_sound.gd" id="1_0crpr"]
+[ext_resource type="AudioStream" uid="uid://cfi637dy431w1" path="res://audio/Sound/mouse_clic.wav" id="2_e0ay0"]
+[ext_resource type="AudioStream" uid="uid://b1s0b0elvheo4" path="res://audio/Sound/voice.wav" id="3_e0ay0"]
+
+[node name="UiSound" type="Node" unique_id=2128479433]
+script = ExtResource("1_0crpr")
+
+[node name="Mouse Clic Sound" type="AudioStreamPlayer" parent="." unique_id=9426620]
+stream = ExtResource("2_e0ay0")
+bus = &"SFX"
+
+[node name="Voice Sound" type="AudioStreamPlayer" parent="." unique_id=1885580535]
+stream = ExtResource("3_e0ay0")
+pitch_scale = 0.9
+bus = &"SFX"

@@ -137,6 +137,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		area.queue_free()
 
 func _on_shoot_pattern_timer_timeout() -> void:
+	if third_boss_current_state != ThirdBossState.STAND:
+		return
+	
 	missile_launcher_marker.start_shot_third_boss()
 
 func _on_state_timer_timeout() -> void:

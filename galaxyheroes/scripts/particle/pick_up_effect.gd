@@ -2,7 +2,6 @@ extends Node2D
 
 # --- onready --- #
 @onready var pick_up_sprite : Sprite2D = $Sprite2D
-@onready var pick_up_particle : CPUParticles2D = $"CPU Particle"
 @onready var pick_up_sound : AudioStreamPlayer2D = $"Pick Up Sound"
 
 func play_effect_pick_up(color : Color):
@@ -16,5 +15,4 @@ func play_effect_pick_up(color : Color):
 	tween.parallel().tween_property(pick_up_sprite, "self_modulate", color, 0.5)
 	
 	pick_up_sound.play()
-	pick_up_particle.emitting = true
 	tween.finished.connect(queue_free)

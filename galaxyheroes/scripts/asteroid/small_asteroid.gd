@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PLAYER_BULLET"):
-		take_damage(1)
+		take_damage(area.damage)
 		$Sprite2D.visible = false
 		$".".set_deferred("monitoring", false)
 		GlobalSingleton.score += 20

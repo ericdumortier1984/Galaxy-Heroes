@@ -3,10 +3,14 @@
 [ext_resource type="Script" uid="uid://c0sms6llwbt7a" path="res://scripts/hud/gui.gd" id="1_5j4t3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gfri"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.9882353, 1, 1, 0.47058824)
+shadow_color = Color(0, 0.73243463, 0.74582356, 0.41568628)
+shadow_size = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hruu"]
 bg_color = Color(0, 0.69530547, 0.6210373, 1)
+shadow_color = Color(0, 0.73243463, 0.74582356, 0.41568628)
+shadow_size = 1
 
 [node name="GUI" type="CanvasLayer" unique_id=2111763531]
 script = ExtResource("1_5j4t3")

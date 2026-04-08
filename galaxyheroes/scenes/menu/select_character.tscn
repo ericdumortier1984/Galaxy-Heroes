@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cw6w1cuqpj5b" path="res://images/ship/billy/Billy.png" id="4_perpj"]
 [ext_resource type="Texture2D" uid="uid://3kppuqaccuit" path="res://images/miniature/kimi.png" id="5_s701b"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ghpkh"]
+blend_mode = 1
+
 [node name="SelectCharacter" type="Control" unique_id=1732266047]
 layout_mode = 3
 anchors_preset = 15
@@ -60,8 +63,8 @@ grow_vertical = 2
 theme_override_constants/separation = 14
 
 [node name="Character Ryo" type="Button" parent="Select Character Button Container" unique_id=2012034528]
+material = SubResource("CanvasItemMaterial_ghpkh")
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "RYO
 "
@@ -77,31 +80,29 @@ texture = ExtResource("3_ghpkh")
 
 [node name="Character Billy" type="Button" parent="Select Character Button Container" unique_id=333921463]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "BILLY"
 
 [node name="Billy Texture" type="TextureRect" parent="Select Character Button Container/Character Billy" unique_id=1996251821]
 layout_mode = 0
-offset_left = -18.5
-offset_top = -1.0
-offset_right = 45.5
-offset_bottom = 63.0
+offset_left = -24.5
+offset_top = -0.5
+offset_right = 39.5
+offset_bottom = 63.5
 scale = Vector2(0.25, 0.333)
 texture = ExtResource("4_perpj")
 
 [node name="Character Kimi" type="Button" parent="Select Character Button Container" unique_id=53499361]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "KIMI"
 
 [node name="Kimi Texture" type="TextureRect" parent="Select Character Button Container/Character Kimi" unique_id=1511562797]
 layout_mode = 0
 offset_left = -23.5
-offset_top = 3.0
+offset_top = 3.5
 offset_right = 40.5
-offset_bottom = 67.0
+offset_bottom = 67.5
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_s701b")
 

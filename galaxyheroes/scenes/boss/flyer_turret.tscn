@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://b5wimejh7lw15" path="res://scripts/boss/flyer_turret.gd" id="1_8fde3"]
 [ext_resource type="Texture2D" uid="uid://bfsvis24ml8vw" path="res://images/boss/flyer_turret/flyer_turret.png" id="2_kerhg"]
 [ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="3_0jum4"]
-[ext_resource type="Script" uid="uid://b317ldxs6648n" path="res://scripts/boss_shot/flyer_turret_shot.gd" id="3_01qct"]
+[ext_resource type="Script" uid="uid://b317ldxs6648n" path="res://scripts/boss_marker_shot/flyer_turret_shot.gd" id="3_01qct"]
 [ext_resource type="SpriteFrames" uid="uid://xaix8tvn63yc" path="res://resources/animation/explosion.tres" id="4_01qct"]
-[ext_resource type="PackedScene" uid="uid://rulkvfhixd3e" path="res://scenes/bullet_boss/fire_ball.tscn" id="4_t22g1"]
+[ext_resource type="PackedScene" uid="uid://bxxgl1kpegjyi" path="res://scenes/bullet_boss/bullet_flyer_turret.tscn" id="4_t22g1"]
 [ext_resource type="AudioStream" uid="uid://wsl4hj6ppp76" path="res://audio/Sound/explosion.wav" id="5_kerhg"]
+[ext_resource type="SpriteFrames" uid="uid://rqqjpu5ix1w" path="res://resources/animation/fire_flash.tres" id="8_t22g1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t22g1"]
 animations = [{
@@ -21,12 +22,6 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8hcha"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kerhg"]
-bg_color = Color(0.91764706, 0, 0, 0.23529412)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jum4"]
-bg_color = Color(0, 0.654902, 0.30980393, 1)
-
 [node name="Flyer Turret" type="Node2D" unique_id=1780359297 node_paths=PackedStringArray("explosion_animation") groups=["BOSSES"]]
 script = ExtResource("1_8fde3")
 explosion_animation = NodePath("Area2D/Explosion")
@@ -40,8 +35,8 @@ animation = &"fly"
 [node name="Shoot Marker" type="Marker2D" parent="Area2D" unique_id=334402832 groups=["BOSS_MARKER"]]
 position = Vector2(-23, -2.495)
 script = ExtResource("3_01qct")
-first_boss_bullet_scene = ExtResource("4_t22g1")
-shot_interval = 0.5
+bullet_scene = ExtResource("4_t22g1")
+shot_interval = 0.25
 
 [node name="Fire rate timer" type="Timer" parent="Area2D/Shoot Marker" unique_id=182165029]
 
@@ -62,8 +57,6 @@ offset_right = -9.0
 offset_bottom = 2.0
 rotation = -1.5707964
 theme = ExtResource("3_0jum4")
-theme_override_styles/background = SubResource("StyleBoxFlat_kerhg")
-theme_override_styles/fill = SubResource("StyleBoxFlat_0jum4")
 max_value = 1.0
 value = 1.0
 fill_mode = 2
@@ -76,6 +69,13 @@ animation = &"explosion"
 [node name="Exposion Sound" type="AudioStreamPlayer2D" parent="Area2D/Explosion" unique_id=422721537]
 stream = ExtResource("5_kerhg")
 bus = &"SFX"
+
+[node name="Flash" type="AnimatedSprite2D" parent="Area2D" unique_id=1797933]
+position = Vector2(-24.45, -2.65)
+rotation = 3.1415927
+scale = Vector2(0.15, 0.15)
+sprite_frames = ExtResource("8_t22g1")
+animation = &"fire_flash"
 
 [node name="State Timer" type="Timer" parent="." unique_id=387812558]
 

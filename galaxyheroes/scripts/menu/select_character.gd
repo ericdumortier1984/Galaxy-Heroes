@@ -16,16 +16,24 @@ func _ready() -> void:
 func select_character(id : int):
 	SaveSystem.data.selecter_character_id = id
 	SaveSystem.save_game()
-	get_tree().change_scene_to_file("res://scenes/level/level_1.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/intro_story.tscn")
 
 func _on_button_pressed() -> void:
+	UiSound.play_mouse_clic_sound()
 	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 
 func _on_character_ryo_pressed() -> void:
+	var ui_voice_sound = UiSound.play_voice_sound()
+	Transition.fade_in()
+	await ui_voice_sound.finished
 	select_character(0)
 
 func _on_character_billy_pressed() -> void:
+	var ui_voice_sound = UiSound.play_voice_sound()
+	await ui_voice_sound.finished
 	select_character(1)
 
 func _on_character_kimi_pressed() -> void:
+	var ui_voice_sound = UiSound.play_voice_sound()
+	await ui_voice_sound.finished
 	select_character(2)
