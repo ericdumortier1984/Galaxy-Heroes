@@ -6,7 +6,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ty52"]
 
-[node name="Drone2" type="Area2D" unique_id=1558042995 groups=["PLAYER_BULLET"]]
+[node name="Drone2" type="Area2D" unique_id=1558042995]
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_7yu7n")
 drone_bullet_scene = ExtResource("2_vfbr8")

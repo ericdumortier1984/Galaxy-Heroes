@@ -21,9 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://8fvtairywq4w" path="res://scenes/ui/GUI.tscn" id="17_rtwb2"]
 [ext_resource type="Texture2D" uid="uid://cu1vfywio2doh" path="res://images/parallax/parallax-space-stars.png" id="20_mw0mw"]
 [ext_resource type="AudioStream" uid="uid://b6vk22nf8rtku" path="res://audio/Music/Metallica - Creeping Death.mp3" id="20_ox3e1"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8e0j7"]
-load_path = "res://.godot/imported/Space_background_2.png-bc20c8671d648cd18ef478bde72517d3.ctex"
+[ext_resource type="Texture2D" uid="uid://b0adwkh3ikt31" path="res://images/parallax/Space_background_2.png" id="21_m5nsq"]
 
 [sub_resource type="Curve2D" id="Curve2D_7gny6"]
 _data = {
@@ -94,10 +92,9 @@ parameters/looping = false
 motion_mirroring = Vector2(272, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Background Parallax/ParallaxLayer" unique_id=1368952497]
-modulate = Color(0.19506663, 0.19506675, 0.19506669, 1)
 position = Vector2(-2.2737368e-13, 0)
 scale = Vector2(1.238, 1.05)
-texture = SubResource("CompressedTexture2D_8e0j7")
+texture = ExtResource("21_m5nsq")
 centered = false
 
 [node name="Stars Parallax" type="ParallaxBackground" parent="Background" unique_id=321531945]

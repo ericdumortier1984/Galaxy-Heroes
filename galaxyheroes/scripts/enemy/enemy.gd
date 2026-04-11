@@ -98,6 +98,9 @@ func set_final_boss_entered():
 	direction = Vector2.ZERO
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area is WeaponDrone:
+		return
+	
 	if area.is_in_group("PLAYER_BULLET"):
 		if thrust_animation:
 			thrust_animation.stop()
