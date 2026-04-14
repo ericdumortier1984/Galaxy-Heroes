@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://ci3jyqf60oqjc"]
 
 [ext_resource type="Script" uid="uid://d0eay51n6pivr" path="res://scripts/menu/intro_story.gd" id="1_enubl"]
-[ext_resource type="Texture2D" uid="uid://dr71830s3oypg" path="res://images/parallax/space_background_2.png" id="1_hrwlc"]
 [ext_resource type="Theme" uid="uid://cdrkdmjlbxwui" path="res://resources/font/font_theme.tres" id="3_0l735"]
 [ext_resource type="FontFile" uid="uid://uwduxpu7qq6u" path="res://fonts/Kenney Future Narrow.ttf" id="4_0sxyg"]
 [ext_resource type="AudioStream" uid="uid://dc1h3u85ul0i1" path="res://audio/Music/Queen - Innuendo.mp3" id="4_nma3v"]
@@ -15,15 +14,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_enubl")
 
-[node name="Background" type="TextureRect" parent="." unique_id=419073017]
-modulate = Color(0.07889142, 0.009656927, 0.004658965, 1)
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1397814873]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_hrwlc")
+color = Color(0, 0.003921569, 0.003921569, 1)
 
 [node name="Story" type="RichTextLabel" parent="." unique_id=706652700]
 layout_mode = 1
