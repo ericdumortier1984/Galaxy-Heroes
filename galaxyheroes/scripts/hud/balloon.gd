@@ -36,6 +36,21 @@ var locals: Dictionary = {}
 
 var _locale: String = TranslationServer.get_locale()
 
+# --- portraits --- #
+var portraits := {
+	"Ryo": preload("res://images/miniature/ryo.png"),
+	"Billy": preload("res://images/miniature/billy.png"),
+	"Kimi": preload("res://images/miniature/kimi.png"),
+	"Damaged Zinthar": preload("res://images/miniature/damaged zinthar.png"),
+	"Desert Walker": preload("res://images/miniature/desert walker.png"),
+	"Omni-Drone X-99": preload("res://images/miniature/omni-drone x-99.png"),
+	"Radio Control": preload("res://images/miniature/radio control.png"),
+	"Red Phantom": preload("res://images/miniature/red phantom.png"),
+	"Reptile Head": preload("res://images/miniature/reptile head.png"), 
+	"Zinthar": preload("res://images/miniature/zinthar.png"),
+	"War Saucer": preload("res://images/miniature/war saucer.png")
+}
+
 ## The current line
 var dialogue_line: DialogueLine:
 	set(value):
@@ -166,9 +181,11 @@ func apply_dialogue_line() -> void:
 		balloon.grab_focus()
 
 func apply_miniature() -> void:
-	var miniature_image_path : String = "res://images/miniature/%s.png" % dialogue_line.character
-	if ResourceLoader.exists(miniature_image_path):
-		miniature_image.texture = load(miniature_image_path)
+	#var miniature_image_path : String = "res://images/miniature/%s.png" % dialogue_line.character
+	#if ResourceLoader.exists(miniature_image_path):
+		#miniature_image.texture = load(miniature_image_path)
+	if portraits.has(dialogue_line.character):
+		miniature_image.texture = portraits[dialogue_line.character]
 	else:
 		miniature_image.texture = null
 
