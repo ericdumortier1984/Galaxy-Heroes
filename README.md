@@ -27,3 +27,33 @@
 *Versión del editor:*
 - 4.6
   
+### <h2>2 – Jugabilidad
+
+*Controles:*	
+- Mouse, teclado y joystick
+
+*Mecánica Central:*
+- Controlar la nave del jugador, esquivar ataques y eliminar enemigos.
+ 
+*Elementos Únicos del Gameplay:*
+- Sistema de diálogos
+- Recolección de power up
+- Mejoras de municiones
+- Elección de distintos personajes principales
+   
+*Meta de Diseño:*	
+- Equilibrar patrones de ataques enemigo con la dificultad adecuada
+
+*Game Loop*
+<br/>
+- menu principal (Start - Continue - Options - crredits - Exit)
+- Selección de personaje
+- Nivel 1
+- Mejora munición
+- Nivel 2
+- Mejora munición
+- Nivel 3
+
+### <h2>3 - Arte y Visuales
+*Inspiración &*
+*Concepto Artístico:*
