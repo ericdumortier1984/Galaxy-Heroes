@@ -62,5 +62,6 @@
 
 *Paleta de Colores UI:*
 <br/>
-<img src= "https://github.com/user-attachments/assets/e3e4ee46-4699-433b-9fd8-e12a2d1f4f01" "alt="AdobeColor-失眠睡碎唸 MurMur ｜UI Design" "width="300px">>
+<img width="250" height="250" alt="AdobeColor-失眠睡碎唸 MurMur ｜UI Design" src="https://github.com/user-attachments/assets/ee2763bf-2aa7-44bd-aac5-15b96a261597" />
+
 
