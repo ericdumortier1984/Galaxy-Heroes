@@ -46,7 +46,7 @@
 
 *Game Loop*
 <br/>
-- menu principal (Start - Continue - Options - crredits - Exit)
+- menu principal (Start - Continue - Options - credits - Exit)
 - Selección de personaje
 - Nivel 1
 - Mejora munición
@@ -57,3 +57,9 @@
 ### <h2>3 - Arte y Visuales
 *Inspiración &*
 *Concepto Artístico:*
+
+
+
+*Paleta de Colores UI:*
+<br/>
+<img src="https://github.com/user-attachments/assets/0372e810-2058-48f0-89e9-11e3e8465c85" alt="AdobeColor-Gym Icon Set - Hugeicons Pro" width="300px">
