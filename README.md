@@ -9,7 +9,7 @@
 - Galaxy Heroes
 
 *Concepto:*	
-- Juego de naves espaciales con scroll lateral en 2D
+- Galaxy Heroes es un juego de acción espacial 2D estilo shoot'em up donde el jugador controla una nave espacial enfrentándose a oleadas de enemigos mientras descubre una historia mediante diálogos entre personajes.
 
 *Genero:*
 - Shot'em up 
@@ -33,28 +33,38 @@
 - Mouse, teclado y joystick
 
 *Mecánica Central:*
-- Controlar la nave del jugador, esquivar ataques y eliminar enemigos.
+- Movimiento libre de la nave dentro del área de juego.
+- Disparo continuo contra enemigos y jefes.
+- Esquiva de patrones de ataque.
+- Recolección de mejoras temporales.
+- Sistema de mejoras permanentes de armamento.
  
 *Elementos Únicos del Gameplay:*
-- Sistema de diálogos
-- Recolección de power up
-- Mejoras de municiones
-- Elección de distintos personajes principales
+- Sistema narrativo mediante diálogos entre niveles.
+- Selección de personajes con diferentes estilos de juego.
+- Sistema de mejoras que permite personalizar el armamento.
+- Power ups durante los niveles para modificar temporalmente las capacidades de la nave.
+- Combates contra jefes con patrones de ataque progresivos.
    
 *Meta de Diseño:*	
 - Equilibrar patrones de ataques enemigo con la dificultad adecuada
 
 *Game Loop*
 <br/>
-- menu principal (Start - Continue - Options - credits - Exit)
-- Selección de personaje
-- Nivel 1
-- Mejora munición
-- Nivel 2
-- Mejora munición
-- Nivel 3
+-Menú principal
+(Start - Continue - Options - Credits - Exit)
+-Selección de personaje
+-Nivel
+-Combate contra enemigos
+-Jefe del nivel
+-Pantalla de mejoras
+-Siguiente nivel
+-Victoria final
 
 ### <h2>3 - Arte y Visuales
+**
+- Pixel art 64 x 64
+
 *Inspiración &*
 *Concepto Artístico:*
 
@@ -64,4 +74,6 @@
 <br/>
 <img width="250" height="250" alt="AdobeColor-失眠睡碎唸 MurMur ｜UI Design" src="https://github.com/user-attachments/assets/ee2763bf-2aa7-44bd-aac5-15b96a261597" />
 
+### <h2>3 - Audio
 
+- Música dinámica de rock pesado con toques electrónicos
