@@ -58,7 +58,7 @@
 *Inspiración &*
 *Concepto Artístico:*
 
-
+<img width="250" height="250" alt="super-hydorah-4" src="https://github.com/user-attachments/assets/477b0fe8-8be6-4877-8591-a96a243d91c7" />
 
 *Paleta de Colores UI:*
 <br/>
