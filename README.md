@@ -62,7 +62,7 @@
 -Victoria final
 
 ### <h2>3 - Arte y Visuales
-**
+*Dirección artística*
 - Pixel art 64 x 64
 
 *Inspiración &*
