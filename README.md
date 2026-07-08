@@ -62,4 +62,5 @@
 
 *Paleta de Colores UI:*
 <br/>
-<img src="https://github.com/user-attachments/assets/0372e810-2058-48f0-89e9-11e3e8465c85" alt="AdobeColor-Gym Icon Set - Hugeicons Pro" width="300px">
+<img src="<img width="1600" height="2400" alt="AdobeColor-失眠睡碎唸 MurMur ｜UI Design" src="https://github.com/user-attachments/assets/e3e4ee46-4699-433b-9fd8-e12a2d1f4f01" />
+" width="300px">
