@@ -16,7 +16,7 @@ func _ready() -> void:
 func select_character(id : int):
 	SaveSystem.data.selecter_character_id = id
 	SaveSystem.save_game()
-	get_tree().change_scene_to_file("res://scenes/menu/intro_story.tscn")
+	call_deferred("_get_intro")
 
 func _on_button_pressed() -> void:
 	UiSound.play_mouse_clic_sound()
@@ -37,3 +37,9 @@ func _on_character_kimi_pressed() -> void:
 	var ui_voice_sound = UiSound.play_voice_sound()
 	await ui_voice_sound.finished
 	select_character(2)
+
+func _get_intro() -> void:
+	if not is_inside_tree():
+		return
+	
+	get_tree().change_scene_to_file("res://scenes/menu/intro_story.tscn")
